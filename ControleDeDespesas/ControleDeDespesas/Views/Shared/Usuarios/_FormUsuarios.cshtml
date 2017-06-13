@@ -1,0 +1,23 @@
+﻿@model ControleDeDespesas.Models.CadastroDeUsuario
+
+<div class="form-group">
+    @Html.LabelFor(u => u.Nome, "Nome")
+    @Html.TextBoxFor(u => u.Nome)
+
+
+    @Html.LabelFor(u => u.Login, "Login:")
+    @Html.TextBoxFor(u => u.Login)
+
+    @Html.LabelFor(u => u.Senha, "Senha:")
+    @Html.PasswordFor(u => u.Senha)
+
+    @Html.LabelFor(u => u.Email, "Email:")
+    @Html.TextBoxFor(u => u.Email)
+
+    @Html.LabelFor(u => u.IsAdmin, "É Admin?")
+    @Html.CheckBoxFor(u => u.IsAdmin)
+
+    @Html.LabelFor(u => u.CentroDeCusto, "Centro de Custo:")
+    @Html.TextBoxFor(u => u.CentroDeCusto)
+
+</div>
