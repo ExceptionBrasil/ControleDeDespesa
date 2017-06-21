@@ -6,10 +6,12 @@
 
 <div class="container">
     
-    @using (Html.BeginForm("Adicionar", "Usuarios", "POST", new { @class = "form-control" }))
+    @using (Html.BeginForm("Adicionar", "Usuarios", "POST"))
     {
-        @Html.Partial("/Views/Shared/Usuarios/_FormUsuarios.cshtml")
-        <input type="submit" value="Gravar" />
+        <fieldset>
+            <legend>Cadastro de Usuário</legend>
+            @Html.Partial("/Views/Shared/Usuarios/_FormUsuarios.cshtml")            
+        </fieldset>
     }
 </div>
 

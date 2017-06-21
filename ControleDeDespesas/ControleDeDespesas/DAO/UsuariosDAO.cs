@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using ControleDeDespesas.Models;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,26 @@ namespace ControleDeDespesas.DAO
             this.session = session;
         }
 
+        public void Adiciona (CadastroDeUsuario usuario)
+        {
+            ITransaction transacao = session.BeginTransaction();
+            session.Save(usuario);
+            transacao.Commit();
+        }
+        public void Exclui(CadastroDeUsuario usuario)
+        {
+            ITransaction transacao = session.BeginTransaction();
+            session.Delete(usuario);
+            transacao.Commit();
+        }
+        public void Altera(CadastroDeUsuario usuario)
+        {
+            ITransaction transacao = session.BeginTransaction();
+            session.Merge(usuario);
+            transacao.Commit();
+        }
+
+        
 
 
     }
