@@ -13,5 +13,10 @@ namespace ControleDeDespesas.Controllers
         {
             return View();
         }
+
+        public ActionResult Autentica()
+        {
+            return View();
+        }
     }
 }

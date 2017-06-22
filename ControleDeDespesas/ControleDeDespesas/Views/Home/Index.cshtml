@@ -1,7 +1,29 @@
-﻿
+﻿@model ControleDeDespesas.ViewModels.Autenticacao
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
+
+
+        @using (Html.BeginForm("Autentica", "Home", "POST"))
+            {
+            <div class="col-lg-4 col-sm-4 col-xs-4"></div>
+                <div class="col-lg-4 col-sm-4 col-xs-4">
+                    @Html.LabelFor(l => l.Login, "Login:")
+                    @Html.TextBoxFor(l => l.Login, new { @class = "form-control" })
+
+                    @Html.LabelFor(l => l.Senha, "Senha:")
+                    @Html.TextBoxFor(l => l.Senha, new { @class = "form-control" })
+                    <p></p>
+                    <input class="btn btn-primary" type="submit" value="Efetuar Login" />
+                </div>
+
+                <div class="col-lg-4 col-sm-4 col-xs-4"></div>
+        }
+
+
+    </div>
+</div>
 
