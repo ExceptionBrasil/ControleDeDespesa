@@ -1,4 +1,5 @@
 ﻿using ControleDeDespesas.Models;
+using ControleDeDespesas.ViewModels;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -35,8 +36,15 @@ namespace ControleDeDespesas.DAO
             transacao.Commit();
         }
 
-        
+        public CadastroDeUsuario GetById(int id)
+        {
+            var usuario = session.QueryOver<CadastroDeUsuario>()
+                                  .Where(u => u.Id == id)
+                                  .SingleOrDefault<CadastroDeUsuario>();
+            return usuario;
+        }
 
+       
 
     }
 }
