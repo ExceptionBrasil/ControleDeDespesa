@@ -1,4 +1,5 @@
-﻿using ControleDeDespesas.DAO;
+﻿using ControleDeDespesas.Controllers.Filters;
+using ControleDeDespesas.DAO;
 using ControleDeDespesas.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using WebMatrix.WebData;
 
 namespace ControleDeDespesas.Controllers
 {
+    [AurizacaoFilter]
     public class UsuariosController : Controller
     {
         private UsuariosDAO usuarioDAO;
@@ -38,8 +40,7 @@ namespace ControleDeDespesas.Controllers
         public ActionResult Adicionar(CadastroDeUsuario usuario)
         {
             if (ModelState.IsValid)
-            {
-                //usuarioDAO.Adiciona(usuario);
+            {                
                 try
                 {
                     WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
@@ -53,11 +54,14 @@ namespace ControleDeDespesas.Controllers
                     
                 }catch(MembershipCreateUserException ex)
                 {
-                    return View("Erro");
+                    return View(usuario);
                 }
+                return View();
             }
-            return View();
-
+            else
+            {
+                return View("Novo",usuario);
+            }         
         }
     }
 }

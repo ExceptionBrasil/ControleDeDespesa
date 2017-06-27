@@ -9,7 +9,7 @@ using WebMatrix.WebData;
 
 namespace ControleDeDespesas.Controllers
 {   
-    [AllowAnonymous]
+   
     public class HomeController : Controller
     {
         private UsuariosDAO usuarioDAO; 
@@ -29,6 +29,7 @@ namespace ControleDeDespesas.Controllers
         /// Home
         /// </summary>
         /// <returns>ActionResult.</returns>
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -41,6 +42,7 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="autenticacao">The autenticacao.</param>
         /// <returns>ActionResult.</returns>
+        [HttpPost]
         public ActionResult Autentica(Autenticacao autenticacao)
         {
             if (WebSecurity.Login(autenticacao.Login, autenticacao.Senha))

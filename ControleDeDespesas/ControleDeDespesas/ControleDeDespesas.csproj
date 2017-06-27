@@ -172,6 +172,7 @@
     <Compile Include="Helpers\NhibernateHelper.cs" />
     <Compile Include="Mappings\CadastroDeUsuarioMapping.cs" />
     <Compile Include="Models\CadastroDeUsuario.cs" />
+    <Compile Include="Models\Despesas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Autenticacao.cs" />
   </ItemGroup>
