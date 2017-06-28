@@ -164,6 +164,7 @@
     <Compile Include="Controllers\DespesasController.cs" />
     <Compile Include="Controllers\Filters\AurizacaoFilterAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TiposDespesasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="DAO\UsuariosDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,7 +198,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\TiposDespesas\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
