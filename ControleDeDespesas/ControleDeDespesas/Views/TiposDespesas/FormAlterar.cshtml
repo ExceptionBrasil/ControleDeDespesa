@@ -3,7 +3,10 @@
     ViewBag.Title = "Novo";
 }
 
-<div class="thumbnail">
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="@Url.Action("Index","TiposDespesas")">Voltar</a></li>
+</ul>
+
 
     @using (Html.BeginForm("Alterar", "TiposDespesas", "POST"))
     {
@@ -22,6 +25,4 @@
         </div>
 
     }
-
-</div>
 
