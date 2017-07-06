@@ -173,6 +173,7 @@
     </Compile>
     <Compile Include="Helpers\NhibernateHelper.cs" />
     <Compile Include="Mappings\CadastroDeUsuarioMapping.cs" />
+    <Compile Include="Mappings\DespesasMapping.cs" />
     <Compile Include="Mappings\TiposDeDespesasMapping.cs" />
     <Compile Include="Models\CadastroDeUsuario.cs" />
     <Compile Include="Models\Despesas.cs" />
@@ -199,6 +200,9 @@
     <Content Include="Views\TiposDespesas\FormIncluir.cshtml" />
     <Content Include="Views\TiposDespesas\FormAlterar.cshtml" />
     <Content Include="Views\Shared\TiposDespesas\_FormTipos.cshtml" />
+    <Content Include="Views\Shared\SubMenus\_MenuTipoDespesas.cshtml" />
+    <Content Include="Views\Despesas\FrmIncluir.cshtml" />
+    <Content Include="Views\Shared\Despesas\_FormDespesas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

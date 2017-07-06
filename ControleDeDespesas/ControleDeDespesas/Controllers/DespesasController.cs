@@ -25,5 +25,11 @@ namespace ControleDeDespesas.Controllers
             Session["Usuario"] = usuarioDAO.GetById(WebSecurity.CurrentUserId);
             return View();
         }
+
+        public ActionResult FrmIncluir()
+        {
+
+            return View("Index");
+        }
     }
 }

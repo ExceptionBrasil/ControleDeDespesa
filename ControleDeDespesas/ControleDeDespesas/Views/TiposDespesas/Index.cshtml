@@ -1,27 +1,7 @@
 ﻿@model IList<ControleDeDespesas.Models.TiposDeDespesas>
 
-<nav class="navbar">
-    <div class="container-fluid">
-        <ul class="nav nav-tabs navbar-right">
-            <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Opções <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="nav-item"><a href="@Url.Action("FormIncluir","TiposDespesas")"><span class="glyphicon glyphicon-hand-right"></span> Novo</a></li>                    
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container container-fluid">
-    <fieldset>
-        <legend>
-            Tipos de Despesas
-        </legend>
-    </fieldset>
-</div>
 
+@Html.Partial("/Views/Shared/SubMenus/_MenuTipoDespesas.cshtml")
 
     <div class="container">
         <div class="row">
