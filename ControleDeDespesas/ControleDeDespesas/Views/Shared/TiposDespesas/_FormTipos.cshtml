@@ -1,0 +1,6 @@
+﻿@model ControleDeDespesas.Models.TiposDeDespesas
+
+@Html.HiddenFor(t=> t.Id)
+@Html.LabelFor(t => t.Descricao, "Descrição")
+@Html.TextBoxFor(t => t.Descricao, new { @class = "form - control" })
+<input class="btn btn-primary" type="submit" value="Gravar" />

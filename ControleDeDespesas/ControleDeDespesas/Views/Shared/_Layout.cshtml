@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Despesas</title>    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    
+</head>
+<body>   
+    @Html.Partial("_Menu")   
+
+     @RenderBody()               
+
+    <footer>
+        <p><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>Sua Empresa Aqui</p>
+    </footer>
+
+    @RenderSection("Scripts",false)
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

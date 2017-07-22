@@ -1,0 +1,18 @@
+﻿@model ControleDeDespesas.Models.CadastroDeUsuario
+@{
+    ViewBag.Title = "Novo";
+}
+
+
+<div class="container">
+    
+    @using (Html.BeginForm("Adicionar", "Usuarios", "POST"))
+    {
+        <fieldset>
+            <legend>Cadastro de Usuário</legend>
+            @Html.Partial("/Views/Shared/Usuarios/_FormUsuarios.cshtml")            
+        </fieldset>
+    }
+</div>
+@section Scripts
+{  }
