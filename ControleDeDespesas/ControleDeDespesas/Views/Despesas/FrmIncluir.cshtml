@@ -8,13 +8,56 @@
             {
                 @Html.Partial("/Views/Shared/Despesas/_FormDespesas.cshtml")
 
-                <input type="submit" class="btn btn-primary" />
+                
+                <button id="btnAdicionar"><span class="glyphicon glyphicon-plus-sign"></span>Adicionar</button>
 
             }
 
+            <hr />            
         </div>
+        <div class="col col-xs-12 col-md-12">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Total</th>
+                        <th>Descritivo</th>
+                        <th colspan="2">Opções</th>
+                    </tr>
+                </thead>
+                <tbody id="itensDespesas">
+                    <tr>
+                        <td>Quilometragem(KM)</td>
+                        <td>1,00</td>
+                        <td>850,00</td>
+                        <td>850,00</td>
+                        <td>Oni ci verba kombi, al veki vavo minusklo plue, eko li viro interalie ladskatolo. Ene ot ofon reen kompreneble, zo.</td>
+                        <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
+                    </tr>
+                    <tr>
+                        <td>Despesas processuais(KM)</td>
+                        <td>3,00</td>
+                        <td>75,00</td>
+                        <td>225,00</td>
+                        <td>Oni ci verba kombi, al veki vavo minusklo plue, eko li viro interalie ladskatolo. Ene ot ofon reen kompreneble, zo.</td>
+                        <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
+                    </tr>
+                    @*<tr>
+                        <td class="text-danger"><b>Total</b></td>
+                        <td><b>1075,00</b></td>
+                    </tr>*@
+                </tbody>
+            </table>
+            <button class="btn btn-success" id="enviaDespesas">Enviar</button>
+        </div>
+      
     </div>
 </div>
+<br /><br /><br /><br />
 
 
 @section Scripts{

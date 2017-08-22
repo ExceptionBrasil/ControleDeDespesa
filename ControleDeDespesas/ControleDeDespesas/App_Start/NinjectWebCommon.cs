@@ -63,7 +63,7 @@ namespace ControleDeDespesas.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ISession>().ToMethod(x => NHibernateHelper.OpenSession()).InRequestScope();
+            kernel.Bind<ISession>().ToMethod(x => NhibernateHelper.OpenSession()).InRequestScope();
         }        
     }
 }

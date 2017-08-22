@@ -14,6 +14,7 @@ namespace ControleDeDespesas.Mappings
             Id(d => d.Id).GeneratedBy.Identity();
             References(d => d.Tipo);
             Map(d => d.Valor);
+            Map(d => d.Quantidade);
             Map(d => d.Descritivo);
             Map(d => d.Attachment);
 

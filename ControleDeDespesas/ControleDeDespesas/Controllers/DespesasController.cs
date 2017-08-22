@@ -13,10 +13,12 @@ namespace ControleDeDespesas.Controllers
     public class DespesasController : Controller
     {
         private UsuariosDAO usuarioDAO;
+        private TiposDeDespesasDAO tiposDAO;
 
-        public DespesasController(UsuariosDAO userDAO)
+        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO)
         {
             this.usuarioDAO = userDAO;
+            this.tiposDAO = tpDAO;
         }
 
         // GET: Despesas
@@ -28,8 +30,17 @@ namespace ControleDeDespesas.Controllers
 
         public ActionResult FrmIncluir()
         {
+            ViewBag.TiposDeDespesa = tiposDAO.Lista();
 
             return View();
         }
+
+
+        public JsonResult Incluir(object data)
+        {
+
+            return Json(new { success = true });
+        }
+
     }
 }
