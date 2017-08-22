@@ -54,17 +54,38 @@ namespace ControleDeDespesas.Controllers
         }
 
 
-        
+        /// <summary>
+        /// Exclusão dos tipos de despesas
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public ActionResult Excluir(int id)
         {
             tiposDAO.Excluir(tiposDAO.GetById(id));
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Alteração dos tipos de despesas
+        /// </summary>
+        /// <param name="tipo">The tipo.</param>
+        /// <returns></returns>
         public ActionResult Alterar(TiposDeDespesas tipo)
         {
             tiposDAO.Alterar(tipo);
             return RedirectToAction("Index");
+        }
+
+
+        /// <summary>
+        /// Retorna todos os  tipos em formato Json 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetTipos()
+        {
+            var tipos = tiposDAO.Lista();
+
+            return Json(tipos,JsonRequestBehavior.AllowGet);
         }
 
 

@@ -29,7 +29,7 @@ namespace ControleDeDespesas.Controllers
         public ActionResult FrmIncluir()
         {
 
-            return View("Index");
+            return View();
         }
     }
 }

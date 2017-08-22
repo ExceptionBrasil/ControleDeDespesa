@@ -1,9 +1,27 @@
 ﻿@model ControleDeDespesas.Models.Despesas
 
 
-@using (Html.BeginForm("Incluir", "Despesas", "POST"))
-{
-    @Html.Partial("/Views/Shared/Despesas/_FormDespesas.cshtml")
+<div class="container">
+    <div class="row">        
+        <div class="col-md-12">
+            @using (Html.BeginForm("Incluir", "Despesas", "POST"))
+            {
+                @Html.Partial("/Views/Shared/Despesas/_FormDespesas.cshtml")
 
-}
+                <input type="submit" class="btn btn-primary" />
 
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+        var urlDest = "@Url.Action("GetTipos", "TiposDespesas")";
+    </script>
+    <script src="~/Scripts/TiposDeDespesa.js"></script>
+    
+    }

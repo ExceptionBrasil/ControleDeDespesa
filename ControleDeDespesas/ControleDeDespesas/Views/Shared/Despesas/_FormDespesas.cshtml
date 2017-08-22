@@ -1,11 +1,25 @@
-﻿@Html.LabelFor(d => d.Tipo, "Tipo")
-@Html.TextBoxFor(d => d.Tipo)
+﻿@model ControleDeDespesas.Models.Despesas
 
-@Html.LabelFor(d => d.Valor, "Valor")
-@Html.TextBoxFor(d => d.Valor)
+<div class="form-group">
+    @Html.LabelFor(d => d.Tipo, "Tipo")
+    @Html.TextBoxFor(d => d.Tipo, new { @class = "form-control"})
+</div>
+<div class="form-group">
+    @Html.LabelFor(d => d.Valor, "Valor")
+    @Html.TextBoxFor(d => d.Valor, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(d => d.Descritivo, "Descritivo")
+    @Html.TextAreaFor(d => d.Descritivo, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(d => d.Attachment, "Anexo")
+    @Html.TextBoxFor(d=> d.Attachment, new { @class = "", type="file" })
+    
+</div>
 
-@Html.LabelFor(d => d.Descritivo, "Descritivo")
-@Html.TextBoxFor(d => d.Descritivo)
 
-@Html.LabelFor(d => d.Attachment, "Anexo")
+
+
+
 
