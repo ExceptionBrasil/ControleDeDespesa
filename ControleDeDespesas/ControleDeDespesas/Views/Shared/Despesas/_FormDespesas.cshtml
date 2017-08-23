@@ -6,11 +6,11 @@
 </div>
 <div class="form-group">
     @Html.LabelFor(d=>d.Quantidade,"Quantidade")
-    @Html.TextBoxFor(d=>d.Quantidade, new { @class = "form-control"})
+    @Html.TextBoxFor(d=>d.Quantidade, new { @class = "form-control", @type="numeric"})
 </div>
 <div class="form-group">
     @Html.LabelFor(d => d.Valor, "Valor")
-    @Html.TextBoxFor(d => d.Valor, new { @class = "form-control" })
+    @Html.TextBoxFor(d => d.Valor, new { @class = "form-control", @type = "numeric" })
 </div>
 <div class="form-group">
     @Html.LabelFor(d => d.Descritivo, "Descritivo")

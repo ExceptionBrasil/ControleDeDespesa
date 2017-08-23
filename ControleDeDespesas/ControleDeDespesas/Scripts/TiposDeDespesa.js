@@ -9,7 +9,9 @@ $(document).ready(function () {
 });
 
 
-
+/*
+ * Adiciona Itens na Tabela
+ */
 function AdicionarItem(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -25,6 +27,9 @@ function AdicionarItem(event) {
 
 }
 
+/*
+ * Gera a string da tabela 
+ */
 function geraStringHTML(tipoDespesa, quantidade, valor, descricao) {
 
     var stringHTML = "";
@@ -41,16 +46,25 @@ function geraStringHTML(tipoDespesa, quantidade, valor, descricao) {
     return stringHTML;
 }
 
+/*
+ * Realiza a soma dos itens da Tebela
+ */
 function somaItens() {
     var total = 0;
     var itensDespesas = document.querySelector("#itensDespesas");
     var trs = itensDespesas.getElementsByTagName('tr');
 
-    trs.forEach(function (tr) {
-        var tds = tr.getElementsByTagName('td');
-        total += parseFloat(tds[3].innerHTML);       
+    for (var ix = 0; ix < trs.length; ix++) {
+        var tds = trs[ix].getElementsByTagName('td');
+        total += parseFloat(tds[3].innerHTML);
+    }
 
-    });
+    ImprimeTotal(total);
+}
 
-    console.log(total);
+
+function ImprimeTotal(valor) {
+    var total = document.querySelector("#tbTotal");
+
+    total.innerHTML = "<h4>Total: "+valor+"</h4>";
 }
