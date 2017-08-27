@@ -1,18 +1,36 @@
 ﻿
-var regExCamposValores = "/\d{5}[,]\d\d/";
-var quantidade = document.querySelector("#Quantidade");
-var valor = document.querySelector("#Valor");
 
+/**
+ * Valida os dados do formulário antes adicionar a grade
+ */
+var ValidaNumeros = function (v) {
 
-quantidade.addEventListener("blur", validaNumerico(quantidade.value));
-
-
-function validaNumerico(valor) {
-   
-    var re = new RegExp(regExCamposValores);
-    if (re.test(valor)) {
-        
-    } else {
-        console.log("Invalid");
+    if (v.value == "") {
+        return {
+            result: false,
+            text: v.name
+        };
     }
+    else {
+        return {
+            result: true,
+            text: v.name
+        };
+    }
+
+    if (parseFloat(v.value) == NaN) {
+        return {
+            result: false,
+            text: v.name
+        };
+    }
+    else {
+        return {
+            result: true,
+            text: v.name
+        };
+    
+    }
+    
+
 }

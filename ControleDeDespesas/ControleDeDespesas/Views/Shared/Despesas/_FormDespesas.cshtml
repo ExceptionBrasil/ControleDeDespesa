@@ -2,12 +2,13 @@
 
 <div class="form-group">
     @Html.LabelFor(d => d.Tipo, "Tipo")
-    @Html.DropDownListFor(d => d.Tipo, new SelectList(ViewBag.TiposDeDespesa,"Id","Descricao"), new { @class = "form-control"})
+    @Html.DropDownListFor(d => d.Tipo, new SelectList(ViewBag.TiposDeDespesa, "Id", "Descricao"), new { @class = "form-control" })
 </div>
 <div class="form-group">
-    @Html.LabelFor(d=>d.Quantidade,"Quantidade")
-    @Html.TextBoxFor(d=>d.Quantidade, new { @class = "form-control", @type="numeric"})
+    @Html.LabelFor(d => d.Quantidade, "Quantidade")
+    @Html.TextBoxFor(d => d.Quantidade, new { @class = "form-control", @type = "numeric" })
 </div>
+
 <div class="form-group">
     @Html.LabelFor(d => d.Valor, "Valor")
     @Html.TextBoxFor(d => d.Valor, new { @class = "form-control", @type = "numeric" })
@@ -18,10 +19,10 @@
 </div>
 
 @*<div class="form-group">
-    @Html.LabelFor(d => d.Attachment, "Anexo")
-    @Html.TextBoxFor(d=> d.Attachment, new { @class = "", type="file" })
-    
-</div>*@
+        @Html.LabelFor(d => d.Attachment, "Anexo")
+        @Html.TextBoxFor(d=> d.Attachment, new { @class = "", type="file" })
+
+    </div>*@
 
 
 
