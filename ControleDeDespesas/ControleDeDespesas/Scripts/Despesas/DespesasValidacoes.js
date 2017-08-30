@@ -9,6 +9,8 @@ $(document).ready(function () {
     Quantidade.addEventListener("blur", function () {
         corrigeVirgula("Quantidade");
     }, true);
+
+
     Valor.addEventListener("blur", function () {
         corrigeVirgula("Valor");
     }, true);

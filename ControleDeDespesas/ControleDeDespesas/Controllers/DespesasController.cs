@@ -1,5 +1,6 @@
 ﻿using ControleDeDespesas.Controllers.Filters;
 using ControleDeDespesas.DAO;
+using ControleDeDespesas.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace ControleDeDespesas.Controllers
         }
 
 
-        public JsonResult Incluir(object data)
+        public JsonResult Incluir(IList<DespesasJson> despesas)
         {
 
             return Json(new { success = true });
