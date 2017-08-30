@@ -36,7 +36,7 @@ namespace ControleDeDespesas.Controllers
             return View();
         }
 
-
+        [HttpPost]
         public JsonResult Incluir(IList<DespesasJson> despesas)
         {
 

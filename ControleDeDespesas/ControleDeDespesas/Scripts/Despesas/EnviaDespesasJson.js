@@ -9,7 +9,7 @@ $(document).ready(function () {
 var WebServicesDespesa = ()=>{
     $.ajax({
         url: "http://localhost:52102/Despesas/Incluir",
-        data: { "despesas": JSON.stringify(Itens) },
+        data: { "despesas": Itens },
         dataType: "json",
         error: function(){
             console.log("Erro de processamento no servidor");
