@@ -23,16 +23,16 @@ var AdicionarItem = function(event) {
     event.preventDefault();
     event.stopPropagation();
 
-
-    var tipoDespesa = document.querySelector("#Tipo");
-    var quantidade = document.querySelector("#Quantidade");
-    var valor = document.querySelector("#Valor");
-    var descricao = document.querySelector("#Descritivo");
-    var itensDespesas = document.querySelector("#itensDespesas");
+    //Dados do Formulário
+    let tipoDespesa = document.querySelector("#Tipo");
+    let quantidade = document.querySelector("#Quantidade");
+    let valor = document.querySelector("#Valor");
+    let descricao = document.querySelector("#Descritivo");
+    let itensDespesas = document.querySelector("#itensDespesas");
 
   
     //Valida se há conteúdo mínimo na tela antes de seguir
-    var retorno = ValidaNumeros(quantidade);
+    let retorno = ValidaNumeros(quantidade);
 
 
     if (!retorno.result) {  
@@ -55,10 +55,20 @@ var AdicionarItem = function(event) {
         descricao: descricao.value
     }
 
-    Itens.push(Item);
+    var Item2 = {
+        IdDespesa: parseInt(tipoDespesa.value),
+        DespesaDescricao : tipoDespesa[tipoDespesa.selectedIndex].text,
+        Quantidade: parseFloat(quantidade.value),
+        Valor: parseFloat(valor.value),       
+        Observacao: descricao.value
+    }
+
+    //Adiciona o objeto no Array de transporte
+    //Itens.push(Item);
 
 
-    itensDespesas.innerHTML += geraStringHTML(tipoDespesa, quantidade, valor, descricao);
+    //itensDespesas.innerHTML += geraStringHTML(tipoDespesa, quantidade, valor, descricao);
+    itensDespesas.innerHTML += geraStringHTML2(Item2);
     somaItens();
     ZeraItens();
 
@@ -123,6 +133,53 @@ var geraStringHTML = function(tipoDespesa, quantidade, valor, descricao) {
 
     return stringHTML;
 }
+
+
+/*
+ * Gera a string da tabela 
+ */
+var geraStringHTML2 = (I) => {
+
+    var stringHTML = "";
+    stringHTML += "<tr id='Item" +I.IdDespesa + "'>";
+    stringHTML += "<td>" +I.IdDespesa + "</td>";
+    stringHTML += "<td>" + I.DespesaDescricao + "</td > ";
+    stringHTML += "<td>" + I.Quantidade + "</td>";
+    stringHTML += "<td>" + I.Valor + "</td>";
+    stringHTML += "<td>" + I.Quantidade * I.Valor + "</td>";
+    stringHTML += "<td>" + I.Observacao + "</td>";
+    stringHTML += "<td><a onclick='EditaItem(" + I.IdDespesa + ")'  href='#'><span class='glyphicon glyphicon-edit'></span></a></td>";
+    stringHTML += "<td><a onclick='RemoveItem(" + I.IdDespesa + ")' href='#'><span class='glyphicon glyphicon-erase'></span></a></td>";
+    stringHTML += "</tr>"
+
+    return stringHTML;
+}
+
+
+/*
+ * Remove um item da Grade 
+ */
+function RemoveItem(it) {
+    let tr = document.querySelector("#Item" + it);
+    tr.outerHTML = "";
+}
+
+/*
+ * Edita o Item 
+ */
+function EditaItem(it) {
+    let tr = document.querySelector("#Item" + it);
+    let tds = tr.getElementsByTagName("td");
+
+    $("#Tipo").val(tds[0].innerHTML);
+    $("#Quantidade").val(tds[2].innerHTML);
+    $("#Valor").val(tds[3].innerHTML);
+    $("#Descritivo").val(tds[5].innerHTML);
+
+    tr.outerHTML = "";
+
+}
+
 
 /*
  * Realiza a soma dos itens da Tebela
