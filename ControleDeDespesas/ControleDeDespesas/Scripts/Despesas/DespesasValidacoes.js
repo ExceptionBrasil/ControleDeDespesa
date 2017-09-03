@@ -21,7 +21,7 @@ $(document).ready(function () {
 /**
  * Valida os dados do formulário antes adicionar a grade
  */
-var ValidaNumeros = function (v) {
+var ValidaNumeros = (v) => {
 
     if (v.value == "") {
         return {
@@ -53,27 +53,27 @@ var ValidaNumeros = function (v) {
 
 }
 
-/**
- * Mesagem de conteúdo inválido
- * @param {any} tag
- */
-var EscreveAvisoDeErro = function (tag) {
-    $("#" + tag).after(
-        `<div class="alert alert-warning alert-dismissible fade in" role="alert" id="AlertaDeCampo">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Conteúdo Inválido!</strong>
-            O conteúdo do campo <strong>`+ tag + ` </strong> está inválido
-            </div>`);
-}
+
 
 /**
- * Faz a troca da vírgula pelo ponto
+ * Faz a troca do ponto por vírgula
  * @param {any} id
  */
 function corrigeVirgula(id) {
     let v = document.querySelector("#" + id);
-    let newValue = v.value.replace(",", ".");
+    let newValue = parseFloat(v.value.replace(",", "."));
+    newValue = newValue.toFixed(2).toLocaleString().replace(".", ",");        
     v.value = newValue;
+}
+
+function ToFloat(v) {    
+    let newValue = parseFloat(v.replace(",", "."));
+    newValue = newValue.toFixed(2);
+    return parseFloat(newValue);
+}
+
+function ToFloatToString(v) {    
+    let newValue = parseFloat(v.replace(",", "."));
+    newValue = newValue.toFixed(2).toLocaleString().replace(".", ",");
+    return newValue;
 }

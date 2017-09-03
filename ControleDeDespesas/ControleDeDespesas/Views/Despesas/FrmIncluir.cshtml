@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">        
         <div class="col-md-12">
-            @using (Html.BeginForm("Incluir", "Despesas", "POST"))
+            @using (Html.BeginForm("Incluir", "Despesas", FormMethod.Post, new {id= "frm-despesas" }))
             {
                 @Html.Partial("/Views/Shared/Despesas/_FormDespesas.cshtml")
 
@@ -35,9 +35,8 @@
                 <h4>Total: </h4>
             </div>
             <button class="btn btn-success" id="enviaDespesas">Enviar</button>
-           
+            <div id="erroDeEnvio"></div>
         </div>
-      
     </div >
 </div>
 <br /><br /><br /><br />
@@ -46,10 +45,11 @@
 @section Scripts{
    
     <script>        
-        var urlDest = "@Url.Action("GetTipos", "TiposDespesas")";
-    </script>
+        var urlDespesasIncluir = "@Url.Action("Incluir", "Despesas")";
+    </script>    
+    <script src="~/Scripts/Despesas/DespesasWriteHtml.js"></script>
     <script src="~/Scripts/Despesas/DespesasValidacoes.js"></script>
-    <script src="~/Scripts/Despesas/TiposDeDespesa.js"></script>
+    <script src="~/Scripts/Despesas/DespesaMain.js"></script>
     <script src="~/Scripts/Despesas/EnviaDespesasJson.js"></script>
 
 }

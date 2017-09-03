@@ -12,6 +12,7 @@ namespace ControleDeDespesas.Mappings
         public DespesasMapping()
         {
             Id(d => d.Id).GeneratedBy.Identity();
+            Map(d => d.CodigoDespesa);
             References(d => d.Tipo);
             Map(d => d.Valor);
             Map(d => d.Quantidade);

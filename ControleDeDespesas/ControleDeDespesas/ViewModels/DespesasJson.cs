@@ -7,10 +7,14 @@ namespace ControleDeDespesas.ViewModels
 {
     public class DespesasJson
     {
-        public string tipoDespesa { get; set; }
-        public string tipoDespesaDescricao { get; set; }        
-        public double quantidade { get; set; }        
-        public double valor { get; set; }
-        public string descricao { get; set; }
+
+        
+        public int IdDespesa { get; set; }
+        public string DespesaDescricao { get; set; }        
+        public double Quantidade { get; set; }        
+        public double Valor { get; set; }
+        public string Observacao { get; set; }
+
     }
+
 }

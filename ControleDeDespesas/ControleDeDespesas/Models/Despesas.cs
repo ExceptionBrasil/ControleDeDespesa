@@ -11,6 +11,8 @@ namespace ControleDeDespesas.Models
     {
         public virtual int Id { get; set; }
 
+        public virtual int CodigoDespesa { get; set; }
+
         [Required]
         public virtual TiposDeDespesas Tipo { get; set; }
 

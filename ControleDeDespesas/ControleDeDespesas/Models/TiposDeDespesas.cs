@@ -12,5 +12,7 @@ namespace ControleDeDespesas.Models
 
         [Required]
         public virtual string Descricao { get; set; }
+
+      //  public virtual bool ValorEditavel { get; set; }
     }
 }
