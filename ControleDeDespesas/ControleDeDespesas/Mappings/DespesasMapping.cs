@@ -18,6 +18,10 @@ namespace ControleDeDespesas.Mappings
             Map(d => d.Quantidade);
             Map(d => d.Descritivo);
             Map(d => d.Attachment);
+            Map(d => d.DataInclusao);
+            Map(d => d.DataAprovacao);
+            References(d => d.UsuarioInclusao);
+            References(d => d.UsuarioAprovacao);
 
         }
     }

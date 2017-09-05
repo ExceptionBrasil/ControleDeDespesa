@@ -87,6 +87,15 @@ namespace ControleDeDespesas.DAO
         }
 
 
+        public IList<Despesas> GetDespesasUnapproved()
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d=> d.DataAprovacao==null)
+                                  .List();
+            return despesas;
+        }
+
+
         /// <summary>
         /// Obtem o útimo codigo usado e retorna ele +1
         /// </summary>

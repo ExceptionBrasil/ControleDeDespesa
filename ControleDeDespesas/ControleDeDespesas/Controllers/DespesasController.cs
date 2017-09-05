@@ -31,6 +31,9 @@ namespace ControleDeDespesas.Controllers
         public ActionResult Index()
         {            
             Session["Usuario"] = usuarioDAO.GetById(WebSecurity.CurrentUserId);
+
+            
+
             return View();
         }
 

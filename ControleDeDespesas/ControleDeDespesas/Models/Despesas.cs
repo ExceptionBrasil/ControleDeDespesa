@@ -33,8 +33,8 @@ namespace ControleDeDespesas.Models
         public virtual CadastroDeUsuario UsuarioInclusao { get; set; }
         public virtual CadastroDeUsuario UsuarioAprovacao { get; set; }
 
-        public virtual DateTime DataInclusao { get; set; }
-        public virtual DateTime DataAprovacao { get; set; }
+        public virtual DateTime? DataInclusao { get; set; }
+        public virtual DateTime? DataAprovacao { get; set; }
 
         public virtual string CentroDeCusto { get; set; }
 }

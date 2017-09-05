@@ -10,7 +10,7 @@ var geraStringHTML = (I) => {
     stringHTML += "<td>" + I.DespesaDescricao + "</td > ";
     stringHTML += "<td>" + I.Quantidade + "</td>";
     stringHTML += "<td>" + I.Valor + "</td>";
-    stringHTML += "<td>" + ToFloatToString(I.Total) + "</td>";
+    stringHTML += "<td>" + ToString(I.Total)+ "</td>";
     stringHTML += "<td>" + I.Observacao + "</td>";
     stringHTML += "<td><a onclick='EditaItem(" + I.IdDespesa + ")'  href='#'><span class='glyphicon glyphicon-edit'></span></a></td>";
     stringHTML += "<td><a onclick='RemoveItem(" + I.IdDespesa + ")' href='#'><span class='glyphicon glyphicon-erase'></span></a></td>";

@@ -72,8 +72,8 @@ function ToFloat(v) {
     return parseFloat(newValue);
 }
 
-function ToFloatToString(v) {    
-    let newValue = parseFloat(v.replace(",", "."));
-    newValue = newValue.toFixed(2).toLocaleString().replace(".", ",");
-    return newValue;
+function ToString(v) {
+    let stringValue = v.toFixed(2);
+    stringValue = stringValue.toString();
+    return stringValue;
 }
