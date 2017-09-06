@@ -30,13 +30,16 @@ namespace ControleDeDespesas.Controllers
         // GET: Despesas
         public ActionResult Index()
         {            
-            Session["Usuario"] = usuarioDAO.GetById(WebSecurity.CurrentUserId);
-
-            
+            Session["Usuario"] = usuarioDAO.GetById(WebSecurity.CurrentUserId);           
 
             return View();
         }
 
+
+        /// <summary>
+        /// FRMs the incluir.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult FrmIncluir()
         {
             ViewBag.TiposDeDespesa = tiposDAO.Lista();

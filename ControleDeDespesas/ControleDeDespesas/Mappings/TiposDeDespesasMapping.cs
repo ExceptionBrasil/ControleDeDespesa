@@ -13,6 +13,7 @@ namespace ControleDeDespesas.Mappings
         {
             Id(t => t.Id).GeneratedBy.Identity();
             Map(t => t.Descricao);
+            Map(t => t.ValorFixo);
         }
     
     }

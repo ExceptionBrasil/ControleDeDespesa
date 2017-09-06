@@ -10,11 +10,22 @@ $(document).ready(function () {
         corrigeVirgula("Quantidade");
     }, true);
 
+    Quantidade.addEventListener("blur", function () {
+        TiraNaN("Quantidade");
+    }, true);
+
 
     Valor.addEventListener("blur", function () {
         corrigeVirgula("Valor");
     }, true);
 
+    Valor.addEventListener("blur", function () {
+        TiraNaN("Valor");
+    }, true);
+
+
+    let btnAdicionaItem = document.querySelector("#btnAdicionar");
+    btnAdicionaItem.addEventListener("click", ValidaForm);
 
 });
 
@@ -53,7 +64,14 @@ var ValidaNumeros = (v) => {
 
 }
 
+function TiraNaN(id) {
+    let v = document.querySelector("#" + id);
 
+    if (v.value == "NaN") {
+        v.value = "0";
+    } 
+
+}
 
 /**
  * Faz a troca do ponto por vírgula
@@ -66,14 +84,30 @@ function corrigeVirgula(id) {
     v.value = newValue;
 }
 
+/**
+ * Convert para Float uma string
+ * @param {any} v
+ */
 function ToFloat(v) {    
     let newValue = parseFloat(v.replace(",", "."));
     newValue = newValue.toFixed(2);
     return parseFloat(newValue);
 }
 
+/**
+ * Convert para string um float 
+ * @param {any} v
+ */
 function ToString(v) {
     let stringValue = v.toFixed(2);
     stringValue = stringValue.toString();
     return stringValue;
+}
+
+
+function ValidaForm() {
+    //Validar se pode ou não adcionar itens na grade
+    //Pode adicionar quantidade zero?
+    //Pode adicinar valor zero?
+
 }
