@@ -22,6 +22,7 @@ namespace ControleDeDespesas.Mappings
             Map(d => d.DataAprovacao);
             References(d => d.UsuarioInclusao);
             References(d => d.UsuarioAprovacao);
+            Map(d => d.CentroDeCusto);
 
         }
     }

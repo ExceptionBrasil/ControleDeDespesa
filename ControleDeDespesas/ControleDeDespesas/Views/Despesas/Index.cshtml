@@ -1,26 +1,72 @@
-﻿
-<div class="row">
-    <div class="col-lg-12 col-xs-12">
-        <div class="thumbnail">
-            <h4>Despesas <span class="badge">42</span></h4>
+﻿@model IList<ControleDeDespesas.Models.Despesas>
+    <div class="thumbnail">
+    <div class="row">
+        <div class="col-lg-10 col-xs-12">
             <div class="container container-fluid">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="text-center">Despesas</h3>
+                        <h5>Despesas  <span class="label label-default">@Model.Count</span></h5>
                     </div>
                     <div class="panel-body">
-                        <h2>Body</h2>
+                        <table class="table table-responsive table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Data de Inclusão</th>
+                                    <th>Centro de Custo</th>
+                                    <th>Descritivo</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th>Aprovado Em</th>
+                                    <th colspan="4" class="text-center">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var dep in Model)
+                                {
+                                    <tr>
+                                        <td>@dep.CodigoDespesa</td>
+                                        <td>@dep.DataInclusao</td>
+                                        <td>@dep.CentroDeCusto</td>
+                                        <td>@dep.Descritivo</td>
+                                        <td>@dep.Quantidade</td>
+                                        <td>@dep.Valor</td>
+                                        <td>@dep.DataAprovacao</td>
+                                        <td><a href="#"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-print"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                     <div class="panel-footer">
-                        <h2 class="text-center">footer</h2>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 

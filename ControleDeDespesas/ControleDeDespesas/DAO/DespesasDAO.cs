@@ -76,7 +76,7 @@ namespace ControleDeDespesas.DAO
         }
 
         /// <summary>
-        /// Gets the despesa.
+        /// Pega todas as despesas disponíveis no mundo !
         /// </summary>
         /// <returns></returns>
         public IList<Despesas> GetDespesa()
@@ -87,10 +87,11 @@ namespace ControleDeDespesas.DAO
         }
 
 
-        public IList<Despesas> GetDespesasUnapproved()
+        public IList<Despesas> GetDespesasUnApproved(CadastroDeUsuario usuario)
         {
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d=> d.DataAprovacao==null)
+                                  .And(d=> d.UsuarioInclusao==usuario)
                                   .List();
             return despesas;
         }

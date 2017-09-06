@@ -18,7 +18,7 @@ namespace ControleDeDespesas.Controllers
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
         private DespesasDAO despesasDAO;
-        private CadastroDeUsuario usuario;
+        
 
         public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDao)
         {
@@ -27,12 +27,18 @@ namespace ControleDeDespesas.Controllers
             this.despesasDAO = depDao;
         }
 
-        // GET: Despesas
+        /// <summary>
+        /// Gera a Home Page das Despesas
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
-        {            
-            Session["Usuario"] = usuarioDAO.GetById(WebSecurity.CurrentUserId);           
+        {
+            
+            CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
+            Session["Usuario"] = usuario;
 
-            return View();
+            var model = despesasDAO.GetDespesasUnApproved(usuario);
+            return View(model);
         }
 
 
