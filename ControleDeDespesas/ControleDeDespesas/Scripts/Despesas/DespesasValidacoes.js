@@ -1,6 +1,6 @@
 ﻿
 /*
- * Adiciona evento na seleção de Tipos 
+ * Adiciona evento na seleção de Tipos
  */
 $(document).ready(function () {
     let Quantidade = document.querySelector("#Quantidade");
@@ -23,10 +23,6 @@ $(document).ready(function () {
         TiraNaN("Valor");
     }, true);
 
-
-    let btnAdicionaItem = document.querySelector("#btnAdicionar");
-    btnAdicionaItem.addEventListener("click", ValidaForm);
-
 });
 
 /**
@@ -41,26 +37,27 @@ var ValidaNumeros = (v) => {
         };
     }
     else {
-        return {
-            result: true,
-            text: v.name
-        };
+      if (parseFloat(v.value) == NaN) {
+          return {
+              result: false,
+              text: v.name
+          };
+      }
+      else {
+          if(parseFloat(v.value)==0){
+            return {
+                result: false,
+                text: v.name
+            };
+          }else {
+            return {
+                result: true,
+                text: v.name
+            };
+          }
+        }
     }
 
-    if (parseFloat(v.value) == NaN) {
-        return {
-            result: false,
-            text: v.name
-        };
-    }
-    else {
-        return {
-            result: true,
-            text: v.name
-        };
-    
-    }
-    
 
 }
 
@@ -69,7 +66,7 @@ function TiraNaN(id) {
 
     if (v.value == "NaN") {
         v.value = "0";
-    } 
+    }
 
 }
 
@@ -80,7 +77,7 @@ function TiraNaN(id) {
 function corrigeVirgula(id) {
     let v = document.querySelector("#" + id);
     let newValue = parseFloat(v.value.replace(",", "."));
-    newValue = newValue.toFixed(2).toLocaleString().replace(".", ",");        
+    newValue = newValue.toFixed(2).toLocaleString().replace(".", ",");
     v.value = newValue;
 }
 
@@ -88,26 +85,18 @@ function corrigeVirgula(id) {
  * Convert para Float uma string
  * @param {any} v
  */
-function ToFloat(v) {    
+function ToFloat(v) {
     let newValue = parseFloat(v.replace(",", "."));
     newValue = newValue.toFixed(2);
     return parseFloat(newValue);
 }
 
 /**
- * Convert para string um float 
+ * Convert para string um float
  * @param {any} v
  */
 function ToString(v) {
     let stringValue = v.toFixed(2);
     stringValue = stringValue.toString();
     return stringValue;
-}
-
-
-function ValidaForm() {
-    //Validar se pode ou não adcionar itens na grade
-    //Pode adicionar quantidade zero?
-    //Pode adicinar valor zero?
-
 }

@@ -86,7 +86,11 @@ namespace ControleDeDespesas.DAO
             return despesas;
         }
 
-
+        /// <summary>
+        /// Retorna todas as despesas não aprovadas do usuário atual
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         public IList<Despesas> GetDespesasUnApproved(CadastroDeUsuario usuario)
         {
             var despesas = session.QueryOver<Despesas>()
@@ -96,6 +100,30 @@ namespace ControleDeDespesas.DAO
             return despesas;
         }
 
+        /// <summary>
+        ///  Retorna todas as despesas não aprovadas do usuário atual
+        ///  Em forma de paginação 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="indexPage"></param>
+        /// <param name="maxElementsByPage"></param>
+        /// <param name="maxElements"></param>
+        /// <returns>Máximo de elementos</returns>
+        public IList<Despesas> GetDespesasUnApproved( CadastroDeUsuario usuario,int indexPage, int maxElementsByPage, out int maxElements)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.DataAprovacao == null)
+                                  .And(d => d.UsuarioInclusao == usuario)
+                                  .And(d=> d.Id> indexPage*maxElementsByPage && d.Id <= (indexPage * maxElementsByPage)+ maxElementsByPage)
+                                  .List();
+            
+            maxElements = session.QueryOver<Despesas>()
+                                  .Where(d => d.DataAprovacao == null)
+                                  .And(d => d.UsuarioInclusao == usuario)
+                                  .RowCount();
+
+            return despesas;
+        }
 
         /// <summary>
         /// Obtem o útimo codigo usado e retorna ele +1

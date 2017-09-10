@@ -4,12 +4,12 @@ var Itens = new Array();
 
 
 /*
- * Adiciona evento na seleção de Tipos 
+ * Adiciona evento na seleção de Tipos
  */
 $(document).ready(function () {
     let btnAdicionaItem= document.querySelector("#btnAdicionar");
     btnAdicionaItem.addEventListener("click", AdicionarItem);
-    
+
 });
 
 
@@ -30,19 +30,19 @@ var AdicionarItem = function(event) {
     let descricao = document.querySelector("#Descritivo");
     let itensDespesas = document.querySelector("#itensDespesas");
 
-  
+
     //Valida se há conteúdo mínimo na tela antes de seguir
     let retorno = ValidaNumeros(quantidade);
 
 
-    if (!retorno.result) {  
-        EscreveAvisoDeErro("Quantidade")
+    if (!retorno.result) {
+        EscreveAvisoDeErro("Quantidade");
 
     }
 
     retorno = ValidaNumeros(valor);
     if (!retorno.result) {
-        EscreveAvisoDeErro("Valor")
+        EscreveAvisoDeErro("Valor");
 
     }
 
@@ -51,14 +51,14 @@ var AdicionarItem = function(event) {
         IdDespesa: parseInt(tipoDespesa.value),
         DespesaDescricao : tipoDespesa[tipoDespesa.selectedIndex].text,
         Quantidade: quantidade.value,
-        Valor: valor.value,       
+        Valor: valor.value,
         Observacao: descricao.value,
         Total : ToFloat(quantidade.value) * ToFloat(valor.value)
     }
 
-    
+
     itensDespesas.innerHTML += geraStringHTML(Item2);
-    somaItens();    
+    somaItens();
     document.getElementById("frm-despesas").reset();
     tipoDespesa.focus();
 
@@ -69,7 +69,7 @@ var AdicionarItem = function(event) {
 
 
 /*
- * Remove um item da Grade 
+ * Remove um item da Grade
  */
  var RemoveItem = (it)=> {
     let tr = document.querySelector("#Item" + it);
@@ -77,7 +77,7 @@ var AdicionarItem = function(event) {
 }
 
 /*
- * Edita o Item 
+ * Edita o Item
  */
  var EditaItem = (it)=> {
 
@@ -85,7 +85,7 @@ var AdicionarItem = function(event) {
     let tr = document.querySelector("#Item" + it);
     let tds = tr.getElementsByTagName("td");
 
-    //Seta os valores no Form novamente 
+    //Seta os valores no Form novamente
     $("#Tipo").val(tds[0].innerHTML);
     $("#Quantidade").val(tds[2].innerHTML);
     $("#Valor").val(tds[3].innerHTML);
@@ -112,4 +112,3 @@ var AdicionarItem = function(event) {
 
     ImprimeTotal(total);
 }
-

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
+using X.PagedList;
 
 namespace ControleDeDespesas.Controllers
 {
@@ -31,14 +32,27 @@ namespace ControleDeDespesas.Controllers
         /// Gera a Home Page das Despesas
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
-            
+            int paginaAtual = (pagina ?? 1) - 1;
+            int tamanhoDaPagina = 10; //Registros por página
+            int totalDeRegistros;
+
+
             CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
             Session["Usuario"] = usuario;
 
-            var model = despesasDAO.GetDespesasUnApproved(usuario);
-            return View(model);
+            //Retorna a quantidade de resgistros para a página atual
+            var despesas = despesasDAO.GetDespesasUnApproved(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);
+
+            //Monta a paginacao
+            var umaPaginaDeDespesas = new StaticPagedList<Despesas>(despesas, paginaAtual + 1, tamanhoDaPagina, totalDeRegistros);
+            //var model = despesasDAO.GetDespesasUnApproved(usuario);
+
+            ViewBag.DespesasCount = totalDeRegistros;
+            ViewBag.UmaPaginaDeDespesas = umaPaginaDeDespesas;
+
+            return View(despesas);
         }
 
 

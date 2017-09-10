@@ -25,14 +25,14 @@ namespace ControleDeDespesas.Controllers
             return View(tiposDAO.Lista());
         }
 
-        public ActionResult FormIncluir()
+        public ActionResult FrmIncluir()
         {
             TiposDeDespesas tipo = new TiposDeDespesas();
             return View(tipo);
         }
 
         
-        public ActionResult FormAlterar(int id)
+        public ActionResult FrmAlterar(int id)
         {
             return View(tiposDAO.GetById(id));
         }
@@ -81,13 +81,16 @@ namespace ControleDeDespesas.Controllers
         /// Retorna todos os  tipos em formato Json 
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetTipos()
+        [HttpPost]
+        public JsonResult GetTipos()
         {
             var tipos = tiposDAO.Lista();
 
             return Json(tipos,JsonRequestBehavior.AllowGet);
         }
 
+
+        
 
     }
 }
