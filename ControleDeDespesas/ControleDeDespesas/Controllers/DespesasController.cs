@@ -39,11 +39,17 @@ namespace ControleDeDespesas.Controllers
             int totalDeRegistros;
 
 
+            //Se a senha expirou retorno ele para home
+            if(WebSecurity.CurrentUserId == null)
+            {
+                RedirectToAction("Logout", "Home");
+            }
+
             CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
             Session["Usuario"] = usuario;
 
             //Retorna a quantidade de resgistros para a página atual
-            var despesas = despesasDAO.GetDespesasUnApproved(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);
+            var despesas = despesasDAO.GetDespesasUnApproved(usuario, paginaAtual+1, tamanhoDaPagina, out totalDeRegistros);
 
             //Monta a paginacao
             var umaPaginaDeDespesas = new StaticPagedList<Despesas>(despesas, paginaAtual + 1, tamanhoDaPagina, totalDeRegistros);
@@ -63,7 +69,12 @@ namespace ControleDeDespesas.Controllers
         public ActionResult FrmIncluir()
         {
             ViewBag.TiposDeDespesa = tiposDAO.Lista();
-
+            ViewBag.ListTiposDespesas = new SelectList
+                (
+                    tiposDAO.Lista(),
+                    "Id",
+                    "Descricao"
+                );
             return View();
         }
 
@@ -78,7 +89,8 @@ namespace ControleDeDespesas.Controllers
 
             if (despesasJson == null)
             {
-                return Json(new { success = false });
+                return Json(new { success = false,menssage = "Objeto Json vazio" });
+
             }
            
 

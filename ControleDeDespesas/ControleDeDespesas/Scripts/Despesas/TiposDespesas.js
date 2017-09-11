@@ -22,14 +22,15 @@ $(document).ready(function(){
   $("#Tipo").blur(function(){
     for (var i = 0; i < tiposDeDespesas.length; i++) {
       let TipoEscolhido  = $("#Tipo");
-      if (tiposDeDespesas[i].ValorFixo>0 && TipoEscolhido[0].value == tiposDeDespesas[1].Id){
+      if (tiposDeDespesas[i].ValorFixo>0 && TipoEscolhido[0].value == tiposDeDespesas[i].Id){
         //TipoEscolhido.
         $("#Valor").val(tiposDeDespesas[i].ValorFixo);
         document.getElementById("Valor").disabled = true;
         return;
       }
       else {
-        document.getElementById("Valor").disabled = false;
+          document.getElementById("Valor").disabled = false;
+          $("#Valor").val("0");
       }
     }
   });

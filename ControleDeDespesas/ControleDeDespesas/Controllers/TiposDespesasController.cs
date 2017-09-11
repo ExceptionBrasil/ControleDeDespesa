@@ -4,6 +4,7 @@ using ControleDeDespesas.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,6 +42,12 @@ namespace ControleDeDespesas.Controllers
         [HttpPost]
         public ActionResult Incluir(TiposDeDespesas tipo)
         {
+            if(tipo == null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
             if (ModelState.IsValid)
             {
                 tiposDAO.Inclui(tipo);
@@ -61,6 +68,12 @@ namespace ControleDeDespesas.Controllers
         /// <returns></returns>
         public ActionResult Excluir(int id)
         {
+            if(id==null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
             tiposDAO.Excluir(tiposDAO.GetById(id));
             return RedirectToAction("Index");
         }
@@ -72,6 +85,12 @@ namespace ControleDeDespesas.Controllers
         /// <returns></returns>
         public ActionResult Alterar(TiposDeDespesas tipo)
         {
+            if (tipo==null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
             tiposDAO.Alterar(tipo);
             return RedirectToAction("Index");
         }

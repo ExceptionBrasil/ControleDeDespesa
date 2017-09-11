@@ -24,7 +24,12 @@ var EnviaDados = function () {
             console.log(response);
         },
         success: function (response) {
-            console.log(response);
+            if (response.success) {
+                window.location.replace("/Despesas");
+            } else {
+                erroDeEnvio(response.menssage);
+            }
+            
         }
     });
 }

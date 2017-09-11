@@ -4,6 +4,7 @@ using ControleDeDespesas.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -39,6 +40,13 @@ namespace ControleDeDespesas.Controllers
         [HttpPost]
         public ActionResult Adicionar(CadastroDeUsuario usuario)
         {
+
+            if(usuario==null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
             if (ModelState.IsValid)
             {                
                 try
