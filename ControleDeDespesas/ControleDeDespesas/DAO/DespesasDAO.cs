@@ -114,13 +114,27 @@ namespace ControleDeDespesas.DAO
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao == null)
                                   .And(d => d.UsuarioInclusao == usuario)
-                                  .And(d=> d.Id> indexPage*maxElementsByPage && d.Id <= (indexPage * maxElementsByPage)+ maxElementsByPage)
+                                  .And(d=> d.Id>(indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage)+maxElementsByPage))
                                   .List();
             
             maxElements = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao == null)
                                   .And(d => d.UsuarioInclusao == usuario)
                                   .RowCount();
+
+            return despesas;
+        }
+
+        /// <summary>
+        /// retorna a lista de Despesas por código
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public IList<Despesas> GetDespesaByCodigo(int codigo)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.CodigoDespesa == codigo)
+                                  .List();
 
             return despesas;
         }

@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ControleDeDespesas</RootNamespace>
     <AssemblyName>ControleDeDespesas</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -142,6 +142,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Fini-Abriu_SM.png" />
+    <Content Include="Content\Images\Fini-Abriu_MD.png" />
+    <Content Include="Content\Images\Fini-Abriu_LG.png" />
+    <Content Include="Content\Images\Fini-Abriu_XS.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -176,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DespesasController.cs" />
     <Compile Include="Controllers\Filters\AurizacaoFilterAttribute.cs" />
+    <Compile Include="Controllers\Filters\ViewFilterMenuAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TiposDespesasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -221,6 +226,7 @@
     <Content Include="Views\Shared\SubMenus\_MenuTipoDespesas.cshtml" />
     <Content Include="Views\Despesas\FrmIncluir.cshtml" />
     <Content Include="Views\Shared\Despesas\_FormDespesas.cshtml" />
+    <Content Include="Views\Despesas\Visualizar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -228,9 +234,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
