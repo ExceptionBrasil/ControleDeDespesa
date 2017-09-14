@@ -114,7 +114,7 @@ namespace ControleDeDespesas.Controllers
         {
             var modelo =  despesasDAO.GetDespesaByCodigo(id);
 
-            return View(modelo);
+            return PartialView(modelo);
         }
 
     }

@@ -227,6 +227,7 @@
     <Content Include="Views\Despesas\FrmIncluir.cshtml" />
     <Content Include="Views\Shared\Despesas\_FormDespesas.cshtml" />
     <Content Include="Views\Despesas\Visualizar.cshtml" />
+    <Content Include="Views\Shared\_PartialLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
