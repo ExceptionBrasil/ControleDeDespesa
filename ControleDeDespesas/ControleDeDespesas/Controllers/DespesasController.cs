@@ -50,7 +50,8 @@ namespace ControleDeDespesas.Controllers
             Session["Usuario"] = usuario;
 
             //Retorna a quantidade de resgistros para a página atual
-            var despesas = despesasDAO.GetDespesasUnApproved(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);
+            var despesas = despesasDAO.GetDespesas(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);
+                            
 
             //Monta a paginacao
             var umaPaginaDeDespesas = new StaticPagedList<Despesas>(despesas, paginaAtual + 1, tamanhoDaPagina, totalDeRegistros);

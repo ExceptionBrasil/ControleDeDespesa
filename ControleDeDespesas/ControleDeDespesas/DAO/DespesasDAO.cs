@@ -87,6 +87,48 @@ namespace ControleDeDespesas.DAO
         }
 
         /// <summary>
+        /// Retorna todas as despesasv do usuário atual
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public IList<Despesas> GetDespesas(CadastroDeUsuario usuario)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.UsuarioInclusao == usuario)                                  
+                                  .List();
+            return despesas;
+        }
+
+        /// <summary>
+        ///  Retorna todas as despesas  usuário atual
+        ///  Em forma de paginação 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="indexPage"></param>
+        /// <param name="maxElementsByPage"></param>
+        /// <param name="maxElements"></param>
+        /// <returns>Máximo de elementos</returns>
+        public IList<Despesas> GetDespesas(CadastroDeUsuario usuario, int indexPage, int maxElementsByPage, out int maxElements)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.UsuarioInclusao == usuario)
+                                  .And(d => d.Id > (indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage) + maxElementsByPage))
+                                  .OrderBy(d => d.DataAprovacao).Asc
+                                  .List<Despesas>();
+                               
+                                  
+                                 
+            
+                                  
+
+            maxElements = session.QueryOver<Despesas>()
+                                  .Where(d => d.UsuarioInclusao == usuario)
+                                  .RowCount();
+
+            return  despesas;
+        }
+
+        /// <summary>
         /// Retorna todas as despesas não aprovadas do usuário atual
         /// </summary>
         /// <param name="usuario"></param>
@@ -124,6 +166,51 @@ namespace ControleDeDespesas.DAO
 
             return despesas;
         }
+
+        /// <summary>
+        /// Retorna todas as despesas aprovadas do usuário atual
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public IList<Despesas> GetDespesasApproved(CadastroDeUsuario usuario)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.DataAprovacao != null)
+                                  .And(d => d.UsuarioInclusao == usuario)
+                                  .List();
+            return despesas;
+        }
+
+
+
+
+        /// <summary>
+        ///  Retorna todas as despesas aprovadas do usuário atual
+        ///  Em forma de paginação 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="indexPage"></param>
+        /// <param name="maxElementsByPage"></param>
+        /// <param name="maxElements"></param>
+        /// <returns>Máximo de elementos</returns>
+        public IList<Despesas> GetDespesasApproved(CadastroDeUsuario usuario, int indexPage, int maxElementsByPage, out int maxElements)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.DataAprovacao != null)
+                                  .And(d => d.UsuarioInclusao == usuario)
+                                  .And(d => d.Id > (indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage) + maxElementsByPage))
+                                  .List();
+
+            maxElements = session.QueryOver<Despesas>()
+                                  .Where(d => d.DataAprovacao != null)
+                                  .And(d => d.UsuarioInclusao == usuario)
+                                  .RowCount();
+
+            return despesas;
+        }
+
+       
+
 
         /// <summary>
         /// retorna a lista de Despesas por código

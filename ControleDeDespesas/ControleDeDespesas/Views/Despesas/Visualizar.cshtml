@@ -2,7 +2,6 @@
 @{
     Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
-<br /><br /><br />
 
 <div class="container">
     <div class="row">
@@ -21,7 +20,7 @@
                 </thead>
                 <tbody>
                     @foreach (var d in Model)
-            {
+                    {
                         <tr>
                             <td>@d.CodigoDespesa</td>
                             <td>@d.Descritivo</td>
