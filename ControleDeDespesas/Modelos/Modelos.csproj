@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aprovacao\AprovadorPorCC.cs" />
+    <Compile Include="CentrosDeCustos\CentroDeCusto.cs" />
     <Compile Include="Despesas\Despesas\Despesas.cs" />
     <Compile Include="Despesas\Tipos\TiposDeDespesas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

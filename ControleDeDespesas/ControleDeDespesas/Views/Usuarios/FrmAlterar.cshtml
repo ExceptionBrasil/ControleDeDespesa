@@ -13,6 +13,7 @@
         <fieldset>
             <legend>Cadastro de Usuário</legend>
             @Html.Partial("/Views/Shared/Usuarios/_FormUsuarios.cshtml")
+            @Html.ValidationMessage("Alterar_Usuario",new {@class="text-danger" })
         </fieldset>
 
     }

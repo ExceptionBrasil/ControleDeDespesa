@@ -40,6 +40,11 @@ namespace ControleDeDespesas.Controllers
 
         public ActionResult FrmAlterar(int id)
         {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(
+                    HttpStatusCode.BadRequest);
+            }
             return View(usuarioDAO.GetById(id));
         }
 
@@ -75,7 +80,7 @@ namespace ControleDeDespesas.Controllers
             }
             else
             {
-                return View("Novo",usuario);
+                return View(usuario);
             }         
         }
 
@@ -102,8 +107,10 @@ namespace ControleDeDespesas.Controllers
             MembershipUser user = Membership.GetUser(usuario.Login);
             if (ModelState.IsValid)
             {
-                Membership.DeleteUser(usuario.Login);
-                 WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
+                try
+                {
+                    Membership.DeleteUser(usuario.Login);
+                     WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
                                                                                          Nome = usuario.Nome                                                       
                                                                                         ,Email= usuario.Email
                                                                                         ,IsAdmin = usuario.IsAdmin
@@ -111,10 +118,21 @@ namespace ControleDeDespesas.Controllers
                                                                                         ,CentroDeCusto = usuario.CentroDeCusto
                                                                                         }
                                                         , false);
-                    
-            }            
-            
-            
+ 
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("Alterar_Usuario", "Erro ao tentar mudar esse usuário " + ex.Message);
+                    return View("FrmAlterar", usuario);
+                }
+               
+            }
+            else
+            {
+                return View("FrmAlterar",usuario);
+            }
+
+
             return RedirectToAction("Index");
         }
     }

@@ -18,7 +18,11 @@
                         {
                             <li><span class="glyphicon glyphicon-copy"> @Html.ActionLink("Tipos de Despesas", "Index", "TiposDespesas")</span>  </li>
                             <li><span class="glyphicon glyphicon-user"> @Html.ActionLink("Usuarios", "Index", "Usuarios")</span>  </li>
-                        }                        
+                        }
+                        @if (ViewBag.IsAprovador)
+                        {
+                            <li>Aprovação</li>
+                        }
                     </ul>
                 </li>
             </ul>

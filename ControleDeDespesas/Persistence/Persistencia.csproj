@@ -62,6 +62,8 @@
     <Compile Include="DAO\Usuarios\UsuariosDAO.cs" />
     <Compile Include="Factorys\DespesasJsonToDespesas.cs" />
     <Compile Include="Helpers\NhibernateHelper.cs" />
+    <Compile Include="Mappings\Aprovacao\AprovadorPorCCMapping.cs" />
+    <Compile Include="Mappings\CentrosDeCustos\CentroDeCustoMapping.cs" />
     <Compile Include="Mappings\Usuarios\CadastroDeUsuarioMapping.cs" />
     <Compile Include="Mappings\Despesas\DespesasMapping.cs" />
     <Compile Include="Mappings\Despesas\TiposDeDespesasMapping.cs" />

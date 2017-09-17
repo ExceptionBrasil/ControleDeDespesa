@@ -230,9 +230,9 @@
       <Project>{47f4b3a4-8882-4c22-bb6a-b5cd36dbc5f4}</Project>
       <Name>Modelos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Persistence\Persistence.csproj">
+    <ProjectReference Include="..\Persistence\Persistencia.csproj">
       <Project>{028b30c8-6b19-49fb-808e-5cd1a42064dc}</Project>
-      <Name>Persistence</Name>
+      <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
