@@ -11,6 +11,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Descrição</th>
+                            <th>Valor Fixo</th>
                             <th colspan="2">Opções</th>
                         </tr>
                     </thead>
@@ -20,6 +21,7 @@
                             <tr>
                                 <td>@tipo.Id</td>
                                 <td>@tipo.Descricao</td>
+                                <td>@tipo.ValorFixo</td>
                                 <td><a href="@Url.Action("Excluir","TiposDespesas",new { id = tipo.Id})"><i class="glyphicon glyphicon-erase"></i></a></td>
                                 <td><a href="@Url.Action("FrmAlterar","TiposDespesas",new { id = tipo.Id})"><i class="glyphicon glyphicon-edit"></i></td>
                             </tr>

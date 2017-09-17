@@ -48,6 +48,7 @@ namespace ControleDeDespesas.Controllers
 
             CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
             Session["Usuario"] = usuario;
+            ViewBag.IsAdmin = usuario.IsAdmin;
 
             //Retorna a quantidade de resgistros para a página atual
             var despesas = despesasDAO.GetDespesas(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);
@@ -65,7 +66,7 @@ namespace ControleDeDespesas.Controllers
 
 
         /// <summary>
-        /// FRMs the incluir.
+        /// Formulário de inclusão.
         /// </summary>
         /// <returns></returns>
         public ActionResult FrmIncluir()

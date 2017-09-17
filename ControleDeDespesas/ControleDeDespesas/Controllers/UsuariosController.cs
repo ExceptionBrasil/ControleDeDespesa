@@ -30,11 +30,17 @@ namespace ControleDeDespesas.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View();
+            var modelo = usuarioDAO.GetAll();
+            return View(modelo);
         }
         public ActionResult Novo()
         {
             return View();
+        }
+
+        public ActionResult FrmAlterar(int id)
+        {
+            return View(usuarioDAO.GetById(id));
         }
 
         [HttpPost]
@@ -60,16 +66,56 @@ namespace ControleDeDespesas.Controllers
                                                                                         }
                                                         , false);
                     
+                    
                 }catch(MembershipCreateUserException ex)
                 {
                     return View(usuario);
                 }
-                return View();
+                return RedirectToAction("Index");
             }
             else
             {
                 return View("Novo",usuario);
             }         
+        }
+
+        /// <summary>
+        /// Exclui um usuário do banco de dados 
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public ActionResult Excluir (int id)
+        {            
+            Membership.DeleteUser(usuarioDAO.GetById(id).Login);
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Altera um usuário específico 
+        /// </summary>
+        /// <param name="usuario">The usuario.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Alterar (CadastroDeUsuario usuario)
+        {
+
+            MembershipUser user = Membership.GetUser(usuario.Login);
+            if (ModelState.IsValid)
+            {
+                Membership.DeleteUser(usuario.Login);
+                 WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
+                                                                                         Nome = usuario.Nome                                                       
+                                                                                        ,Email= usuario.Email
+                                                                                        ,IsAdmin = usuario.IsAdmin
+                                                                                        ,Cpf = usuario.Cpf
+                                                                                        ,CentroDeCusto = usuario.CentroDeCusto
+                                                                                        }
+                                                        , false);
+                    
+            }            
+            
+            
+            return RedirectToAction("Index");
         }
     }
 }

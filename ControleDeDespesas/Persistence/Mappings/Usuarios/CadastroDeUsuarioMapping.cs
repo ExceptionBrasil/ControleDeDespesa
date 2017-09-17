@@ -19,6 +19,7 @@ namespace Persistence.Mappings
             Map(u => u.Email);
             Map(u => u.Cpf);
             Map(u => u.CentroDeCusto);
+            Map(u => u.IsAprovador);
         }
     }
 }
