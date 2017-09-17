@@ -1,5 +1,5 @@
-﻿using ControleDeDespesas.DAO;
-using ControleDeDespesas.ViewModels;
+﻿using Persistence.DAO;
+using Modelos.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

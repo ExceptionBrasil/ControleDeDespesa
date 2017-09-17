@@ -1,8 +1,8 @@
 ﻿using ControleDeDespesas.Controllers.Filters;
-using ControleDeDespesas.DAO;
-using ControleDeDespesas.Factorys;
-using ControleDeDespesas.Models;
-using ControleDeDespesas.ViewModels;
+using Persistence.DAO;
+using Persistence.Factorys;
+using Modelos;
+using Modelos.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
