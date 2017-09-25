@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Modelos;
 
-namespace Persistence.Mappings
+namespace Persistencia.Mappings
 {
     class CentroDeCustoMapping:ClassMap<CentroDeCusto>
     {
      public CentroDeCustoMapping()
         {
-            Id(c => c.Id);
+            Id(c => c.Id).GeneratedBy.Identity();
             Map(c => c.Codigo);
             Map(c => c.Descricao);
         }

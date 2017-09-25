@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CentroDeCusto\CentroDeCustoDAO.cs" />
     <Compile Include="DAO\Despesas\DespesasDAO.cs" />
     <Compile Include="DAO\Despesas\TiposDeDespesasDAO.cs" />
     <Compile Include="DAO\Usuarios\UsuariosDAO.cs" />
@@ -77,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

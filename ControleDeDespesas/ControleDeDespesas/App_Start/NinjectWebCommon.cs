@@ -11,7 +11,7 @@ namespace ControleDeDespesas.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using NHibernate;
-    using Persistence.Helpers;
+    using Persistencia.Helpers;
 
     public static class NinjectWebCommon 
     {

@@ -1,0 +1,20 @@
+﻿@model Modelos.CentroDeCusto
+
+@{
+    ViewBag.Title = "Novo";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-md-12 col-xs-12">
+            <fieldset>
+                <legend>Cadastro de Centro de Custo</legend>
+                @using(Html.BeginForm("Incluir", "CentroDeCusto", FormMethod.Post, new { id = "formIncluir", @class = "form-control" }))
+                {
+                   @Html.Partial("/Views/Shared/CentroDeCusto/_FormCentroDeCusto.cshtml")
+                    <input type="submit" value="Gravar" class="btn btn-primary" />
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>

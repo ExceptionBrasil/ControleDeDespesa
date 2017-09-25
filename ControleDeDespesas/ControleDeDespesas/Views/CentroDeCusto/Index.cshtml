@@ -1,0 +1,34 @@
+﻿@model IList<Modelos.CentroDeCusto>
+
+
+
+@Html.Partial("/Views/Shared/SubMenus/_MenuCentroDeCusto.cshtml")
+<div class="container">
+    <div class="row">
+        <div class="col col-md-12 col-xs-12">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Centro De Custo</th>
+                        <th>Descrição</th>
+                        <th colspan="2">Opções</th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)                    
+                    {
+                        <tr>
+                            <td>@c.Id</td>
+                            <td>@c.Codigo</td>
+                            <td>@c.Descricao</td>                            
+                            <td><a href="@Url.Action("FrmAlterar","CentroDeCusto",new {id=c.Id })"  ><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td><a href="@Url.Action("Excluir","CentroDeCusto",new {id=c.Id })"  ><span class="glyphicon glyphicon-erase"></span></a></td>
+                        </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

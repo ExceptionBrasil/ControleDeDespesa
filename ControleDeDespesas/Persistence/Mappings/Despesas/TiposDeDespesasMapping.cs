@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Persistence.Mappings
+namespace Persistencia.Mappings
 {
     public class TiposDeDespesasMapping:ClassMap<TiposDeDespesas>
     {
