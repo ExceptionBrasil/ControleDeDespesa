@@ -13,6 +13,12 @@ namespace Factorys
 {
     public static class UsuarioFactory
     {
+        /// <summary>
+        /// Cria uma usuário com base em UsuarioModelView
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="ccDAO"></param>
+        /// <returns></returns>
         public static CadastroDeUsuario GeraUsuario(UsuarioModelView model, CentroDeCustoDAO ccDAO)
         {
            
@@ -31,6 +37,12 @@ namespace Factorys
             return usuario;
         }
 
+        /// <summary>
+        /// devolve uma lista de usuários com base em uma lista de UsuarioModelView
+        /// </summary>
+        /// <param name="listModel"></param>
+        /// <param name="ccDAO"></param>
+        /// <returns></returns>
         public static IList<CadastroDeUsuario> GeraListaUsuario(IList<UsuarioModelView> listModel, CentroDeCustoDAO ccDAO)
         {
             IList<CadastroDeUsuario> listaUsuario = new List<CadastroDeUsuario>();
@@ -43,5 +55,6 @@ namespace Factorys
             return listaUsuario;
 
         }
+        
     }
 }
