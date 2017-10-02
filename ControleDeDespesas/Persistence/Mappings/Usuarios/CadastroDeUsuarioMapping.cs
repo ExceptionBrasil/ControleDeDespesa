@@ -18,7 +18,7 @@ namespace Persistencia.Mappings
             Map(u => u.Senha);
             Map(u => u.Email);
             Map(u => u.Cpf);
-            Map(u => u.CentroDeCusto);
+            References(u => u.CentroDeCusto);
             Map(u => u.IsAprovador);
         }
     }

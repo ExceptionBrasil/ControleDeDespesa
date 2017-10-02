@@ -12,7 +12,7 @@ namespace MenuControl.App_Start
     using Ninject.Web.Common;
     using MenuControl.Models;
     using NHibernate;
-    using Persistencia.Helpers;
+    using Helpers;
 
     public static class NinjectWebCommon 
     {

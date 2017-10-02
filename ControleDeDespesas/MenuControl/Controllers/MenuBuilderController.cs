@@ -1,5 +1,6 @@
 ﻿using MenuControl.DAO;
 using MenuControl.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace MenuControl.Controllers
         public ActionResult Index()
         {
             var model = menuDAO.ListAll();
-            return View();
+            return View(model);
         }
 
         // GET: MenuBuilder/Details/5
@@ -55,16 +56,19 @@ namespace MenuControl.Controllers
         // GET: MenuBuilder/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = menuDAO.GetById(id);
+
+            return View(model);
         }
 
         // POST: MenuBuilder/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(MenuItem item)
         {
+            
             try
             {
-                menuDAO.Alterar(menuDAO.GetById(id));
+                menuDAO.Alterar(item);
 
                 return RedirectToAction("Index");
             }
@@ -77,23 +81,36 @@ namespace MenuControl.Controllers
         // GET: MenuBuilder/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = menuDAO.GetById(id);
+            return View(model);
         }
 
         // POST: MenuBuilder/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(  MenuItem item)
         {
             try
             {
-                // TODO: Add delete logic here
 
+                menuDAO.Excluir(item);
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+        }
+
+
+        [HttpPost]
+        public JsonResult GetMenu(string code)
+        {
+            List<MenuItem> menu = new List<MenuItem>();
+            menu = menuDAO.GetByCode(code).ToList();
+            string outputJson = JsonConvert.SerializeObject(menu);
+
+            return Json( new {success = true, json = outputJson  });
+
         }
     }
 }

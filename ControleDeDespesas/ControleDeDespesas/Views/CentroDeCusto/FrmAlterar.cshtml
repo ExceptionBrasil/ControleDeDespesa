@@ -19,6 +19,7 @@
                 {
                     @Html.Partial("/Views/Shared/CentroDeCusto/_FormCentroDeCusto.cshtml")
                     <input type="submit" value="Gravar" class="btn btn-primary" />
+                    @Html.AntiForgeryToken()
                 }
             </fieldset>
         </div>

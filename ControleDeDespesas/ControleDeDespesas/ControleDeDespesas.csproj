@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ControleDeDespesas</RootNamespace>
     <AssemblyName>ControleDeDespesas</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -189,6 +189,7 @@
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\Tools\MenuBuilder.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -214,9 +215,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
-    <Content Include="Views\Usuarios\Novo.cshtml" />
-    <Content Include="Views\Shared\Usuarios\_FormUsuarios.cshtml" />
     <Content Include="Views\Usuarios\Adicionar.cshtml" />
+    <Content Include="Views\Shared\Usuarios\_FormUsuarios.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Despesas\Index.cshtml" />
     <Content Include="Views\TiposDespesas\Index.cshtml" />
@@ -246,6 +246,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Factorys\Factorys.csproj">
+      <Project>{38309bfd-8925-4d5b-bf64-b0f6c5ff0d34}</Project>
+      <Name>Factorys</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modelos\Modelos.csproj">
       <Project>{47f4b3a4-8882-4c22-bb6a-b5cd36dbc5f4}</Project>
       <Name>Modelos</Name>

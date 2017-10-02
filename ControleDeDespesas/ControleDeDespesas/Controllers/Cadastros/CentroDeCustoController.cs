@@ -38,6 +38,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Incluir(CentroDeCusto custo)
         {
@@ -52,6 +53,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return RedirectToAction("Index");
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Alterar(CentroDeCusto custo)
         {
             ccDAO.Alterar(custo);
