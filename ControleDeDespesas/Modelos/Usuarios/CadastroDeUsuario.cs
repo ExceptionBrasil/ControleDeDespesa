@@ -32,6 +32,7 @@ namespace Modelos
         public virtual string Cpf { get; set; }
 
         [Required]
-        public virtual string CentroDeCusto { get; set; }        
+        public virtual CentroDeCusto CentroDeCusto { get; set; }        
+
     }
 }

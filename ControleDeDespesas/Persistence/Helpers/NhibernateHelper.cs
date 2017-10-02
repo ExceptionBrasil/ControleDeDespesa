@@ -8,7 +8,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Mapping;
 using System.Reflection;
 
-namespace Persistence.Helpers
+namespace Persistencia.Helpers
 {
     public class NhibernateHelper
     {

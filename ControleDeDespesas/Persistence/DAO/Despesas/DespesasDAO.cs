@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Persistence.DAO
+namespace Persistencia.DAO
 {
     /// <summary>
     /// Classe responsável pelo DAO das despesas

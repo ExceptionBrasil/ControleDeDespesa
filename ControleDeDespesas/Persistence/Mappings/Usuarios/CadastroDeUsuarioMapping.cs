@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Persistence.Mappings
+namespace Persistencia.Mappings
 {
     public class CadastroDeUsuarioMapping:ClassMap<CadastroDeUsuario>
     {
@@ -18,7 +18,7 @@ namespace Persistence.Mappings
             Map(u => u.Senha);
             Map(u => u.Email);
             Map(u => u.Cpf);
-            Map(u => u.CentroDeCusto);
+            References(u => u.CentroDeCusto);
             Map(u => u.IsAprovador);
         }
     }

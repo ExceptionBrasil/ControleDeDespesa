@@ -1,14 +1,14 @@
 ﻿using Modelos;
 using Modelos.ViewModels;
-using Persistence.Helpers;
+using Persistencia.Helpers;
 using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Persistence.DAO;
+using Persistencia.DAO;
 
-namespace Persistence.Factorys
+namespace Persistencia.Factorys
 {
     public static class DespesasJsonToDespesas
     {

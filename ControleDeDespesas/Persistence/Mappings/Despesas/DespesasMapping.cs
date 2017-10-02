@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Persistence.Mappings
+namespace Persistencia.Mappings
 {
     public class DespesasMapping:ClassMap<Despesas>
     {
@@ -22,7 +22,7 @@ namespace Persistence.Mappings
             Map(d => d.DataAprovacao);
             References(d => d.UsuarioInclusao);
             References(d => d.UsuarioAprovacao);
-            Map(d => d.CentroDeCusto);
+            References(d => d.CentroDeCusto);
 
         }
     }

@@ -1,5 +1,5 @@
 ﻿using ControleDeDespesas.Controllers.Filters;
-using Persistence.DAO;
+using Persistencia.DAO;
 using Modelos;
 using System;
 using System.Collections.Generic;
@@ -9,17 +9,21 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
+using Modelos.ViewModels;
+using Factorys;
 
 namespace ControleDeDespesas.Controllers
 {
-    [AurizacaoFilter]
+    //[AurizacaoFilter]
     public class UsuariosController : Controller
     {
         private UsuariosDAO usuarioDAO;
+        private CentroDeCustoDAO ccDAO;
 
-        public UsuariosController (UsuariosDAO user)
+        public UsuariosController (UsuariosDAO user, CentroDeCustoDAO cc )
         {
             this.usuarioDAO = user;
+            this.ccDAO = cc;
 
             if (!WebSecurity.Initialized)
             {
@@ -27,16 +31,17 @@ namespace ControleDeDespesas.Controllers
             }
         }
 
-        // GET: Usuarios
+
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var modelo = usuarioDAO.GetAll();
             return View(modelo);
         }
-        public ActionResult Novo()
-        {
-            return View();
-        }
+
 
         public ActionResult FrmAlterar(int id)
         {
@@ -45,19 +50,59 @@ namespace ControleDeDespesas.Controllers
                 return new HttpStatusCodeResult(
                     HttpStatusCode.BadRequest);
             }
+            ViewBag.ListCentroDeCusto = new SelectList(
+               ccDAO.ListAll(),
+               "Id",
+               "Descricao"
+               );
+
             return View(usuarioDAO.GetById(id));
         }
 
-        [HttpPost]
-        public ActionResult Adicionar(CadastroDeUsuario usuario)
-        {
 
-            if(usuario==null)
+        /// <summary>
+        /// Formulário de inclusão de usuário
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Adicionar()
+        {
+            ViewBag.ListCentroDeCusto = new SelectList(
+                ccDAO.ListAll(),
+                "Id",
+                "Descricao"
+                );
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Adicionar(FormCollection form, UsuarioModelView modelUser)
+        {
+            //Valida se há dados paracontinuar
+            if (modelUser == null)
             {
                 return new HttpStatusCodeResult(
                         HttpStatusCode.BadRequest);
             }
 
+            //Valida se preeche o Centro de Custo
+            if ( String.IsNullOrEmpty(form["ListCentroDeCusto"]))
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+
+            }
+            
+           modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
+           CadastroDeUsuario usuario =   UsuarioFactory.GeraUsuario(modelUser, ccDAO);
+
+            if (usuario==null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+          
+            
             if (ModelState.IsValid)
             {                
                 try
@@ -66,10 +111,13 @@ namespace ControleDeDespesas.Controllers
                                                                                          Nome = usuario.Nome                                                       
                                                                                         ,Email= usuario.Email
                                                                                         ,IsAdmin = usuario.IsAdmin
-                                                                                        ,Cpf = usuario.Cpf
-                                                                                        ,CentroDeCusto = usuario.CentroDeCusto
+                                                                                        ,Cpf = usuario.Cpf                                                                                        
+                                                                                        ,IsAprovador =usuario.IsAprovador     
+                                                                                        ,CentroDeCusto_id = usuario.CentroDeCusto.Id
                                                                                         }
                                                         , false);
+                    
+                    
                     
                     
                 }catch(MembershipCreateUserException ex)
@@ -81,7 +129,7 @@ namespace ControleDeDespesas.Controllers
             else
             {
                 return View(usuario);
-            }         
+            }    
         }
 
         /// <summary>
@@ -102,8 +150,8 @@ namespace ControleDeDespesas.Controllers
         /// <returns></returns>
         [HttpPost]
         public ActionResult Alterar (CadastroDeUsuario usuario)
-        {
-
+        {   
+            
             MembershipUser user = Membership.GetUser(usuario.Login);
             if (ModelState.IsValid)
             {
@@ -132,7 +180,7 @@ namespace ControleDeDespesas.Controllers
                 return View("FrmAlterar",usuario);
             }
 
-
+    
             return RedirectToAction("Index");
         }
     }

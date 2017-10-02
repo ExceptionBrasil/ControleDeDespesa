@@ -1,6 +1,6 @@
 ﻿using ControleDeDespesas.Controllers.Filters;
-using Persistence.DAO;
-using Persistence.Factorys;
+using Persistencia.DAO;
+using Persistencia.Factorys;
 using Modelos;
 using Modelos.ViewModels;
 using System;
