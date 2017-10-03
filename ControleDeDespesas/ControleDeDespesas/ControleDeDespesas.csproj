@@ -238,6 +238,7 @@
     <Content Include="Views\CentroDeCusto\Index.cshtml" />
     <Content Include="Views\CentroDeCusto\FrmAlterar.cshtml" />
     <Content Include="Views\Shared\SubMenus\_MenuCentroDeCusto.cshtml" />
+    <Content Include="Views\Shared\SubMenus\_MenuUsuarios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
