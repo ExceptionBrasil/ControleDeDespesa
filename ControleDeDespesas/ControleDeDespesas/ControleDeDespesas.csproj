@@ -195,6 +195,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Cadastros\AprovadorPorCCController.cs" />
     <Compile Include="Controllers\Cadastros\CentroDeCustoController.cs" />
     <Compile Include="Controllers\DespesasController.cs" />
     <Compile Include="Controllers\Filters\AurizacaoFilterAttribute.cs" />
@@ -239,6 +240,10 @@
     <Content Include="Views\CentroDeCusto\FrmAlterar.cshtml" />
     <Content Include="Views\Shared\SubMenus\_MenuCentroDeCusto.cshtml" />
     <Content Include="Views\Shared\SubMenus\_MenuUsuarios.cshtml" />
+    <Content Include="Views\AprovadorPorCC\Index.cshtml" />
+    <Content Include="Views\AprovadorPorCC\Create.cshtml" />
+    <Content Include="Views\AprovadorPorCC\Edit.cshtml" />
+    <Content Include="Views\AprovadorPorCC\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

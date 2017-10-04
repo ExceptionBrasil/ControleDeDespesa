@@ -55,6 +55,25 @@ namespace Factorys
             return listaUsuario;
 
         }
-        
+
+
+        public static UsuarioModelView GetModelView (CadastroDeUsuario model)
+        {
+            UsuarioModelView modelView = new UsuarioModelView()
+            {
+                Id = model.Id,
+                CentroDeCusto = model.CentroDeCusto.Id,
+                Cpf = model.Cpf,
+                Email = model.Email,
+                IsAdmin = model.IsAdmin,
+                IsAprovador = model.IsAprovador,
+                Login = model.Login,
+                Nome = model.Nome,
+                Senha = model.Senha
+            };
+
+            return modelView;
+        }
+
     }
 }

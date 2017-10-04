@@ -14,7 +14,7 @@ using Factorys;
 
 namespace ControleDeDespesas.Controllers
 {
-    //[AurizacaoFilter]
+    [AurizacaoFilter]
     public class UsuariosController : Controller
     {
         private UsuariosDAO usuarioDAO;
@@ -36,13 +36,14 @@ namespace ControleDeDespesas.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
-        {
-            var modelo = usuarioDAO.GetAll();
-            return View(modelo);
-        }
+        public ActionResult Index(){ return View(usuarioDAO.GetAll());}
 
 
+        /// <summary>
+        /// Formulário de Alteração
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public ActionResult FrmAlterar(int id)
         {
             if(id == null)
@@ -56,7 +57,9 @@ namespace ControleDeDespesas.Controllers
                "Descricao"
                );
 
-            return View(usuarioDAO.GetById(id));
+            UsuarioModelView model = UsuarioFactory.GetModelView(usuarioDAO.GetById(id));
+
+            return View(model);
         }
 
 
@@ -75,6 +78,12 @@ namespace ControleDeDespesas.Controllers
         }
 
 
+        /// <summary>
+        /// Realiza a adição do usuário na base
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="modelUser">The model user.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Adicionar(FormCollection form, UsuarioModelView modelUser)
         {
@@ -86,41 +95,48 @@ namespace ControleDeDespesas.Controllers
             }
 
             //Valida se preeche o Centro de Custo
-            if ( String.IsNullOrEmpty(form["ListCentroDeCusto"]))
+            if (String.IsNullOrEmpty(form["ListCentroDeCusto"]))
             {
                 return new HttpStatusCodeResult(
                         HttpStatusCode.BadRequest);
 
             }
-            
-           modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
-           CadastroDeUsuario usuario =   UsuarioFactory.GeraUsuario(modelUser, ccDAO);
 
-            if (usuario==null)
+            modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
+            CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser, ccDAO);
+
+            if (usuario == null)
             {
                 return new HttpStatusCodeResult(
                         HttpStatusCode.BadRequest);
             }
-          
-            
+
+
             if (ModelState.IsValid)
-            {                
+            {
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
-                                                                                         Nome = usuario.Nome                                                       
-                                                                                        ,Email= usuario.Email
-                                                                                        ,IsAdmin = usuario.IsAdmin
-                                                                                        ,Cpf = usuario.Cpf                                                                                        
-                                                                                        ,IsAprovador =usuario.IsAprovador     
-                                                                                        ,CentroDeCusto_id = usuario.CentroDeCusto.Id
-                                                                                        }
+                    WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new
+                    {
+                        Nome = usuario.Nome
+                                                                                        ,
+                        Email = usuario.Email
+                                                                                        ,
+                        IsAdmin = usuario.IsAdmin
+                                                                                        ,
+                        Cpf = usuario.Cpf
+                                                                                        ,
+                        IsAprovador = usuario.IsAprovador
+                                                                                        ,
+                        CentroDeCusto_id = usuario.CentroDeCusto.Id
+                    }
                                                         , false);
-                    
-                    
-                    
-                    
-                }catch(MembershipCreateUserException ex)
+
+
+
+
+                }
+                catch (MembershipCreateUserException ex)
                 {
                     return View(usuario);
                 }
@@ -129,7 +145,7 @@ namespace ControleDeDespesas.Controllers
             else
             {
                 return View(usuario);
-            }    
+            }
         }
 
         /// <summary>
@@ -149,9 +165,28 @@ namespace ControleDeDespesas.Controllers
         /// <param name="usuario">The usuario.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Alterar (CadastroDeUsuario usuario)
-        {   
-            
+        public ActionResult Alterar(FormCollection form,UsuarioModelView modelUser)
+        {
+
+            //Valida se há dados paracontinuar
+            if (modelUser == null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
+            //Valida se preeche o Centro de Custo
+            if (String.IsNullOrEmpty(form["ListCentroDeCusto"]))
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+
+            }
+
+
+            modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
+            CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser,ccDAO);
+
             MembershipUser user = Membership.GetUser(usuario.Login);
             if (ModelState.IsValid)
             {

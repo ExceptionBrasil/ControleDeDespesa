@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\Aprovacao\AprovadorPorCCDAO.cs" />
     <Compile Include="DAO\CentroDeCusto\CentroDeCustoDAO.cs" />
     <Compile Include="DAO\Despesas\DespesasDAO.cs" />
     <Compile Include="DAO\Despesas\TiposDeDespesasDAO.cs" />
