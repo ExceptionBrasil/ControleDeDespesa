@@ -1,26 +1,31 @@
-﻿using System;
+﻿using Modelos;
+using Persistencia.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace ControleDeDespesas.Controllers.Cadastros
 {
     public class AprovadorPorCCController : Controller
-    {       
-
+    {
+        private AprovadorPorCCDAO aprovaDAO;
+        
+        public AprovadorPorCCController(AprovadorPorCCDAO aprovDao)
+        {
+            this.aprovaDAO = aprovDao;
+        }
 
         // GET: AprovadorPorCC
         public ActionResult Index()
         {
-            return View();
+
+            return View(aprovaDAO.ListAll());
         }
 
-        // GET: AprovadorPorCC/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
 
         // GET: AprovadorPorCC/Create
         public ActionResult Create()
@@ -30,61 +35,63 @@ namespace ControleDeDespesas.Controllers.Cadastros
 
         // POST: AprovadorPorCC/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AprovadorPorCC amarracao)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                aprovaDAO.Incluir(amarracao);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(amarracao);
             }
         }
 
         // GET: AprovadorPorCC/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+
+            return View(aprovaDAO.GetById(id));
         }
 
         // POST: AprovadorPorCC/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(AprovadorPorCC amarracao)
         {
             try
             {
-                // TODO: Add update logic here
 
+                aprovaDAO.Alterar(amarracao);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(amarracao);
             }
         }
 
         // GET: AprovadorPorCC/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+
+            return View(aprovaDAO.GetById(id));
         }
 
         // POST: AprovadorPorCC/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(AprovadorPorCC amarracao)
         {
             try
             {
-                // TODO: Add delete logic here
+                aprovaDAO.Excluir(amarracao);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(amarracao);
             }
         }
     }

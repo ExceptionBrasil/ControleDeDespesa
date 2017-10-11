@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persistence.DAO
+namespace Persistencia.DAO
 {
-    class AprovadorPorCCDAO
+    public class AprovadorPorCCDAO
     {
         private ISession session;
 
