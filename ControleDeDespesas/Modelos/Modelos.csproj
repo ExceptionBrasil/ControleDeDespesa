@@ -55,6 +55,7 @@
     <Compile Include="Despesas\Tipos\TiposDeDespesas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuarios\CadastroDeUsuario.cs" />
+    <Compile Include="ViewModels\AprovadorPorCCModelView.cs" />
     <Compile Include="ViewModels\Autenticacao.cs" />
     <Compile Include="ViewModels\DespesasJson.cs" />
     <Compile Include="ViewModels\UsuarioModelView.cs" />

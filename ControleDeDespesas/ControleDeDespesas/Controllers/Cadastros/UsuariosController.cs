@@ -36,7 +36,7 @@ namespace ControleDeDespesas.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index(){ return View(usuarioDAO.GetAll());}
+        public ActionResult Index(){ return View(usuarioDAO.ListAll());}
 
 
         /// <summary>

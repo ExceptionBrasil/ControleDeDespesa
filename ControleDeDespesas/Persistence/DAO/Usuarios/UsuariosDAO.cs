@@ -44,7 +44,7 @@ namespace Persistencia.DAO
             return usuario;
         }
 
-        public  IList<CadastroDeUsuario> GetAll()
+        public  IList<CadastroDeUsuario> ListAll()
         {
             var list = session.QueryOver<CadastroDeUsuario>()
                               .List();

@@ -1,27 +1,21 @@
-﻿@model Modelos.AprovadorPorCC
+﻿@model Modelos.ViewModels.AprovadorPorCCModelView
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>AprovadorPorCC</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+<div class="container container-fluid">
+    @using( Html.BeginForm("Create","AprovadorPorCC","POST"))
+
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.Partial("/Views/Shared/AprovadorPorCC/_FormAprovadorPorCC.cshtml")
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

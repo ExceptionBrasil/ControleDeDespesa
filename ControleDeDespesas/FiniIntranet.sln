@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDeDespesas", "ControleDeDespesas\ControleDeDespesas.csproj", "{B006F5E3-85A3-4413-BEC5-437D8E3AB30D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{93668F3F-5046-4E6A-85A1-4AD454AB7828} = {93668F3F-5046-4E6A-85A1-4AD454AB7828}
+		{47F4B3A4-8882-4C22-BB6A-B5CD36DBC5F4} = {47F4B3A4-8882-4C22-BB6A-B5CD36DBC5F4}
+		{028B30C8-6B19-49FB-808E-5CD1A42064DC} = {028B30C8-6B19-49FB-808E-5CD1A42064DC}
+		{38309BFD-8925-4D5B-BF64-B0F6C5FF0D34} = {38309BFD-8925-4D5B-BF64-B0F6C5FF0D34}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelos", "Modelos\Modelos.csproj", "{47F4B3A4-8882-4C22-BB6A-B5CD36DBC5F4}"
 EndProject
