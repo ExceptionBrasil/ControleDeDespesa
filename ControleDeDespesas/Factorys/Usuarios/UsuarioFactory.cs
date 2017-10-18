@@ -1,5 +1,7 @@
-﻿using Modelos;
+﻿using Factorys.Ninject;
+using Modelos;
 using Modelos.ViewModels;
+
 using Persistencia.DAO;
 using Persistencia.Helpers;
 using System;
@@ -13,13 +15,18 @@ namespace Factorys
 {
     public static class UsuarioFactory
     {
+
+
+        private static CentroDeCustoDAO ccDAO = Injections.CentroDeCustoInject();
+
         /// <summary>
         /// Cria uma usuário com base em UsuarioModelView
         /// </summary>
         /// <param name="model"></param>
         /// <param name="ccDAO"></param>
         /// <returns></returns>
-        public static CadastroDeUsuario GeraUsuario(UsuarioModelView model, CentroDeCustoDAO ccDAO)
+
+        public static CadastroDeUsuario GeraUsuario(UsuarioModelView model)
         {
            
             CadastroDeUsuario usuario = new CadastroDeUsuario() {
@@ -43,13 +50,13 @@ namespace Factorys
         /// <param name="listModel"></param>
         /// <param name="ccDAO"></param>
         /// <returns></returns>
-        public static IList<CadastroDeUsuario> GeraListaUsuario(IList<UsuarioModelView> listModel, CentroDeCustoDAO ccDAO)
+        public static IList<CadastroDeUsuario> GeraListaUsuario(IList<UsuarioModelView> listModel)
         {
             IList<CadastroDeUsuario> listaUsuario = new List<CadastroDeUsuario>();
 
             foreach (var x in listModel)
             {
-                listaUsuario.Add(UsuarioFactory.GeraUsuario(x,ccDAO));
+                listaUsuario.Add(UsuarioFactory.GeraUsuario(x));
             }
 
             return listaUsuario;

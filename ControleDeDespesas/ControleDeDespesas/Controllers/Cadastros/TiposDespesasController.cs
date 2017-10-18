@@ -26,19 +26,19 @@ namespace ControleDeDespesas.Controllers
             return View(tiposDAO.Lista());
         }
 
-        public ActionResult FrmIncluir()
+        public ActionResult Incluir()
         {
             TiposDeDespesas tipo = new TiposDeDespesas();
             return View(tipo);
         }
 
         
-        public ActionResult FrmAlterar(int id)
-        {
-            return View(tiposDAO.GetById(id));
-        }
 
-
+        /// <summary>
+        /// Iclusão de Tipos de Despesas
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Incluir(TiposDeDespesas tipo)
         {
@@ -79,10 +79,22 @@ namespace ControleDeDespesas.Controllers
         }
 
         /// <summary>
+        /// Alteração de um tipo de Despesa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Alterar(int id)
+        {
+            return View(tiposDAO.GetById(id));
+        }
+
+
+        /// <summary>
         /// Alteração dos tipos de despesas
         /// </summary>
         /// <param name="tipo">The tipo.</param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Alterar(TiposDeDespesas tipo)
         {
             if (tipo==null)

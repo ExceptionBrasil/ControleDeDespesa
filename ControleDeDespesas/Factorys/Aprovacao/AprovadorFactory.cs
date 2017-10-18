@@ -1,4 +1,5 @@
-﻿using Modelos;
+﻿using Factorys.Ninject;
+using Modelos;
 using Modelos.ViewModels;
 using Persistencia.DAO;
 using System;
@@ -12,7 +13,12 @@ namespace Factorys.Aprovacao
     public static class AprovadorFactory
     {
 
-        public static AprovadorPorCC ViewModelToModel(AprovadorPorCCModelView aprovador, CentroDeCustoDAO custoDAO, UsuariosDAO userDAO)
+        private static CentroDeCustoDAO custoDAO = Injections.CentroDeCustoInject();
+        private static UsuariosDAO userDAO = Injections.UsuarioInject();
+
+
+        //Gera um aprovador com base em um modelo de Visão 
+        public static AprovadorPorCC GeraAprovador(AprovadorPorCCModelView aprovador)
         {
             AprovadorPorCC aprovadorModel= new AprovadorPorCC()
             {
@@ -25,6 +31,33 @@ namespace Factorys.Aprovacao
 
             return aprovadorModel;
 
+        }
+
+        //Gera uma lista de Aprovador com base em uma lista de  modelo de Visão
+        public static IList<AprovadorPorCC> GeraListaAprovador(IList<AprovadorPorCCModelView> listaAprovador)
+        {
+            IList<AprovadorPorCC> lista = new List<AprovadorPorCC>();
+            foreach (var x in listaAprovador)
+            {
+                lista.Add(AprovadorFactory.GeraAprovador(x));
+            }
+
+            return lista;
+            
+        }
+
+        public static AprovadorPorCCModelView GeraModelView(AprovadorPorCC aprovador)
+        {
+            AprovadorPorCCModelView model = new AprovadorPorCCModelView()
+            {
+                CC = aprovador.CC.Id,
+                Id = aprovador.Id,
+                Limite = aprovador.Limite,
+                Superiror = aprovador.Superiror.Id,
+                Usuario = aprovador.Usuario.Id
+            };
+
+            return model;
         }
     }
 }

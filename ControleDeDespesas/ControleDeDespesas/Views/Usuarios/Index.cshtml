@@ -39,7 +39,7 @@
                         <td>@u.IsAprovador</td>
                         <td>@u.CentroDeCusto.Descricao</td>
                         <td>@u.Cpf</td>
-                        <td><a href=@Url.Action("FrmAlterar", "Usuarios", new { id = u.Id })><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td><a href=@Url.Action("Alterar", "Usuarios", new { id = u.Id })><span class="glyphicon glyphicon-edit"></span></a></td>
                         <td><a href=@Url.Action("Excluir","Usuarios", new { id = u.Id })  ><span class="glyphicon glyphicon-erase"></span></a></td>                        
                     </tr>
                 }

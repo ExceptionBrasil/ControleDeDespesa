@@ -13,13 +13,13 @@
                         Opções<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><span class="glyphicon glyphicon-list-alt"> @Html.ActionLink("Novo", "FrmIncluir", "Despesas")</span></li>
+                        <li><span class="glyphicon glyphicon-list-alt">@Html.ActionLink(" Novo", "FrmIncluir", "Despesas")</span></li>
                         @if (ViewBag.IsAdmin)
                         {
-                            <li><span class="glyphicon glyphicon-copy"> @Html.ActionLink("Tipos de Despesas", "Index", "TiposDespesas")</span>  </li>
-                            <li><span class="glyphicon glyphicon-user"> @Html.ActionLink("Usuarios", "Index", "Usuarios")</span>  </li>
-                            <li><span class="glyphicon glyphicon-user"> @Html.ActionLink("Centro de Custo", "Index", "CentroDeCusto")</span>  </li>
-                            <li><span class="glyphicon glyphicon-user"> @Html.ActionLink("Aprovador por CC", "Index", "AprovadorPorCC")</span>  </li>
+                            <li> <span class="glyphicon glyphicon-copy">@Html.ActionLink(" Tipos de Despesas", "Index", "TiposDespesas")</span>  </li>
+                            <li> <span class="glyphicon glyphicon-user">@Html.ActionLink(" Usuarios", "Index", "Usuarios")</span>  </li>
+                            <li> <span class="glyphicon glyphicon-subtitles">@Html.ActionLink(" Centro de Custo", "Index", "CentroDeCusto")</span>  </li>
+                            <li> <span class="glyphicon glyphicon-user">@Html.ActionLink(" Aprovador por CC", "Index", "AprovadorPorCC")</span>  </li>
                         }
                         @if (ViewBag.IsAprovador)
                         {

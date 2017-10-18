@@ -39,28 +39,6 @@ namespace ControleDeDespesas.Controllers
         public ActionResult Index(){ return View(usuarioDAO.ListAll());}
 
 
-        /// <summary>
-        /// Formulário de Alteração
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        public ActionResult FrmAlterar(int id)
-        {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(
-                    HttpStatusCode.BadRequest);
-            }
-            ViewBag.ListCentroDeCusto = new SelectList(
-               ccDAO.ListAll(),
-               "Id",
-               "Descricao"
-               );
-
-            UsuarioModelView model = UsuarioFactory.GetModelView(usuarioDAO.GetById(id));
-
-            return View(model);
-        }
 
 
         /// <summary>
@@ -103,7 +81,7 @@ namespace ControleDeDespesas.Controllers
             }
 
             modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
-            CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser, ccDAO);
+            CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser);
 
             if (usuario == null)
             {
@@ -118,16 +96,11 @@ namespace ControleDeDespesas.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new
                     {
-                        Nome = usuario.Nome
-                                                                                        ,
-                        Email = usuario.Email
-                                                                                        ,
-                        IsAdmin = usuario.IsAdmin
-                                                                                        ,
-                        Cpf = usuario.Cpf
-                                                                                        ,
-                        IsAprovador = usuario.IsAprovador
-                                                                                        ,
+                        Nome = usuario.Nome   ,
+                        Email = usuario.Email ,
+                        IsAdmin = usuario.IsAdmin,
+                        Cpf = usuario.Cpf,
+                        IsAprovador = usuario.IsAprovador,
                         CentroDeCusto_id = usuario.CentroDeCusto.Id
                     }
                                                         , false);
@@ -159,6 +132,30 @@ namespace ControleDeDespesas.Controllers
             return RedirectToAction("Index");
         }
 
+
+        /// <summary>
+        /// Formulário de Alteração
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public ActionResult Alterar(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(
+                    HttpStatusCode.BadRequest);
+            }
+            ViewBag.ListCentroDeCusto = new SelectList(
+               ccDAO.ListAll(),
+               "Id",
+               "Descricao"
+               );
+
+            UsuarioModelView model = UsuarioFactory.GetModelView(usuarioDAO.GetById(id));
+
+            return View(model);
+        }
+
         /// <summary>
         /// Altera um usuário específico 
         /// </summary>
@@ -185,7 +182,7 @@ namespace ControleDeDespesas.Controllers
 
 
             modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
-            CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser,ccDAO);
+            CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser);
 
             MembershipUser user = Membership.GetUser(usuario.Login);
             if (ModelState.IsValid)
@@ -206,13 +203,13 @@ namespace ControleDeDespesas.Controllers
                 catch(Exception ex)
                 {
                     ModelState.AddModelError("Alterar_Usuario", "Erro ao tentar mudar esse usuário " + ex.Message);
-                    return View("FrmAlterar", usuario);
+                    return View("Alterar", usuario);
                 }
                
             }
             else
             {
-                return View("FrmAlterar",usuario);
+                return View("Alterar",usuario);
             }
 
     

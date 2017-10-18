@@ -8,12 +8,12 @@
 
     @using (Html.BeginForm("Alterar", "Usuarios", "POST"))
     {
-        @Html.HiddenFor(u=> u.Id)
+        @Html.HiddenFor(u => u.Id)
 
         <fieldset>
             <legend>Cadastro de Usuário</legend>
             @Html.Partial("/Views/Shared/Usuarios/_FormUsuarios.cshtml")
-            @Html.ValidationMessage("Alterar_Usuario",new {@class="text-danger" })
+            @Html.ValidationMessage("Alterar_Usuario", new { @class = "text-danger" })
         </fieldset>
 
     }

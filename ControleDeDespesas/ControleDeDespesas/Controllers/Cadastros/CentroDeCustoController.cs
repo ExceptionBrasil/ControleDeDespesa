@@ -28,12 +28,12 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return View(modelo);
         }
 
-        public ActionResult FrmIncluir()
+        public ActionResult Incluir()
         {
             return View();
         }
 
-        public ActionResult FrmAlterar()
+        public ActionResult Alterar()
         {
             return View();
         }

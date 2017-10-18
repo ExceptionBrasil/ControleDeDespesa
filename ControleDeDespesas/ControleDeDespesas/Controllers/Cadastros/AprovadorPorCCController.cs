@@ -1,16 +1,21 @@
 ﻿using ControleDeDespesas.Controllers.Filters;
+using Factorys.Aprovacao;
 using Modelos;
 using Modelos.ViewModels;
 using Persistencia.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 
 namespace ControleDeDespesas.Controllers.Cadastros
 {
+    /// <summary>
+    /// Controler que representa a amarração dos aprovadores por Centro de Custo
+    /// </summary>
     [AurizacaoFilter]
     public class AprovadorPorCCController : Controller
     {
@@ -25,7 +30,10 @@ namespace ControleDeDespesas.Controllers.Cadastros
             this.userDAO = uDAO;
         }
 
-        // GET: AprovadorPorCC
+        /// <summary>
+        /// Gera o Index do AprovadorPor CC
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View(aprovaDAO.ListAll());
@@ -33,7 +41,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
 
         
 
-        // GET: AprovadorPorCC/Create
+        //Formulário de insersão de resgistros 
         public ActionResult Create()
         {
             ViewBag.CCLista = new SelectList(
@@ -57,13 +65,20 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return View();
         }
 
-        // POST: AprovadorPorCC/Create
+        // faz a insersão de registros 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(AprovadorPorCCModelView aprovador)
         {
+            if (aprovador == null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
             try
             {
-                //aprovaDAO.Incluir(amarracao);
+                aprovaDAO.Incluir(AprovadorFactory.GeraAprovador(aprovador));
                 return RedirectToAction("Index");
             }
             catch
@@ -72,48 +87,60 @@ namespace ControleDeDespesas.Controllers.Cadastros
             }
         }
 
-        // GET: AprovadorPorCC/Edit/5
+        //formulário de Edição de resgitros
         public ActionResult Edit(int id)
         {
-            return View(aprovaDAO.GetById(id));
+            AprovadorPorCCModelView model = AprovadorFactory.GeraModelView(aprovaDAO.GetById(id));
+            return View(model);
         }
 
-        // POST: AprovadorPorCC/Edit/5
+        //Edição de resgitros
         [HttpPost]
-        public ActionResult Edit(AprovadorPorCC amarracao)
+        public ActionResult Edit(AprovadorPorCCModelView aprovador)
         {
+            if (aprovador == null)
+            {
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
+
             try
             {
 
-                aprovaDAO.Alterar(amarracao);
+                aprovaDAO.Alterar(AprovadorFactory.GeraAprovador(aprovador));
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(amarracao);
+                return View(aprovador);
             }
         }
 
-        // GET: AprovadorPorCC/Delete/5
+        // Exclusão 
         public ActionResult Delete(int id)
         {
-
-            return View(aprovaDAO.GetById(id));
+            AprovadorPorCCModelView modelo = AprovadorFactory.GeraModelView(aprovaDAO.GetById(id));
+            return View("Index");
         }
 
         // POST: AprovadorPorCC/Delete/5
         [HttpPost]
-        public ActionResult Delete(AprovadorPorCC amarracao)
+        public ActionResult Delete(AprovadorPorCCModelView aprovador)
         {
-            try
+            if (aprovador == null)
             {
-                aprovaDAO.Excluir(amarracao);
+                return new HttpStatusCodeResult(
+                        HttpStatusCode.BadRequest);
+            }
 
+            try
+            {   
+                aprovaDAO.Excluir(AprovadorFactory.GeraAprovador(aprovador));
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(amarracao);
+                return View(aprovador);
             }
         }
     }
