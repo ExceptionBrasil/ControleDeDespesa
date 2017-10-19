@@ -2,6 +2,7 @@
 using Factorys.Aprovacao;
 using Modelos;
 using Modelos.ViewModels;
+using Newtonsoft.Json;
 using Persistencia.DAO;
 using System;
 using System.Collections.Generic;
@@ -66,24 +67,28 @@ namespace ControleDeDespesas.Controllers.Cadastros
         }
 
         // faz a insersão de registros 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(AprovadorPorCCModelView aprovador)
+
+        // [ValidateAntiForgeryToken]
+       // [HttpPost]
+        public JsonResult Createa(string aprov)
         {
+            AprovadorPorCCModelView aprovador = JsonConvert.DeserializeObject<AprovadorPorCCModelView>(aprov);
+
             if (aprovador == null)
             {
-                return new HttpStatusCodeResult(
-                        HttpStatusCode.BadRequest);
+                return Json(new { success = false, error="Erro Json vazio ou nulo" });
             }
 
             try
             {
                 aprovaDAO.Incluir(AprovadorFactory.GeraAprovador(aprovador));
-                return RedirectToAction("Index");
+                //                return RedirectToAction("Index");
+                return Json(new { success = true, error = "" });
             }
             catch
             {
-                return View(aprovador);
+                //return View(aprovador);
+                return Json(new { success = false, error = "Não foi possível fazer inserir os dados na base" });
             }
         }
 
