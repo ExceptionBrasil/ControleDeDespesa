@@ -4,12 +4,12 @@
     <div class="form-group">
         <div class="col col-sm-4 col-md-6">
             @Html.LabelFor(a => a.CC, "Centro de Custo")
-            @Html.DropDownList("CCLista", null, String.Empty, new { @class = "form-control", id = "CC" })
+            @Html.DropDownList("CCLista", null, String.Empty, new { @class = "form-control", id = "CC"})
 
-            @Html.LabelFor(a => a.Usuario, "Usuario Aprovador")
+            @Html.LabelFor(a => a.Usuario, "Usuario Aprovador do Centro de Custo")
             @Html.DropDownList("UsuariosLista", null, String.Empty, new { @class = "form-control", id = "Usuario" })
 
-            @Html.LabelFor(a => a.Superiror, "Superior")
+            @Html.LabelFor(a => a.Superiror, "Superior ")
             @Html.DropDownList("SuperiorLista", null, String.Empty, new { @class = "form-control", id = "Superior" })
             
 
@@ -18,5 +18,5 @@
 
         </div>
     </div>
-    <input type="submit" value="Salvar" class="btn btn-default" />
+    <input type="submit" value="Salvar" class="btn btn-default" id="submitAprovadorCC" />
 </div>

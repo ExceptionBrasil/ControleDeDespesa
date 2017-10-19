@@ -119,7 +119,8 @@ namespace ControleDeDespesas.Controllers.Cadastros
         // Exclusão 
         public ActionResult Delete(int id)
         {
-            AprovadorPorCCModelView modelo = AprovadorFactory.GeraModelView(aprovaDAO.GetById(id));
+            //AprovadorPorCCModelView modelo = AprovadorFactory.GeraModelView(aprovaDAO.GetById(id));
+            aprovaDAO.Excluir(aprovaDAO.GetById(id));
             return View("Index");
         }
 
