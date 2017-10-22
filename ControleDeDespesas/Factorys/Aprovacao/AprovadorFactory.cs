@@ -25,7 +25,7 @@ namespace Factorys.Aprovacao
                 CC = custoDAO.GetById(aprovador.CC),
                 Id = aprovador.Id,
                 Limite = aprovador.Limite,
-                Superiror = userDAO.GetById(aprovador.Superiror),
+                Superior = userDAO.GetById(aprovador.Superior),
                 Usuario = userDAO.GetById(aprovador.Usuario)
             };
 
@@ -53,7 +53,7 @@ namespace Factorys.Aprovacao
                 CC = aprovador.CC.Id,
                 Id = aprovador.Id,
                 Limite = aprovador.Limite,
-                Superiror = aprovador.Superiror.Id,
+                Superior = aprovador.Superior.Id,
                 Usuario = aprovador.Usuario.Id
             };
 

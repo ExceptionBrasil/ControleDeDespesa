@@ -16,9 +16,9 @@ var EnviaDadosJson = function (event) {
 
     $.ajax({
         url: urldest,
-        data: JSON.stringify(dados),
+        data: dados,
         dataType: "json",
-        method: "GET",
+        method: "POST",
         error: function (response) {
             console.log(response);
         },

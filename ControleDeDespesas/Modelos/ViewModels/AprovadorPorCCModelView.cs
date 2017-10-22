@@ -10,7 +10,7 @@ namespace Modelos.ViewModels
     {
         public int Id { get; set; }
         public int Usuario { get; set; }
-        public int Superiror { get; set; }
+        public int Superior { get; set; }
         public int CC { get; set; }
         public double Limite { get; set; }
     }

@@ -10,7 +10,7 @@ namespace Modelos
     {
         public virtual int Id { get; set; }
         public virtual CadastroDeUsuario Usuario { get; set; }
-        public virtual CadastroDeUsuario Superiror { get; set; }
+        public virtual CadastroDeUsuario Superior { get; set; }
         public virtual CentroDeCusto CC { get; set; }
         public virtual double Limite { get; set; }
         

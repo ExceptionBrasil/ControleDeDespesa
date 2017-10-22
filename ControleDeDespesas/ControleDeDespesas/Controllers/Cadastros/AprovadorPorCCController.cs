@@ -69,10 +69,10 @@ namespace ControleDeDespesas.Controllers.Cadastros
         // faz a insersão de registros 
 
         // [ValidateAntiForgeryToken]
-       // [HttpPost]
-        public JsonResult Createa(string aprov)
+        [HttpPost]
+        public JsonResult Create(AprovadorPorCCModelView aprovador)
         {
-            AprovadorPorCCModelView aprovador = JsonConvert.DeserializeObject<AprovadorPorCCModelView>(aprov);
+            
 
             if (aprovador == null)
             {
