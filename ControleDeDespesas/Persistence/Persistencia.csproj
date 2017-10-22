@@ -78,8 +78,6 @@
     <Compile Include="DAO\Despesas\DespesasDAO.cs" />
     <Compile Include="DAO\Despesas\TiposDeDespesasDAO.cs" />
     <Compile Include="DAO\Usuarios\UsuariosDAO.cs" />
-    <Compile Include="Factorys\DespesasJsonToDespesas.cs" />
-    <Compile Include="Helpers\NhibernateHelper.cs" />
     <Compile Include="Mappings\Aprovacao\AprovadorPorCCMapping.cs" />
     <Compile Include="Mappings\CentrosDeCustos\CentroDeCustoMapping.cs" />
     <Compile Include="Mappings\Usuarios\CadastroDeUsuarioMapping.cs" />
@@ -95,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

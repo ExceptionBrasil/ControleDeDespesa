@@ -1,5 +1,4 @@
 ﻿using Modelos;
-using Modelos.ViewModels;
 using NHibernate;
 using System;
 using System.Collections.Generic;

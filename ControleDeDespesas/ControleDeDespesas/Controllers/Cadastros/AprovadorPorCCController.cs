@@ -2,7 +2,6 @@
 using Factorys.Aprovacao;
 using Modelos;
 using Modelos.ViewModels;
-using Newtonsoft.Json;
 using Persistencia.DAO;
 using System;
 using System.Collections.Generic;
@@ -67,8 +66,6 @@ namespace ControleDeDespesas.Controllers.Cadastros
         }
 
         // faz a insersão de registros 
-
-        // [ValidateAntiForgeryToken]
         [HttpPost]
         public JsonResult Create(AprovadorPorCCModelView aprovador)
         {
@@ -126,7 +123,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
         {
             //AprovadorPorCCModelView modelo = AprovadorFactory.GeraModelView(aprovaDAO.GetById(id));
             aprovaDAO.Excluir(aprovaDAO.GetById(id));
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // POST: AprovadorPorCC/Delete/5

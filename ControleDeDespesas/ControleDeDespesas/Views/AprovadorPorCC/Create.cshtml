@@ -8,8 +8,7 @@
 <div class="container container-fluid">
     @using( Html.BeginForm("Create","AprovadorPorCC","POST"))
 
-    {
-        @Html.AntiForgeryToken()
+    {        
 
         @Html.Partial("/Views/Shared/AprovadorPorCC/_FormAprovadorPorCC.cshtml")
     }
@@ -24,6 +23,10 @@
 @section Scripts{
     <script>
         var urldest = "@Url.Action("Create", "AprovadorPorCC")"
+        var urlSuccess = "@Url.Action("Index", "AprovadorPorCC")"
     </script>
-    <script src="~/Scripts/AprovadorPorCC/EnviaAprovadorJson.js"></script>    
+    <script src="~/Scripts/Tools/Mensagens.js"></script>
+    <script src="~/Scripts/AprovadorPorCC/Validacao.js"></script>
+    <script src="~/Scripts/AprovadorPorCC/EnviaAprovadorJson.js"></script>      
+    
 }

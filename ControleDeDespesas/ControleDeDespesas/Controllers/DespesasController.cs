@@ -1,6 +1,5 @@
 ﻿using ControleDeDespesas.Controllers.Filters;
 using Persistencia.DAO;
-using Persistencia.Factorys;
 using Modelos;
 using Modelos.ViewModels;
 using System;
@@ -10,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using X.PagedList;
+using Factorys;
 
 namespace ControleDeDespesas.Controllers
 {

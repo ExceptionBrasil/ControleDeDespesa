@@ -4,7 +4,7 @@
 
 <div class="form-horizontal">
     <div class="form-group">
-        <div class="col col-sm-4 col-md-6">
+        <div class="col col-sm-6 col-md-10 col-xs-12">
             @Html.LabelFor(a => a.CC, "Centro de Custo")
             @Html.DropDownList("CCLista", null, String.Empty, new { @class = "form-control", id = "CC"})
 
@@ -20,5 +20,5 @@
 
         </div>
     </div>
-    <input type="submit" value="Salvar" class="btn btn-default" id="submitAprovadorCC" />
+    <input type="submit" value="Salvar" class="btn btn-default" id="submitAprovadorCC" />    
 </div>

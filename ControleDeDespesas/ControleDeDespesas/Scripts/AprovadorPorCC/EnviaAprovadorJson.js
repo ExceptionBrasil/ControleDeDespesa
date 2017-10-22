@@ -1,4 +1,11 @@
-﻿
+﻿/*
+ * Data      >> 22/10/2017
+ * Autor     >> DPS
+ * Descrição >> Faz o envio das informções para o servidor 
+ */
+
+
+
 /*
  * Aguarda carregar o formulário por completo para adcionar os eventos aos componetes
  */
@@ -8,9 +15,29 @@ $(document).ready(function () {
 })
 
 
+
+
+/**
+ * Comunicação com o servidor 
+ * @param {any} event
+ */
 var EnviaDadosJson = function (event) {
+
     event.preventDefault();
     event.stopPropagation();
+
+
+    //Valida se poder fazer o envio de dados 
+    if (ValidaFormulário()) {        
+        WebServices();
+    }
+
+
+
+}
+
+
+function WebServices() {
 
     var dados = { "aprovador": PreparaJson() }
 
@@ -24,13 +51,14 @@ var EnviaDadosJson = function (event) {
         },
         success: function (response) {
             if (response.success) {
-                window.location.replace("/AprovadorPorCC/Index");
+                window.location.replace(urlSuccess);
             } else {
-                erroDeEnvio(response.menssage);
+                erroDeEnvio(response.error);
             }
 
         }
     });
+
 }
 
 /*

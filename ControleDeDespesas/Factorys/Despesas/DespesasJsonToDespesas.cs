@@ -1,23 +1,22 @@
 ﻿using Modelos;
 using Modelos.ViewModels;
-using Persistencia.Helpers;
+using Factorys.Helpers;
 using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Persistencia.DAO;
+using Factorys.Ninject;
 
-namespace Persistencia.Factorys
+namespace Factorys
 {
     public static class DespesasJsonToDespesas
     {
+        private static TiposDeDespesasDAO tipoDAO = Injections.GetTiposDeDespesasInject();
+
         public static Despesas Gera(DespesasJson depJ)
         {
-            ISession session = NhibernateHelper.OpenSession();
-            TiposDeDespesasDAO tipoDAO = new TiposDeDespesasDAO(session);
-
-
             Despesas despesa = new Despesas();
 
             despesa.Tipo = tipoDAO.GetById(depJ.IdDespesa);

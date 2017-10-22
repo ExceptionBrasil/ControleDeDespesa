@@ -8,7 +8,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Mapping;
 using System.Reflection;
 
-namespace Persistencia.Helpers
+namespace Factorys.Helpers
 {
     public class NhibernateHelper
     {
@@ -19,10 +19,11 @@ namespace Persistencia.Helpers
             Configuration cfg = new Configuration();
             cfg.Configure();
 
+            
             return Fluently.Configure(cfg)
-              .Mappings(x =>
+              .Mappings(x =>              
                      x.FluentMappings.AddFromAssembly(
-                Assembly.GetExecutingAssembly()
+                  Assembly.Load("Persistencia")//LoadWithPartialName("Persistencia")//GetExecutingAssembly()                
                 )
               ).BuildSessionFactory();
 

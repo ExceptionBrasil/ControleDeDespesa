@@ -12,7 +12,7 @@ namespace Persistencia.Mappings
     {
         public AprovadorPorCCMapping()
         {
-            Id(a => a.Id);
+            Id(a => a.Id).GeneratedBy.Identity();
             References(a => a.Usuario);
             References(a => a.CC);
             References(a => a.Superior);

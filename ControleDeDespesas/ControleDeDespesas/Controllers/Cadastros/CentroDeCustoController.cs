@@ -28,21 +28,30 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return View(modelo);
         }
 
-        public ActionResult Incluir()
-        {
-            return View();
-        }
-
+        
         public ActionResult Alterar()
         {
             return View();
         }
 
         [ValidateAntiForgeryToken]
+        public ActionResult Alterar(CentroDeCusto custo)
+        {
+            ccDAO.Alterar(custo);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Incluir()
+        {
+            return View();
+        }
+
+
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Incluir(CentroDeCusto custo)
         {
-            ccDAO.Alterar(custo);
+            ccDAO.Incluir(custo);
             return RedirectToAction("Index");
         }
 
@@ -53,11 +62,6 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return RedirectToAction("Index");
         }
 
-        [ValidateAntiForgeryToken]
-        public ActionResult Alterar(CentroDeCusto custo)
-        {
-            ccDAO.Alterar(custo);
-            return RedirectToAction("Index");
-        }
+        
     }
 }

@@ -8,13 +8,14 @@ using Modelos;
 
 namespace Persistencia.Mappings
 {
-    class CentroDeCustoMapping:ClassMap<CentroDeCusto>
+    public class CentroDeCustoMapping:ClassMap<CentroDeCusto>
     {
      public CentroDeCustoMapping()
         {
             Id(c => c.Id).GeneratedBy.Identity();
             Map(c => c.Codigo);
             Map(c => c.Descricao);
+            
         }
 
     }
