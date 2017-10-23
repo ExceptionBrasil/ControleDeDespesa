@@ -234,6 +234,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Cadastros\TiposDespesasController.cs" />
     <Compile Include="Controllers\Cadastros\UsuariosController.cs" />
+    <Compile Include="Controllers\Menu\MenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -286,6 +287,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuildMenu\BuildMenu.csproj">
+      <Project>{DB1720E1-D0BC-45CB-9650-35A662058242}</Project>
+      <Name>BuildMenu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Factorys\Factorys.csproj">
       <Project>{38309bfd-8925-4d5b-bf64-b0f6c5ff0d34}</Project>
       <Name>Factorys</Name>
@@ -299,7 +304,9 @@
       <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Menu\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

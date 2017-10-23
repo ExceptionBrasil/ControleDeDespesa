@@ -10,11 +10,13 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using X.PagedList;
 using Factorys;
+using BuildMenu;
 
 namespace ControleDeDespesas.Controllers
 {
     
     [AurizacaoFilter]
+    
     public class DespesasController : Controller
     {
         private UsuariosDAO usuarioDAO;
@@ -27,14 +29,25 @@ namespace ControleDeDespesas.Controllers
             this.usuarioDAO = userDAO;
             this.tiposDAO = tpDAO;
             this.despesasDAO = depDao;
+
+            /*
+             * Menus adicionais do Controller
+             */
+            MakeMenu.Add("Usuarios", "Index", "Cadastro de Usuários","Admin", "glyphicon glyphicon-user");
+            MakeMenu.Add("CentroDeCusto", "Index", "Cadastro de Centro De Custo","Admin", "glyphicon glyphicon-subtitles");
+            MakeMenu.Add("TiposDespesas", "Index", "Cadastro de Tipos Despesas","Admin", "glyphicon glyphicon-copy");
+            MakeMenu.Add("AprovadorPorCC", "Index", "Aprovador por CC", "Admin", "glyphicon glyphicon-copy");
+
         }
 
         /// <summary>
         /// Gera a Home Page das Despesas
         /// </summary>
         /// <returns></returns>
+        [Menu("Despesas", "Index", "Home")]
         public ActionResult Index(int? pagina)
         {
+           
             int paginaAtual = (pagina ?? 1) - 1;
             int tamanhoDaPagina = 10; //Registros por página
             int totalDeRegistros;
@@ -70,6 +83,7 @@ namespace ControleDeDespesas.Controllers
         /// Formulário de inclusão.
         /// </summary>
         /// <returns></returns>
+        [Menu("Despesas", "FrmIncluir", "Home")]
         public ActionResult FrmIncluir()
         {
             ViewBag.TiposDeDespesa = tiposDAO.Lista();
