@@ -8,9 +8,10 @@ namespace BuildMenu
 {
     public class Menu
     {
-        public string Descricao;
-        public string Action;
         public string Controller;
+        public string Action;
+        public string Location;
+        public string Descricao;
         public string Role;
         public string Glyphicon;
         

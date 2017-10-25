@@ -33,10 +33,10 @@ namespace ControleDeDespesas.Controllers
             /*
              * Menus adicionais do Controller
              */
-            MakeMenu.Add("Usuarios", "Index", "Cadastro de Usuários","Admin", "glyphicon glyphicon-user");
-            MakeMenu.Add("CentroDeCusto", "Index", "Cadastro de Centro De Custo","Admin", "glyphicon glyphicon-subtitles");
-            MakeMenu.Add("TiposDespesas", "Index", "Cadastro de Tipos Despesas","Admin", "glyphicon glyphicon-copy");
-            MakeMenu.Add("AprovadorPorCC", "Index", "Aprovador por CC", "Admin", "glyphicon glyphicon-copy");
+            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários","Admin", "glyphicon glyphicon-user");
+            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo","Admin", "glyphicon glyphicon-subtitles");
+            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas","Admin", "glyphicon glyphicon-copy");
+            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "Admin", "glyphicon glyphicon-copy");
 
         }
 
@@ -44,7 +44,7 @@ namespace ControleDeDespesas.Controllers
         /// Gera a Home Page das Despesas
         /// </summary>
         /// <returns></returns>
-        [Menu("Despesas", "Index", "Home")]
+        [Menu("Despesas", "Index", "Despesas", "Home")]
         public ActionResult Index(int? pagina)
         {
            
@@ -83,7 +83,7 @@ namespace ControleDeDespesas.Controllers
         /// Formulário de inclusão.
         /// </summary>
         /// <returns></returns>
-        [Menu("Despesas", "FrmIncluir", "Home")]
+        [Menu("Despesas", "FrmIncluir", "Despesas", "Home")]
         public ActionResult FrmIncluir()
         {
             ViewBag.TiposDeDespesa = tiposDAO.Lista();

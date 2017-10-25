@@ -16,5 +16,11 @@ namespace ControleDeDespesas.Controllers
         {
             return Json(new { menu = MakeMenu.Recovery(Controller)});
         }
+
+        [HttpPost]
+        public JsonResult GetByLocation(string Location)
+        {
+            return Json(new { menu = MakeMenu.RecoveryByLocation(Location) });
+        }
     }
 }
