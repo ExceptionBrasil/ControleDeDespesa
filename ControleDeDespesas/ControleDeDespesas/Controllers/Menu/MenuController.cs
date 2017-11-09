@@ -14,13 +14,13 @@ namespace ControleDeDespesas.Controllers
         [HttpPost]
         public JsonResult Get(string Controller)
         {
-            return Json(new { menu = MakeMenu.Recovery(Controller)});
+            return Json(new {success = true, menu = MakeMenu.Recovery(Controller)});
         }
 
         [HttpPost]
         public JsonResult GetByLocation(string Location)
         {
-            return Json(new { menu = MakeMenu.RecoveryByLocation(Location) });
+            return Json(new { success = true, menu = MakeMenu.RecoveryByLocation(Location) });
         }
     }
 }
