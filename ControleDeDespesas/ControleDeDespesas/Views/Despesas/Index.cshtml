@@ -35,7 +35,7 @@
                                         <td>@dep.CodigoDespesa</td>
                                         <td>@dep.Tipo.Descricao</td>
                                         <td>@dep.DataInclusao</td>
-                                        <td>@dep.CentroDeCusto</td>
+                                        <td>@dep.CentroDeCusto.Descricao</td>
                                         <td>@dep.Descritivo</td>
                                         <td>@dep.Quantidade</td>
                                         <td>@dep.Valor</td>
@@ -43,6 +43,7 @@
                                         <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa })  target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>                                                                                
                                         <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
                                         <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span> Aprovar</a></td>
                                     </tr>
                                 }
                             </tbody>

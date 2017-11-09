@@ -112,7 +112,7 @@ namespace Persistencia.DAO
         {
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d => d.UsuarioInclusao == usuario)
-                                  .And(d => d.Id > (indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage) + maxElementsByPage))
+                                  //.And(d => d.Id > (indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage) + maxElementsByPage))
                                   .OrderBy(d => d.DataAprovacao).Asc
                                   .List<Despesas>();
                                
@@ -227,6 +227,20 @@ namespace Persistencia.DAO
         }
 
         /// <summary>
+        ///  Retorna uma despesa pelo Id dela
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        public Despesas GetDespesaById(int id)
+        {
+            var despesas = session.QueryOver<Despesas>()
+                                  .Where(d => d.Id == id)
+                                  .SingleOrDefault();
+
+            return despesas;
+        }
+
+        /// <summary>
         /// Obtem o útimo codigo usado e retorna ele +1
         /// </summary>
         /// <returns>
@@ -243,6 +257,26 @@ namespace Persistencia.DAO
                            
             return nextCod+1;
                                  
+        }
+
+        /// <summary>
+        /// Realiza a aprovação de uma despesa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public bool AprovarDespesa(int id,CadastroDeUsuario usuario)
+        {
+            Despesas despesa = this.GetDespesaById(id);
+
+            despesa.DataAprovacao = DateTime.Now;
+            despesa.UsuarioAprovacao = usuario;
+
+            ITransaction tran = session.BeginTransaction();
+            session.Merge(despesa);
+            tran.Commit();
+
+            return true;
         }
         
 

@@ -134,5 +134,20 @@ namespace ControleDeDespesas.Controllers
             return PartialView(modelo);
         }
 
+        /// <summary>
+        /// Realiza a aprovação de uma despesa 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult Aprovar(int id)
+        {
+            if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
+            {
+                return Json(new { success = false, error = "Erro ao aprovar a Despesa" });
+            }
+
+            return Json(new { success = true, error = "Erro ao aprovar a Despesa" });
+        }
+
     }
 }
