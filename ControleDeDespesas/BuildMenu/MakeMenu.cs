@@ -17,7 +17,7 @@ namespace BuildMenu
         /// <param name="Controller">The controller.</param>
         /// <param name="Action">The action.</param>
         /// <param name="Descricao">The descricao.</param>
-        public static void Add(string Controller, string Action,string Location, string Descricao =null,string Role = null, string Glyphicon=null)
+        public static void Add(string Controller, string Action,string Location, string Descricao =null,string Role = null)
         {
             if (Descricao == null)
             {
@@ -28,12 +28,7 @@ namespace BuildMenu
             {
                 Role = "All";
             }
-
-            if (Glyphicon == null)
-            {
-                Glyphicon = "";
-            }
-
+                       
             
             if( MakeMenu.Menus.Find(x=> x.Action ==Action && x.Controller == Controller) == null)
             {
@@ -44,8 +39,7 @@ namespace BuildMenu
                     Controller = Controller,
                     Action = Action,
                     Location = Location,
-                    Descricao = Descricao,
-                    Glyphicon = Glyphicon,
+                    Descricao = Descricao,                    
                     Role = Role
                 });
             }

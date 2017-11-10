@@ -12,8 +12,7 @@ namespace BuildMenu
         public string Action;
         public string Location;
         public string Descricao;
-        public string Role;
-        public string Glyphicon;
+        public string Role;        
         
         public override string ToString()
         {

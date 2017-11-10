@@ -33,10 +33,10 @@ namespace ControleDeDespesas.Controllers
             /*
              * Menus adicionais do Controller
              */
-            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários","Admin", "glyphicon glyphicon-user");
-            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo","Admin", "glyphicon glyphicon-subtitles");
-            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas","Admin", "glyphicon glyphicon-copy");
-            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "Admin", "glyphicon glyphicon-copy");
+            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários","Admin");
+            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo","Admin");
+            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas","Admin");
+            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "Admin");
 
         }
 
