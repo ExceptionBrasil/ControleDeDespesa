@@ -3,10 +3,9 @@
 @using X.PagedList;
  
     
-   @Html.Partial("/Views/Shared/SubMenus/_MenuDespesasPrincipal.cshtml")
-    <div id="MenuBuilder"></div>
 
-    <div id="MenuBuilder"></div>
+    <div id="LoadMenu"></div>
+
 
     <div class="row">
         <div class="col-lg-12 col-xs-12">
@@ -64,6 +63,9 @@
     <script>
         var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
     </script>
+    <script src="~/Scripts/Tools/MenuBuilder.js"></script>
     <script src="~/Scripts/Tools/MenuBuilder_Libs.js"></script>
-    <script src="~/Scripts/Tools/MenuBuilder_Module.js"></script>   
+    <script src="~/Scripts/Tools/MenuBuilder.Boot.js"></script>   
+    <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>   
+    
 }

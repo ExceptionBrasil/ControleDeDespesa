@@ -11,9 +11,15 @@ namespace BuildMenu
     [AttributeUsage(AttributeTargets.Method)]
     public class MenuAttribute : ActionFilterAttribute  //Attribute
     {
-       public MenuAttribute(string Controller, string Action, string Descricao,string Location)
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            MakeMenu.Add(Controller, Action, Location,Descricao);
+            base.OnActionExecuting(filterContext);
+        }
+
+       
+        public MenuAttribute(string Controller, string Action, string Location, string Descricao)
+        {
+            MakeMenu.Add(Controller, Action, Location,Descricao);            
         }
     }
 }

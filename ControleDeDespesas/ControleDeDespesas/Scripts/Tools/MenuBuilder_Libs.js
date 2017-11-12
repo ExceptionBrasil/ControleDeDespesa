@@ -24,32 +24,8 @@ var GetContex = () => {
 }
 
 
-var GetMenu = (controller, urlDestino) => {
-
-    //Recupera os Menus 
-    $.ajax({
-        url: urlDestino,
-        data: controller,
-        dataType: "json",
-        method: "POST",
-        error: function (response) {
-            console.log(response.menu);
-
-        },
-        success: function (response) {
-            if (response.success) {
-                //console.log(response.menu);
-                return (response.menu);
-            } else {
-                console.log("Erro to get Menu on Ajax request ");
-            }
-
-        }
-    });
-}
-
 var WriteHtml = function (menu) {
-    var MenuBuilder = document.querySelector("#MenuBuilder");
+    var MenuBuilder = document.querySelector("#LoadMenu");
     var htmlScript = "";
 
     htmlScript += '<div class="thumbnail">';
