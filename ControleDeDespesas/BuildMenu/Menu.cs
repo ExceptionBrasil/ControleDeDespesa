@@ -11,6 +11,8 @@ namespace BuildMenu
         public string Controller;
         public string Action;
         public string Location;
+        public int Position;
+        public int Order;
         public string Descricao;
         public string Role;
         public string Glyphicon;
