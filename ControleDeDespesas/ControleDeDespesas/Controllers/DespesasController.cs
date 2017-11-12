@@ -33,10 +33,10 @@ namespace ControleDeDespesas.Controllers
             /*
              * Menus adicionais do Controller
              */
-            MakeMenu.Add("Usuarios", "Index", "Despesas",1,1,"Cadastro de Usuários","Admin", "glyphicon glyphicon-user");
-            MakeMenu.Add("CentroDeCusto", "Index", "Despesas",1,2, "Cadastro de Centro De Custo","Admin", "glyphicon glyphicon-subtitles");
-            MakeMenu.Add("TiposDespesas", "Index", "Despesas", 1,3,"Cadastro de Tipos Despesas","Admin", "glyphicon glyphicon-copy");
-            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas",1,4, "Aprovador por CC", "Admin", "glyphicon glyphicon-copy");
+            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários","Admin");
+            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo","Admin");
+            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas","Admin");
+            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "Admin");
 
         }
 
@@ -44,7 +44,7 @@ namespace ControleDeDespesas.Controllers
         /// Gera a Home Page das Despesas
         /// </summary>
         /// <returns></returns>
-        [Menu("Despesas", "Index", "Despesas", "Despesas",0,0)]
+        [Menu("Despesas", "Index", "Despesas", "Home")]
         public ActionResult Index(int? pagina)
         {
            
@@ -54,10 +54,6 @@ namespace ControleDeDespesas.Controllers
 
 
             //Se a senha expirou retorno ele para home
-            if(!WebSecurity.Initialized)
-            {
-                RedirectToAction("Logout", "Home");
-            }
             if(WebSecurity.CurrentUserId == null)
             {
                 RedirectToAction("Logout", "Home");
@@ -87,7 +83,7 @@ namespace ControleDeDespesas.Controllers
         /// Formulário de inclusão.
         /// </summary>
         /// <returns></returns>
-        [Menu("Despesas", "FrmIncluir", "Nova Despesa", "Despesas",1,0)]
+        [Menu("Despesas", "FrmIncluir", "Despesas", "Home")]
         public ActionResult FrmIncluir()
         {
             ViewBag.TiposDeDespesa = tiposDAO.Lista();
@@ -136,6 +132,21 @@ namespace ControleDeDespesas.Controllers
             var modelo =  despesasDAO.GetDespesaByCodigo(id);
 
             return PartialView(modelo);
+        }
+
+        /// <summary>
+        /// Realiza a aprovação de uma despesa 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult Aprovar(int id)
+        {
+            if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
+            {
+                return Json(new { success = false, error = "Erro ao aprovar a Despesa" });
+            }
+
+            return Json(new { success = true, error = "Erro ao aprovar a Despesa" });
         }
 
     }
