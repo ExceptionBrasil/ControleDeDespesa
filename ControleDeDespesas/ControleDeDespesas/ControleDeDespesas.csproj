@@ -220,7 +220,8 @@
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
-    <Content Include="Scripts\Tools\MenuBuilder_Module.js" />
+    <Content Include="Scripts\Tools\MenuBuilder.js" />
+    <Content Include="Scripts\Tools\MenuBuilder.Boot.js" />
     <Content Include="Scripts\Tools\Mensagens.js" />
     <Content Include="Scripts\Tools\MenuBuilder_Libs.js" />
     <Content Include="Web.config" />
@@ -280,6 +281,7 @@
     <Content Include="Views\CentroDeCusto\Alterar.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\Tools\MenuBuilder.Loader.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

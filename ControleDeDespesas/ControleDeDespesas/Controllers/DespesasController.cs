@@ -32,21 +32,30 @@ namespace ControleDeDespesas.Controllers
             this.despesasDAO = depDao;
             this.aprovDAO = aprov;
 
-            /*
-             * Menus adicionais do Controller
-             */
-            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários","Admin");
-            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo","Admin");
-            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas","Admin");
-            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "Admin");
+            //Carrega os Menus desse controller
+            BuildMenus();
+
+        }
+
+        /// <summary>
+        /// Menus que v~ao ser carregados desses controller 
+        /// </summary>
+        private void BuildMenus()
+        {
+
+            MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa","All");
+            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários", "Admin");
+            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo", "SuperUser");
+            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas", "SuperUser");
+            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "SuperUser");
 
         }
 
         /// <summary>
         /// Gera a Home Page das Despesas
         /// </summary>
-        /// <returns></returns>
-        [Menu("Despesas", "Index", "Despesas", "Home")]
+        /// <returns></returns>        
+        [Menu("Despesas", "Index",  "Despesas", "Home")]
         public ActionResult Index(int? pagina)
         {
            
@@ -99,8 +108,7 @@ namespace ControleDeDespesas.Controllers
         /// <summary>
         /// Formulário de inclusão.
         /// </summary>
-        /// <returns></returns>
-        [Menu("Despesas", "FrmIncluir", "Despesas", "Home")]
+        /// <returns></returns>        
         public ActionResult FrmIncluir()
         {
             ViewBag.TiposDeDespesa = tiposDAO.Lista();
