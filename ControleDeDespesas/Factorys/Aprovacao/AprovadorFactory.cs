@@ -24,8 +24,6 @@ namespace Factorys.Aprovacao
             {
                 CC = custoDAO.GetById(aprovador.CC),
                 Id = aprovador.Id,
-                Limite = aprovador.Limite,
-                Superior = userDAO.GetById(aprovador.Superior),
                 Usuario = userDAO.GetById(aprovador.Usuario)
             };
 
@@ -51,9 +49,7 @@ namespace Factorys.Aprovacao
             AprovadorPorCCModelView model = new AprovadorPorCCModelView()
             {
                 CC = aprovador.CC.Id,
-                Id = aprovador.Id,
-                Limite = aprovador.Limite,
-                Superior = aprovador.Superior.Id,
+                Id = aprovador.Id,                
                 Usuario = aprovador.Usuario.Id
             };
 

@@ -17,6 +17,10 @@ namespace Persistencia.DAO
             this.session = sessao;
         }
 
+        /// <summary>
+        /// Lista todos os aprovadores
+        /// </summary>
+        /// <returns></returns>
         public IList<AprovadorPorCC> ListAll()
         {
             var list = session.QueryOver<AprovadorPorCC>()
@@ -25,6 +29,11 @@ namespace Persistencia.DAO
             return list;
         }
 
+        /// <summary>
+        /// Lista todos os Centro de Custos que um usuário pode aprovar
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         public IList<AprovadorPorCC> ListByUsuario(CadastroDeUsuario usuario)
         {
             var list = session.QueryOver<AprovadorPorCC>()
@@ -34,6 +43,11 @@ namespace Persistencia.DAO
             return list;
         }
 
+        /// <summary>
+        /// Lista pelo centro de custo seus aprovadores
+        /// </summary>
+        /// <param name="custo"></param>
+        /// <returns></returns>
         public IList<AprovadorPorCC> ListByCC(CentroDeCusto custo)
         {
             var list = session.QueryOver<AprovadorPorCC>()
@@ -43,6 +57,11 @@ namespace Persistencia.DAO
             return list;
         }
 
+        /// <summary>
+        /// Retorna um único registro pelo Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public AprovadorPorCC GetById(int id)
         {
             var list = session.QueryOver<AprovadorPorCC>()
@@ -53,7 +72,10 @@ namespace Persistencia.DAO
         }
 
 
-
+        /// <summary>
+        /// Faz a inclusão de um registro 
+        /// </summary>
+        /// <param name="amarracao"></param>
         public void Incluir(AprovadorPorCC amarracao)
         {
             ITransaction tran = session.BeginTransaction();
@@ -61,6 +83,10 @@ namespace Persistencia.DAO
             tran.Commit();
         }
 
+        /// <summary>
+        /// Faz a alteração de um registo
+        /// </summary>
+        /// <param name="amarracao"></param>
         public void Alterar(AprovadorPorCC amarracao)
         {
             ITransaction tran = session.BeginTransaction();
@@ -68,6 +94,10 @@ namespace Persistencia.DAO
             tran.Commit();
         }
 
+        /// <summary>
+        /// Faz a exlcusão de um registro 
+        /// </summary>
+        /// <param name="amarracao"></param>
         public void Excluir(AprovadorPorCC amarracao)
         {
             ITransaction tran = session.BeginTransaction();

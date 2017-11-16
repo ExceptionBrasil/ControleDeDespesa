@@ -142,6 +142,29 @@ namespace Persistencia.DAO
             return despesas;
         }
 
+        public IList<Despesas> GetDespesasUnApproved(IList<AprovadorPorCC> ListaCC)
+        {
+
+            IList<Despesas> despesas = new List<Despesas>();
+            IList<Despesas> subListDespesas;
+
+
+            foreach (var l in ListaCC)
+            {
+                subListDespesas = session.QueryOver<Despesas>()
+                         .Where(d => d.DataAprovacao == null)
+                         .And(d => d.CentroDeCusto==l.CC)
+                         .List();
+
+                foreach (var sub in subListDespesas)
+                {
+                    despesas.Add(sub);
+                }
+            }
+
+            return despesas;
+        }
+
         /// <summary>
         ///  Retorna todas as despesas não aprovadas do usuário atual
         ///  Em forma de paginação 

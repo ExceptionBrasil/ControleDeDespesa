@@ -37,5 +37,19 @@ namespace Modelos
         public virtual DateTime? DataAprovacao { get; set; }
 
         public virtual CentroDeCusto CentroDeCusto { get; set; }
-}
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if(obj is Despesas)
+            {
+                return true;
+            }
+            return false;
+        }
+    }    
 }

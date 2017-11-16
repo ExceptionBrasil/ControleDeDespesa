@@ -15,8 +15,6 @@ namespace Persistencia.Mappings
             Id(a => a.Id).GeneratedBy.Identity();
             References(a => a.Usuario);
             References(a => a.CC);
-            References(a => a.Superior);
-            Map(a => a.Limite);
 
         }
     }

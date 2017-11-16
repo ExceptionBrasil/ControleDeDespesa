@@ -10,13 +10,7 @@
 
             @Html.LabelFor(a => a.Usuario, "Usuario Aprovador do Centro de Custo")
             @Html.DropDownList("UsuariosLista", null, String.Empty, new { @class = "form-control", id = "Usuario" })
-
-            @Html.LabelFor(a => a.Superior, "Superior ")
-            @Html.DropDownList("SuperiorLista", null, String.Empty, new { @class = "form-control", id = "Superior" })
-            
-
-            @Html.LabelFor(a => a.Limite, "Limite de aprovação")
-            @Html.TextBoxFor(a => a.Limite, new { @class = "form-control" })
+           
 
         </div>
     </div>

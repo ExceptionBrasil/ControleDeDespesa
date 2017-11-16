@@ -30,11 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(u => u.IsAdmin, "É Admin?")
             @Html.CheckBoxFor(u => u.IsAdmin)
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(u=> u.IsAprovador, "É Aprovador?")
-            @Html.CheckBoxFor(u=>u.IsAprovador)
-        </div>
+        </div>       
         <div class="form-group">
             @Html.LabelFor(u => u.CentroDeCusto, "Centro de Custo:")            
             @Html.DropDownList("ListCentroDeCusto", null, String.Empty, new { @class = "form-control", id = "CentroDeCusto" })

@@ -99,8 +99,7 @@ namespace ControleDeDespesas.Controllers
                         Nome = usuario.Nome   ,
                         Email = usuario.Email ,
                         IsAdmin = usuario.IsAdmin,
-                        Cpf = usuario.Cpf,
-                        IsAprovador = usuario.IsAprovador,
+                        Cpf = usuario.Cpf,                     
                         CentroDeCusto_id = usuario.CentroDeCusto.Id
                     }
                                                         , false);

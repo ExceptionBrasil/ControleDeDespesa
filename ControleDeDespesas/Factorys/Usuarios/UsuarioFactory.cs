@@ -34,8 +34,7 @@ namespace Factorys
                 Cpf = model.Cpf,
                 Email = model.Email,
                 Id = model.Id,
-                IsAdmin= model.IsAdmin,
-                IsAprovador = model.IsAprovador,
+                IsAdmin= model.IsAdmin,                
                 Login = model.Login,
                 Nome = model.Nome,
                 Senha = model.Senha
@@ -72,8 +71,7 @@ namespace Factorys
                 CentroDeCusto = model.CentroDeCusto.Id,
                 Cpf = model.Cpf,
                 Email = model.Email,
-                IsAdmin = model.IsAdmin,
-                IsAprovador = model.IsAprovador,
+                IsAdmin = model.IsAdmin,                
                 Login = model.Login,
                 Nome = model.Nome,
                 Senha = model.Senha

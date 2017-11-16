@@ -22,13 +22,15 @@ namespace ControleDeDespesas.Controllers
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
         private DespesasDAO despesasDAO;
+        private AprovadorPorCCDAO aprovDAO;
         
 
-        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDao)
+        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDao, AprovadorPorCCDAO aprov)
         {
             this.usuarioDAO = userDAO;
             this.tiposDAO = tpDAO;
             this.despesasDAO = depDao;
+            this.aprovDAO = aprov;
 
             /*
              * Menus adicionais do Controller
@@ -53,6 +55,12 @@ namespace ControleDeDespesas.Controllers
             int totalDeRegistros;
 
 
+            //Tratar aqui uma mensagem bonitinha para o usuário que sua sessão expirou.
+            if (!WebSecurity.Initialized)
+            {
+                RedirectToAction("Logout", "Home");
+            }
+
             //Se a senha expirou retorno ele para home
             if(WebSecurity.CurrentUserId == null)
             {
@@ -62,7 +70,16 @@ namespace ControleDeDespesas.Controllers
             CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
             Session["Usuario"] = usuario;
             ViewBag.IsAdmin = usuario.IsAdmin;
-            ViewBag.IsAprovador = usuario.IsAprovador;
+            ViewBag.UnApprovedRDV = null;
+
+            //Verifica se o se o usuário autenticado é também um aprovador e retorna seus centros custos
+            IList<AprovadorPorCC> CCAutorizados =  aprovDAO.ListByUsuario(usuario);
+            if (CCAutorizados.Count > 0)
+            {
+                //Recupera a Lista de RDVs pendentes a aprovação 
+                ViewBag.UnApprovedRDV =  despesasDAO.GetDespesasUnApproved(CCAutorizados);
+            }
+
 
             //Retorna a quantidade de resgistros para a página atual
             var despesas = despesasDAO.GetDespesas(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);

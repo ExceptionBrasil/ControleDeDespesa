@@ -25,8 +25,6 @@ namespace Modelos
 
         public virtual bool IsAdmin { get; set; }
         
-        public virtual bool IsAprovador { get; set; }
-
 
         [Required]
         public virtual string Cpf { get; set; }
