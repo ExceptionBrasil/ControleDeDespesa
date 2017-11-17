@@ -11,12 +11,12 @@ using WebMatrix.WebData;
 using X.PagedList;
 using Factorys;
 using BuildMenu;
+using System.Net;
 
 namespace ControleDeDespesas.Controllers
 {
     
-    [AurizacaoFilter]
-    
+    [AurizacaoFilter]   
     public class DespesasController : Controller
     {
         private UsuariosDAO usuarioDAO;
@@ -38,7 +38,7 @@ namespace ControleDeDespesas.Controllers
         }
 
         /// <summary>
-        /// Menus que v~ao ser carregados desses controller 
+        /// Menus que vão ser carregados desses controller 
         /// </summary>
         private void BuildMenus()
         {
@@ -65,16 +65,12 @@ namespace ControleDeDespesas.Controllers
 
 
             //Tratar aqui uma mensagem bonitinha para o usuário que sua sessão expirou.
-            if (!WebSecurity.Initialized)
+            if (!WebSecurity.Initialized || WebSecurity.CurrentUserId == null)
             {
                 RedirectToAction("Logout", "Home");
-            }
-
-            //Se a senha expirou retorno ele para home
-            if(WebSecurity.CurrentUserId == null)
-            {
-                RedirectToAction("Logout", "Home");
-            }
+                
+                return new HttpStatusCodeResult(HttpStatusCode.RequestTimeout);
+            }            
 
             CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
             Session["Usuario"] = usuario;
