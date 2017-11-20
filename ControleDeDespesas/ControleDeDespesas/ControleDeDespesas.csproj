@@ -308,6 +308,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\CentroDeCusto\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
   <PropertyGroup>

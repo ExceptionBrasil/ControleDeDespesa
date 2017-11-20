@@ -10,3 +10,8 @@
     @Html.LabelFor(c=> c.Descricao,"Descrição")
     @Html.TextBoxFor(c=> c.Descricao, new { @class = "form-control" })
 </div>
+<div class="form-group">
+    @Html.LabelFor(c => c.Aprovador, "Aprovador")
+    @Html.DropDownList("Aprovador", null,String.Empty, new { @class = "form-control", id = "Aprovador" })
+    
+</div>

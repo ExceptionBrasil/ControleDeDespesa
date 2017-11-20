@@ -2,7 +2,10 @@
 
 
 
-@Html.Partial("/Views/Shared/SubMenus/_MenuCentroDeCusto.cshtml")
+@*@Html.Partial("/Views/Shared/SubMenus/_MenuCentroDeCusto.cshtml")*@
+
+<div id="LoadMenu"></div>
+
 <div class="container">
     <div class="row">
         <div class="col col-md-12 col-xs-12">
@@ -32,3 +35,15 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+
+        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
+    </script>
+    <script src="~/Scripts/Tools/MenuBuilder.js"></script>
+    <script src="~/Scripts/Tools/MenuBuilder_Libs.js"></script>
+    <script src="~/Scripts/Tools/MenuBuilder.Boot.js"></script>
+    <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
+
+}

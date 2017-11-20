@@ -13,8 +13,9 @@ namespace Persistencia.Mappings
      public CentroDeCustoMapping()
         {
             Id(c => c.Id).GeneratedBy.Identity();
-            Map(c => c.Codigo);
+            Map(c => c.Codigo).Unique();
             Map(c => c.Descricao);
+            References(c => c.Aprovador);
             
         }
 

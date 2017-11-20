@@ -44,7 +44,7 @@ namespace Persistencia.DAO
         }
 
         /// <summary>
-        /// Lista pelo centro de custo seus aprovadores
+        /// Lista os aprovadores do centro de custo
         /// </summary>
         /// <param name="custo"></param>
         /// <returns></returns>

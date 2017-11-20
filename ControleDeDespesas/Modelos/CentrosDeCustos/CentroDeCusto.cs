@@ -11,5 +11,6 @@ namespace Modelos
         public virtual int Id { get; set; }
         public virtual string Codigo { get; set; }
         public virtual string Descricao { get; set; }
+        public virtual CadastroDeUsuario Aprovador { get; set; }
     }
 }

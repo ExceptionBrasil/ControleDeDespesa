@@ -30,7 +30,7 @@ namespace BuildMenu
             }
                        
             
-            if( MakeMenu.Menus.Find(x=> x.Action ==Action && x.Controller == Controller) == null)
+            if( MakeMenu.Menus.Find(x=> x.Action ==Action && x.Controller == Controller && x.Location==Location) == null)
             {
                 MakeMenu.Menus.Add(new Menu()
                 {

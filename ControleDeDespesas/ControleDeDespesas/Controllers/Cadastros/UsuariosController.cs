@@ -126,8 +126,14 @@ namespace ControleDeDespesas.Controllers
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public ActionResult Excluir (int id)
-        {            
-            Membership.DeleteUser(usuarioDAO.GetById(id).Login);
+        {
+            try
+            {
+                Membership.DeleteUser(usuarioDAO.GetById(id).Login,true);
+            }catch (Exception ex)
+            {
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
+using Modelos;
 
 namespace ControleDeDespesas.Controllers
 {   
@@ -47,8 +48,15 @@ namespace ControleDeDespesas.Controllers
         {
             if (WebSecurity.Login(autenticacao.Login, autenticacao.Senha))
             {
+                
 
-                Session.Timeout = 30; // tempo em minutos                
+                //Cria a Sessão de página
+                CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.GetUserId(autenticacao.Login));
+                Session["Usuario"] = usuario;
+                Session.Timeout = 15; 
+                
+
+                //Faz o retorno para o Ajax 
                 return Json(new { success = true, responseText = "" }, JsonRequestBehavior.AllowGet);
             }
             else

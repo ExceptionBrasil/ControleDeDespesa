@@ -21,16 +21,16 @@ namespace ControleDeDespesas.Controllers
     {
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
-        private DespesasDAO despesasDAO;
-        private AprovadorPorCCDAO aprovDAO;
+        private DespesasDAO despesasDAO;        
+        private CentroDeCustoDAO ccDAO;
         
 
-        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDao, AprovadorPorCCDAO aprov)
+        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO,CentroDeCustoDAO ccDAO)
         {
             this.usuarioDAO = userDAO;
             this.tiposDAO = tpDAO;
-            this.despesasDAO = depDao;
-            this.aprovDAO = aprov;
+            this.despesasDAO = depDAO;            
+            this.ccDAO = ccDAO;
 
             //Carrega os Menus desse controller
             BuildMenus();
@@ -58,41 +58,39 @@ namespace ControleDeDespesas.Controllers
         [Menu("Despesas", "Index",  "Despesas", "Home")]
         public ActionResult Index(int? pagina)
         {
-           
+            //Tratar aqui uma mensagem bonitinha para o usuário que sua sessão expirou.
+            if (!WebSecurity.Initialized)
+            {
+                //RedirectToAction("Logout", "Home");
+                
+                return new HttpStatusCodeResult(HttpStatusCode.RequestTimeout);
+            }
+
+            //Recupera a session para o cadasrtro de usuário
+            CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
+
+
+
+            //Verifica se o se o usuário autenticado é também um aprovador e retorna as despesas para aprovar
+
+            //Retorna todos os Centros de Custos de aprovação do usuário                        
+            IList<CentroDeCusto> CCAutorizados = ccDAO.GetByAprovador(usuario);
+            
+            //Recupera a Lista das Despesas pendentes pra aprovação 
+            ViewBag.UnApprovedRDV =  despesasDAO.GetDespesasUnApproved(CCAutorizados);
+            
+            
+
             int paginaAtual = (pagina ?? 1) - 1;
             int tamanhoDaPagina = 10; //Registros por página
             int totalDeRegistros;
 
-
-            //Tratar aqui uma mensagem bonitinha para o usuário que sua sessão expirou.
-            if (!WebSecurity.Initialized || WebSecurity.CurrentUserId == null)
-            {
-                RedirectToAction("Logout", "Home");
-                
-                return new HttpStatusCodeResult(HttpStatusCode.RequestTimeout);
-            }            
-
-            CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.CurrentUserId);
-            Session["Usuario"] = usuario;
-            ViewBag.IsAdmin = usuario.IsAdmin;
-            ViewBag.UnApprovedRDV = null;
-
-            //Verifica se o se o usuário autenticado é também um aprovador e retorna seus centros custos
-            IList<AprovadorPorCC> CCAutorizados =  aprovDAO.ListByUsuario(usuario);
-            if (CCAutorizados.Count > 0)
-            {
-                //Recupera a Lista de RDVs pendentes a aprovação 
-                ViewBag.UnApprovedRDV =  despesasDAO.GetDespesasUnApproved(CCAutorizados);
-            }
-
-
-            //Retorna a quantidade de resgistros para a página atual
+            //Monta o modelo das despesas
             var despesas = despesasDAO.GetDespesas(usuario, paginaAtual, tamanhoDaPagina, out totalDeRegistros);
-                            
 
             //Monta a paginacao
             var umaPaginaDeDespesas = new StaticPagedList<Despesas>(despesas, paginaAtual + 1, tamanhoDaPagina, totalDeRegistros);
-            //var model = despesasDAO.GetDespesasUnApproved(usuario);
+            
 
             ViewBag.DespesasCount = totalDeRegistros;
             ViewBag.UmaPaginaDeDespesas = umaPaginaDeDespesas;

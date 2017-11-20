@@ -16,18 +16,32 @@ namespace Persistencia.DAO
             this.session = session;
         }
 
+        /// <summary>
+        /// Adiciona uma novo usuário
+        /// </summary>
+        /// <param name="usuario">The usuario.</param>
         public void Adiciona (CadastroDeUsuario usuario)
         {
             ITransaction transacao = session.BeginTransaction();
             session.Save(usuario);
             transacao.Commit();
         }
+
+        /// <summary>
+        /// Exclui um usuário
+        /// </summary>
+        /// <param name="usuario">The usuario.</param>
         public void Exclui(CadastroDeUsuario usuario)
         {
             ITransaction transacao = session.BeginTransaction();
             session.Delete(usuario);
             transacao.Commit();
         }
+
+        /// <summary>
+        /// Altera um usuário
+        /// </summary>
+        /// <param name="usuario">The usuario.</param>
         public void Altera(CadastroDeUsuario usuario)
         {
             ITransaction transacao = session.BeginTransaction();
@@ -35,6 +49,11 @@ namespace Persistencia.DAO
             transacao.Commit();
         }
 
+        /// <summary>
+        /// Gets the by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public CadastroDeUsuario GetById(int id)
         {
             var usuario = session.QueryOver<CadastroDeUsuario>()
@@ -43,7 +62,12 @@ namespace Persistencia.DAO
             return usuario;
         }
 
-        public  IList<CadastroDeUsuario> ListAll()
+
+        /// <summary>
+        /// Lista todos os usuários
+        /// </summary>
+        /// <returns></returns>
+        public IList<CadastroDeUsuario> ListAll()
         {
             var list = session.QueryOver<CadastroDeUsuario>()
                               .List();

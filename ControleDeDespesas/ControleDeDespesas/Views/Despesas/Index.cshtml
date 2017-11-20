@@ -1,120 +1,120 @@
 ﻿@model IList<Modelos.Despesas>
 @using X.PagedList.Mvc;
 @using X.PagedList;
- 
-    
-
-    <div id="LoadMenu"></div>
 
 
-    <div class="row">
-        <div class="container-fluid">
-            <div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12">              
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>Depesas <span class="label label-default">@ViewBag.DespesasCount</span></h5>
-                    </div>
-                    <div class="panel-body">
-                        <div class=" table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
+
+<div id="LoadMenu"></div>
+
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5>Depesas <span class="label label-default">@ViewBag.DespesasCount</span></h5>
+                </div>
+                <div class="panel-body">
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Tipo</th>
+                                    <th>Data de Inclusão</th>
+                                    <th>Centro de Custo</th>
+                                    <th>Descritivo</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th>Aprovado Em</th>
+                                    <th colspan="3" class="text-center">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var dep in Model)
+                                {
                                     <tr>
-                                        <th>Código</th>
-                                        <th>Tipo</th>
-                                        <th>Data de Inclusão</th>
-                                        <th>Centro de Custo</th>
-                                        <th>Descritivo</th>
-                                        <th>Quantidade</th>
-                                        <th>Valor</th>
-                                        <th>Aprovado Em</th>
-                                        <th colspan="3" class="text-center">Opções</th>
+                                        <td>@dep.CodigoDespesa</td>
+                                        <td>@dep.Tipo.Descricao</td>
+                                        <td>@dep.DataInclusao</td>
+                                        <td>@dep.CentroDeCusto.Descricao</td>
+                                        <td>@dep.Descritivo</td>
+                                        <td>@dep.Quantidade</td>
+                                        <td>@dep.Valor</td>
+                                        <td>@dep.DataAprovacao</td>
+                                        <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var dep in Model)
-                                    {
-                                        <tr>
-                                            <td>@dep.CodigoDespesa</td>
-                                            <td>@dep.Tipo.Descricao</td>
-                                            <td>@dep.DataInclusao</td>
-                                            <td>@dep.CentroDeCusto.Descricao</td>
-                                            <td>@dep.Descritivo</td>
-                                            <td>@dep.Quantidade</td>
-                                            <td>@dep.Valor</td>
-                                            <td>@dep.DataAprovacao</td>
-                                            <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                            <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                            <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>                                            
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                                }
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="panel-footer">
-                        @Html.PagedListPager((IPagedList)ViewBag.UmaPaginaDeDespesas, pagina => Url.Action("Index", new { pagina }))
+                </div>
+                <div class="panel-footer">
+                    @Html.PagedListPager((IPagedList)ViewBag.UmaPaginaDeDespesas, pagina => Url.Action("Index", new { pagina }))
+                </div>
+            </div>
+        </div>
+       
+            <div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12" ">
+            <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h5>Aguardando Aprovoção</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive ">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Tipo</th>
+                                    <th>Data de Inclusão</th>
+                                    <th>Centro de Custo</th>
+                                    <th>Descritivo</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th>Aprovado Em</th>
+                                    <th colspan="2" class="text-center">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>                               
+                                @foreach (var aprov in ViewBag.UnApprovedRDV)
+                                {
+                                    <tr>
+                                        <td>@aprov.CodigoDespesa</td>
+                                        <td>@aprov.Tipo.Descricao</td>
+                                        <td>@aprov.DataInclusao</td>
+                                        <td>@aprov.CentroDeCusto.Descricao</td>
+                                        <td>@aprov.Descritivo</td>
+                                        <td>@aprov.Quantidade</td>
+                                        <td>@aprov.Valor</td>
+                                        <td>@aprov.DataAprovacao</td>
+                                        <td><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-ok"></span></a></td>
+                                        <td><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-remove"></span></a></td>
+
+                                    </tr>
+                                }
+                               
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-
-            @*@if (ViewBag.UnApprovedRDV != null)
-            {*@
-                <div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12"">
-                    <div class="panel panel-primary ">
-                        <div class="panel-heading">
-                            <h5>Aguardando Aprovoção</h5>
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive ">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Tipo</th>
-                                            <th>Data de Inclusão</th>
-                                            <th>Centro de Custo</th>
-                                            <th>Descritivo</th>
-                                            <th>Quantidade</th>
-                                            <th>Valor</th>
-                                            <th>Aprovado Em</th>
-                                            <th colspan="3" class="text-center">Opções</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach (var aprov in @ViewBag.UnApprovedRDV)
-                                    {
-                                        <tr>
-                                            <td>@aprov.CodigoDespesa</td>
-                                            <td>@aprov.Tipo.Descricao</td>
-                                            <td>@aprov.DataInclusao</td>
-                                            <td>@aprov.CentroDeCusto.Descricao</td>
-                                            <td>@aprov.Descritivo</td>
-                                            <td>@aprov.Quantidade</td>
-                                            <td>@aprov.Valor</td>
-                                            <td>@aprov.DataAprovacao</td>
-                                            <td><a href=@Url.Action("Visualizar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                            <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                            <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>         
-
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @*}*@
         </div>
+        
     </div>
+</div>
 
-@section Scripts{  
-    <script>
+</br></br></br>
+        
+@section Scripts{
+    <script>        
         var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
     </script>
     <script src="~/Scripts/Tools/MenuBuilder.js"></script>
     <script src="~/Scripts/Tools/MenuBuilder_Libs.js"></script>
-    <script src="~/Scripts/Tools/MenuBuilder.Boot.js"></script>   
-    <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>   
-    
+    <script src="~/Scripts/Tools/MenuBuilder.Boot.js"></script>
+    <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
+
 }

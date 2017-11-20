@@ -142,7 +142,12 @@ namespace Persistencia.DAO
             return despesas;
         }
 
-        public IList<Despesas> GetDespesasUnApproved(IList<AprovadorPorCC> ListaCC)
+        /// <summary>
+        /// Retorna uma lista de despesas não aprovadas com base em uma lista de centro de custo 
+        /// </summary>
+        /// <param name="ListaCC">The lista cc.</param>
+        /// <returns></returns>
+        public IList<Despesas> GetDespesasUnApproved(IList<CentroDeCusto> ListaCC)
         {
 
             IList<Despesas> despesas = new List<Despesas>();
@@ -153,7 +158,7 @@ namespace Persistencia.DAO
             {
                 subListDespesas = session.QueryOver<Despesas>()
                          .Where(d => d.DataAprovacao == null)
-                         .And(d => d.CentroDeCusto==l.CC)
+                         .And(d => d.CentroDeCusto==l)
                          .List();
 
                 foreach (var sub in subListDespesas)
