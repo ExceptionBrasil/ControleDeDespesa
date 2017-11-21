@@ -162,10 +162,10 @@ namespace ControleDeDespesas.Controllers
         {
             if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
             {
-                return Json(new { success = false, error = "Erro ao aprovar a Despesa" });
+                return Json(new { success = false, error = "Erro ao aprovar a Despesa" }, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { success = true, error = "Erro ao aprovar a Despesa" });
+            return Json(new { success = true, error = "Erro ao aprovar a Despesa"},JsonRequestBehavior.AllowGet);
         }
 
     }

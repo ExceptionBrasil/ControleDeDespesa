@@ -90,9 +90,8 @@
                                         <td>@aprov.Quantidade</td>
                                         <td>@aprov.Valor</td>
                                         <td>@aprov.DataAprovacao</td>
-                                        <td><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-ok"></span></a></td>
-                                        <td><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-remove"></span></a></td>
-
+                                        <td><button id="btnAprovar" class="btn btn-default"><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-thumbs-up"></span></a></button></td>
+                                        <td><button id="btnRecusar" class="btn btn-default"><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-thumbs-down"></span></a></button></td>
                                     </tr>
                                 }
                                
@@ -112,9 +111,6 @@
     <script>        
         var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
     </script>
-    <script src="~/Scripts/Tools/MenuBuilder.js"></script>
-    <script src="~/Scripts/Tools/MenuBuilder_Libs.js"></script>
-    <script src="~/Scripts/Tools/MenuBuilder.Boot.js"></script>
     <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
 
 }

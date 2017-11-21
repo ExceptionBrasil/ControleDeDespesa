@@ -207,6 +207,7 @@
     <Content Include="Scripts\AprovadorPorCC\Validacao.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Despesas\Despesas.Aprovacao.js" />
     <Content Include="Scripts\Despesas\TiposDespesas.js" />
     <Content Include="Scripts\Despesas\DespesasValidacoes.js" />
     <Content Include="Scripts\Despesas\DespesasWriteHtml.js" />
@@ -220,10 +221,7 @@
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
-    <Content Include="Scripts\Tools\MenuBuilder.js" />
-    <Content Include="Scripts\Tools\MenuBuilder.Boot.js" />
     <Content Include="Scripts\Tools\Mensagens.js" />
-    <Content Include="Scripts\Tools\MenuBuilder_Libs.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
