@@ -13,7 +13,10 @@ $(document).ready(function () {
 })
 
 
-
+/**
+ * Pega a aprovação
+ * @param {any} event
+ */
 var GetAprovacao = function(event){
     event.preventDefault();
     event.stopPropagation();
