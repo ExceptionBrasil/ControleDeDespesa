@@ -32,9 +32,13 @@ namespace Modelos
 
         public virtual CadastroDeUsuario UsuarioInclusao { get; set; }
         public virtual CadastroDeUsuario UsuarioAprovacao { get; set; }
+        public virtual CadastroDeUsuario UsuarioReprovação { get; set; }
 
         public virtual DateTime? DataInclusao { get; set; }
         public virtual DateTime? DataAprovacao { get; set; }
+        public virtual DateTime? DataReprovacao { get; set; }
+        public virtual DateTime? DataIntegradoERP { get; set; }
+        
 
         public virtual CentroDeCusto CentroDeCusto { get; set; }
 

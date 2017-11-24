@@ -27,6 +27,7 @@
                                     <th>Quantidade</th>
                                     <th>Valor</th>
                                     <th>Aprovado Em</th>
+                                    <th>Reprovado</th>
                                     <th colspan="3" class="text-center">Opções</th>
                                 </tr>
                             </thead>
@@ -42,6 +43,7 @@
                                         <td>@dep.Quantidade</td>
                                         <td>@dep.Valor</td>
                                         <td>@dep.DataAprovacao</td>
+                                        <td>@dep.DataReprovacao</td>
                                         <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
                                         <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
                                         <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
@@ -73,8 +75,7 @@
                                     <th>Centro de Custo</th>
                                     <th>Descritivo</th>
                                     <th>Quantidade</th>
-                                    <th>Valor</th>
-                                    <th>Aprovado Em</th>
+                                    <th>Valor</th>                                    
                                     <th colspan="2" class="text-center">Opções</th>
                                 </tr>
                             </thead>
@@ -88,10 +89,9 @@
                                         <td>@aprov.CentroDeCusto.Descricao</td>
                                         <td>@aprov.Descritivo</td>
                                         <td>@aprov.Quantidade</td>
-                                        <td>@aprov.Valor</td>
-                                        <td>@aprov.DataAprovacao</td>
-                                        <td><button id="btnAprovar" class="btn btn-default"><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-thumbs-up"></span></a></button></td>
-                                        <td><button id="btnRecusar" class="btn btn-default"><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-thumbs-down"></span></a></button></td>
+                                        <td>@aprov.Valor</td>                                      
+                                        <td><a href=@Url.Action("Aprovar", "Despesas", new { id = @aprov.Id }) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
+                                        <td><a href=@Url.Action("Reprovar", "Despesas", new { id = @aprov.Id}) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-down"></span></button></a></td>
                                     </tr>
                                 }
                                
@@ -110,6 +110,7 @@
 @section Scripts{
     <script>        
         var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
+        var urlAprova = "@Url.Action("Aprovar", "Despesas")";
     </script>
     <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
 

@@ -17,16 +17,18 @@ $(document).ready(function () {
  * Pega a aprovação
  * @param {any} event
  */
-var GetAprovacao = function(event){
+var GetAprovacao = (event)=>{
     event.preventDefault();
     event.stopPropagation();
+
+    
 
 
     let promise = new Promise((resolve, reject) => {
 
         //Ajax Object 
         let ajaxObj = {
-            url: Menus.UrlDestino.get(),
+            url: urlAprova,
             data: Menus.Controller.get(),
             dataType: "json",
             method: "POST",

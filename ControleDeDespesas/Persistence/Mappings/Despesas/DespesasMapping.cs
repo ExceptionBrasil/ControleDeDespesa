@@ -20,9 +20,12 @@ namespace Persistencia.Mappings
             Map(d => d.Attachment);
             Map(d => d.DataInclusao);
             Map(d => d.DataAprovacao);
+            Map(d => d.DataReprovacao);
+            Map(d => d.DataIntegradoERP);
             References(d => d.UsuarioInclusao);
             References(d => d.UsuarioAprovacao);
             References(d => d.CentroDeCusto);
+            References(d => d.UsuarioReprovação);
 
         }
     }

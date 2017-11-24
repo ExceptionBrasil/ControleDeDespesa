@@ -158,15 +158,26 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public JsonResult Aprovar(int id)
+        public ActionResult Aprovar(int id)
         {
             if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
-            {
-                return Json(new { success = false, error = "Erro ao aprovar a Despesa" }, JsonRequestBehavior.AllowGet);
-            }
-
-            return Json(new { success = true, error = "Erro ao aprovar a Despesa"},JsonRequestBehavior.AllowGet);
+            {         
+                return RedirectToAction("Index");
+            }         
+            return RedirectToAction("Index");
         }
-
+        /// <summary>
+        /// Realiza a Reprovação de uma despesa 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Reprovar(int id)
+        {
+            if (!despesasDAO.ReprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

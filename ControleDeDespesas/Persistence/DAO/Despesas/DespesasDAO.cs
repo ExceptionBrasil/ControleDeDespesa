@@ -137,6 +137,7 @@ namespace Persistencia.DAO
         {
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d=> d.DataAprovacao==null)
+                                  .And(d => d.DataReprovacao == null)
                                   .And(d=> d.UsuarioInclusao==usuario)
                                   .List();
             return despesas;
@@ -158,6 +159,7 @@ namespace Persistencia.DAO
             {
                 subListDespesas = session.QueryOver<Despesas>()
                          .Where(d => d.DataAprovacao == null)
+                         .And(d => d.DataReprovacao == null)
                          .And(d => d.CentroDeCusto==l)
                          .List();
 
@@ -183,12 +185,14 @@ namespace Persistencia.DAO
         {
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao == null)
+                                  .And(d => d.DataReprovacao == null)
                                   .And(d => d.UsuarioInclusao == usuario)
                                   .And(d=> d.Id>(indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage)+maxElementsByPage))
                                   .List();
             
             maxElements = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao == null)
+                                  .And(d => d.DataReprovacao == null)
                                   .And(d => d.UsuarioInclusao == usuario)
                                   .RowCount();
 
@@ -204,6 +208,7 @@ namespace Persistencia.DAO
         {
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao != null)
+                                  .And(d => d.DataReprovacao == null)
                                   .And(d => d.UsuarioInclusao == usuario)
                                   .List();
             return despesas;
@@ -225,12 +230,14 @@ namespace Persistencia.DAO
         {
             var despesas = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao != null)
+                                  .And(d => d.DataReprovacao == null)
                                   .And(d => d.UsuarioInclusao == usuario)
                                   .And(d => d.Id > (indexPage * maxElementsByPage) && d.Id <= ((indexPage * maxElementsByPage) + maxElementsByPage))
                                   .List();
 
             maxElements = session.QueryOver<Despesas>()
                                   .Where(d => d.DataAprovacao != null)
+                                  .And (d=> d.DataReprovacao==null)
                                   .And(d => d.UsuarioInclusao == usuario)
                                   .RowCount();
 
@@ -306,7 +313,26 @@ namespace Persistencia.DAO
 
             return true;
         }
-        
+        /// <summary>
+        /// Realiza a Reprovação de uma despesa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public bool ReprovarDespesa(int id, CadastroDeUsuario usuario)
+        {
+            Despesas despesa = this.GetDespesaById(id);
+
+            despesa.DataReprovacao = DateTime.Now;
+            despesa.UsuarioReprovação = usuario;
+
+            ITransaction tran = session.BeginTransaction();
+            session.Merge(despesa);
+            tran.Commit();
+
+            return true;
+        }
+
 
     }
 }
