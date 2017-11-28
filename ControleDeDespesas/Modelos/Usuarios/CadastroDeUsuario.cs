@@ -32,5 +32,7 @@ namespace Modelos
         [Required]
         public virtual CentroDeCusto CentroDeCusto { get; set; }        
 
+        [Required]
+        public virtual int Role { get; set; }
     }
 }

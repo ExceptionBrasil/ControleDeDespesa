@@ -41,6 +41,18 @@
             @Html.TextBoxFor(u => u.Cpf, new { @class = "form-control" })
             @Html.ValidationMessageFor(u=> u.Cpf, null, new { @class = "text-danger" })
         </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Role,"Regra")
+            @*@Html.DropDownList("Role",null,String.Empty, new { @class = "form-control", id = "Role" })*@            
+                        
+            <input list="Roles" name="Roles" class="form-control">
+            <datalist id = "Roles">   
+                <option value="User">
+                <option value="Admin">
+                <option value="Aprovador">
+                <option value="Super Usuário">
+            </datalist>
+        </div>
         <input class="btn btn-primary" type="submit" value="Gravar" />
     </div>
     <div class="col-lg-3"></div>

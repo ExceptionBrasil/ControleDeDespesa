@@ -34,5 +34,8 @@ namespace Modelos.ViewModels
 
         [Required]
         public int CentroDeCusto { get; set; }
+
+        [Required]
+        public int Role { get; set; }
     }
 }

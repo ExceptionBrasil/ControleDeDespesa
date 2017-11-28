@@ -17,19 +17,12 @@ namespace BuildMenu
         /// <param name="Controller">The controller.</param>
         /// <param name="Action">The action.</param>
         /// <param name="Descricao">The descricao.</param>
-        public static void Add(string Controller, string Action,string Location, string Descricao =null,string Role = null)
+        public static void Add(string Controller, string Action,string Location, string Descricao =null,int Role=1)
         {
             if (Descricao == null)
             {
                 Descricao = Action;
             }
-
-            if(Role == null)
-            {
-                Role = "All";
-            }
-                       
-            
             if( MakeMenu.Menus.Find(x=> x.Action ==Action && x.Controller == Controller && x.Location==Location) == null)
             {
                 MakeMenu.Menus.Add(new Menu()
@@ -78,6 +71,18 @@ namespace BuildMenu
             List<Menu> Menus = MakeMenu.Menus.FindAll(x => x.Location == Location);
             return Menus;
         }
+
+        /// <summary>
+        /// Recupera todos os Menus de um controller
+        /// </summary>
+        /// <param name="Controller">The controller.</param>
+        /// <returns></returns>
+        public static List<Menu> RecoveryByLocation(string Location, int role)
+        {
+            List<Menu> Menus = MakeMenu.Menus.FindAll(x => x.Location == Location && x.Role == role);
+            return Menus;
+        }
+
 
         /// <summary>
         /// Retorna todos os Menus com a mesma Action 

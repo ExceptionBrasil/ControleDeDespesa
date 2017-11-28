@@ -43,11 +43,12 @@ namespace ControleDeDespesas.Controllers
         private void BuildMenus()
         {
 
-            MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa","All");
-            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários", "Admin");
-            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo", "SuperUser");
-            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas", "SuperUser");
-            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", "SuperUser");
+            MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa",Role.User);
+            MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários", Role.SuperUser);
+            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo", Role.SuperUser);
+            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas", Role.SuperUser);
+            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", Role.SuperUser);
+            
 
         }
 

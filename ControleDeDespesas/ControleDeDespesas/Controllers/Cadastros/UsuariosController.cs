@@ -11,6 +11,7 @@ using System.Web.Security;
 using WebMatrix.WebData;
 using Modelos.ViewModels;
 using Factorys;
+using BuildMenu;
 
 namespace ControleDeDespesas.Controllers
 {
@@ -52,6 +53,12 @@ namespace ControleDeDespesas.Controllers
                 "Id",
                 "Descricao"
                 );
+            ViewBag.Role = Role.All();
+            /*new SelectList(
+                Role.All(),
+                "Id",
+                "Descricao"
+            );*/
             return View();
         }
 
@@ -155,6 +162,13 @@ namespace ControleDeDespesas.Controllers
                "Id",
                "Descricao"
                );
+
+            ViewBag.Role = Role.All();
+                /*new SelectList(
+                    Role.All(),
+                    "Id",
+                    "Descricao"
+                );*/
 
             UsuarioModelView model = UsuarioFactory.GetModelView(usuarioDAO.GetById(id));
 

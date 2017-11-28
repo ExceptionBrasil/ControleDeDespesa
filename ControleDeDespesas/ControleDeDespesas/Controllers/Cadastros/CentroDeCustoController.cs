@@ -27,8 +27,8 @@ namespace ControleDeDespesas.Controllers.Cadastros
 
         private void BuildMenu()
         {
-            MakeMenu.Add("Despesas", "Index", "CentroDeCusto", "Home", "SuperUser");
-            MakeMenu.Add("CentroDeCusto", "Incluir", "CentroDeCusto", "Novo Centro de Custo", "SuperUser");
+            MakeMenu.Add("Despesas", "Index", "CentroDeCusto", "Home", Role.SuperUser);
+            MakeMenu.Add("CentroDeCusto", "Incluir", "CentroDeCusto", "Novo Centro de Custo", Role.SuperUser);
         }
 
         [Menu("CentroDeCusto","Index", "CentroDeCusto","Cadastro de Centro de Custo")]
