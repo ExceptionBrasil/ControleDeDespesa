@@ -53,12 +53,11 @@ namespace ControleDeDespesas.Controllers
                 "Id",
                 "Descricao"
                 );
-            ViewBag.Role = Role.All();
-            /*new SelectList(
-                Role.All(),
-                "Id",
-                "Descricao"
-            );*/
+            ViewBag.Role = new SelectList(
+                       new RoleDAO().ListRole,
+                       "Role",
+                       "Descricao"
+                   );
             return View();
         }
 
@@ -162,14 +161,12 @@ namespace ControleDeDespesas.Controllers
                "Id",
                "Descricao"
                );
-
-            ViewBag.Role = Role.All();
-                /*new SelectList(
-                    Role.All(),
-                    "Id",
+            ViewBag.Role = new SelectList(
+                    new RoleDAO().ListRole,
+                    "Role",
                     "Descricao"
-                );*/
-
+                );
+                
             UsuarioModelView model = UsuarioFactory.GetModelView(usuarioDAO.GetById(id));
 
             return View(model);
@@ -184,7 +181,7 @@ namespace ControleDeDespesas.Controllers
         public ActionResult Alterar(FormCollection form,UsuarioModelView modelUser)
         {
 
-            //Valida se há dados paracontinuar
+            //Valida se há dados para continuar
             if (modelUser == null)
             {
                 return new HttpStatusCodeResult(
@@ -208,6 +205,7 @@ namespace ControleDeDespesas.Controllers
             {
                 try
                 {
+                    
                     Membership.DeleteUser(usuario.Login);
                      WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
                                                                                          Nome = usuario.Nome                                                       

@@ -26,9 +26,6 @@ namespace Modelos.ViewModels
 
         public  bool IsAdmin { get; set; }
 
-        public  bool IsAprovador { get; set; }
-
-
         [Required]
         public  string Cpf { get; set; }
 

@@ -74,7 +74,8 @@ namespace Factorys
                 IsAdmin = model.IsAdmin,                
                 Login = model.Login,
                 Nome = model.Nome,
-                Senha = model.Senha
+                Senha = model.Senha,
+                Role =model.Role
             };
 
             return modelView;
