@@ -30,7 +30,7 @@ namespace Modelos.ViewModels
         public  string Cpf { get; set; }
 
         [Required]
-        public int CentroDeCusto { get; set; }
+        public string CentroDeCusto { get; set; }
 
         [Required]
         public int Role { get; set; }

@@ -23,13 +23,14 @@ namespace Persistencia.DAO
         /// </summary>
         /// <param name="codigo">The codigo.</param>
         /// <returns></returns>
-        public IList<CentroDeCusto> GetByCodigo(string codigo)
+        public CentroDeCusto GetByCodigo(string codigo)
         {
-            var list = session.QueryOver<CentroDeCusto>()
+            var cc = session.QueryOver<CentroDeCusto>()
                               .Where(c => c.Codigo == codigo)
-                              .List();
+                              .List()
+                              .SingleOrDefault();
 
-            return list;
+            return cc;
         }
 
 

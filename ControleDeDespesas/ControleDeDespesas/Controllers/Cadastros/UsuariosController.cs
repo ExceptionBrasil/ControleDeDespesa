@@ -77,16 +77,7 @@ namespace ControleDeDespesas.Controllers
                 return new HttpStatusCodeResult(
                         HttpStatusCode.BadRequest);
             }
-
-            //Valida se preeche o Centro de Custo
-            if (String.IsNullOrEmpty(form["ListCentroDeCusto"]))
-            {
-                return new HttpStatusCodeResult(
-                        HttpStatusCode.BadRequest);
-
-            }
-
-            modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
+            
             CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser);
 
             if (usuario == null)
@@ -156,9 +147,9 @@ namespace ControleDeDespesas.Controllers
                 return new HttpStatusCodeResult(
                     HttpStatusCode.BadRequest);
             }
-            ViewBag.ListCentroDeCusto = new SelectList(
+            ViewBag.CentroDeCusto = new SelectList(
                ccDAO.ListAll(),
-               "Id",
+               "Codigo",
                "Descricao"
                );
             ViewBag.Role = new SelectList(
@@ -188,34 +179,17 @@ namespace ControleDeDespesas.Controllers
                         HttpStatusCode.BadRequest);
             }
 
-            //Valida se preeche o Centro de Custo
-            if (String.IsNullOrEmpty(form["ListCentroDeCusto"]))
-            {
-                return new HttpStatusCodeResult(
-                        HttpStatusCode.BadRequest);
-
-            }
-
-
-            modelUser.CentroDeCusto = Convert.ToInt32(form["ListCentroDeCusto"]);
             CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser);
 
+            
             MembershipUser user = Membership.GetUser(usuario.Login);
             if (ModelState.IsValid)
             {
                 try
-                {
+                {                   
+                    usuarioDAO.Altera(usuario);
+                    user.ChangePassword(usuarioDAO.GetById(usuario.Id).Senha, usuario.Senha);
                     
-                    Membership.DeleteUser(usuario.Login);
-                     WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new {                                                         
-                                                                                         Nome = usuario.Nome                                                       
-                                                                                        ,Email= usuario.Email
-                                                                                        ,IsAdmin = usuario.IsAdmin
-                                                                                        ,Cpf = usuario.Cpf
-                                                                                        ,CentroDeCusto = usuario.CentroDeCusto
-                                                                                        }
-                                                        , false);
- 
                 }
                 catch(Exception ex)
                 {

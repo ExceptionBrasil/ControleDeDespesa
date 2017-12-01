@@ -30,14 +30,15 @@ namespace Factorys
         {
            
             CadastroDeUsuario usuario = new CadastroDeUsuario() {
-                CentroDeCusto = ccDAO.GetById(model.CentroDeCusto),
+                CentroDeCusto = ccDAO.GetByCodigo(model.CentroDeCusto),
                 Cpf = model.Cpf,
                 Email = model.Email,
                 Id = model.Id,
                 IsAdmin= model.IsAdmin,                
                 Login = model.Login,
                 Nome = model.Nome,
-                Senha = model.Senha
+                Senha = model.Senha,
+                Role = model.Role
             };
 
             return usuario;
@@ -68,7 +69,7 @@ namespace Factorys
             UsuarioModelView modelView = new UsuarioModelView()
             {
                 Id = model.Id,
-                CentroDeCusto = model.CentroDeCusto.Id,
+                CentroDeCusto = model.CentroDeCusto.Codigo,
                 Cpf = model.Cpf,
                 Email = model.Email,
                 IsAdmin = model.IsAdmin,                

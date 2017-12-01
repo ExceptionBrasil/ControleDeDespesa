@@ -33,7 +33,7 @@
         </div>       
         <div class="form-group">
             @Html.LabelFor(u => u.CentroDeCusto, "Centro de Custo:")            
-            @Html.DropDownList("ListCentroDeCusto", null, String.Empty, new { @class = "form-control", id = "CentroDeCusto" })
+            @Html.DropDownList("CentroDeCusto", null, String.Empty, new { @class = "form-control", id = "CentroDeCusto" })
             @Html.ValidationMessageFor(u=>u.CentroDeCusto, null, new { @class = "text-danger" })
         </div>
         <div class="form-group">
@@ -44,6 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(u => u.Role,"Regra de Menus")
             @Html.DropDownList("Role",null,String.Empty, new { @class = "form-control", id = "Role" })
+            @Html.ValidationMessageFor(u => u.Role, null, new { @class = "text-danger" })
         </div>
         <input class="btn btn-primary" type="submit" value="Gravar" />
     </div>
