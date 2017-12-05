@@ -125,7 +125,7 @@ var WriteHtml = function (menu) {
 
 
 	for (var i = 0; i < menu.length; i++) {
-		htmlScript += ' <li><a href="' + menu[i].Controller + '/' + menu[i].Action + '">' + menu[i].Descricao + '</a></li>';
+		htmlScript += ' <li><a href="'+'/' + menu[i].Controller + '/' + menu[i].Action + '">' + menu[i].Descricao + '</a></li>';
 	}
 
 	htmlScript += '                    </ul>';

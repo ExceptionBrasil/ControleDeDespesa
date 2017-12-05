@@ -10,7 +10,7 @@ using BuildMenu;
 
 namespace ControleDeDespesas.Controllers.Cadastros
 {
-    [AurizacaoFilter]
+    //[AurizacaoFilter]
     public class CentroDeCustoController : Controller
     {
         private CentroDeCustoDAO ccDAO;

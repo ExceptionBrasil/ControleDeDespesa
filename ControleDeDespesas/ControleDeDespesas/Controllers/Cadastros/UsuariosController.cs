@@ -15,7 +15,7 @@ using BuildMenu;
 
 namespace ControleDeDespesas.Controllers
 {
-    [AurizacaoFilter]
+    //[AurizacaoFilter]
     public class UsuariosController : Controller
     {
         private UsuariosDAO usuarioDAO;

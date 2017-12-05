@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using Modelos;
+using System.Reflection;
+using NHibernate.Cfg;
+using Factorys.Helpers;
 
 namespace ControleDeDespesas.Controllers
 {   
@@ -20,8 +23,10 @@ namespace ControleDeDespesas.Controllers
             this.usuarioDAO = userDao;
 
             if (!WebSecurity.Initialized)
-            {
-                WebSecurity.InitializeDatabaseConnection("local", "CadastroDeUsuario", "Id", "Login", true);
+            {  
+                
+                WebSecurity.InitializeDatabaseConnection(ConfigureHelper.Key("connection.connection_string_name")
+                                                        , "CadastroDeUsuario", "Id", "Login", true);
             }
         }
 

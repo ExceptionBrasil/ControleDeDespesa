@@ -21,6 +21,7 @@ namespace Factorys.Helpers
 
             
             return Fluently.Configure(cfg)
+                //Carrega os mapeamentos do Modelo Persistencias
               .Mappings(x =>              
                      x.FluentMappings.AddFromAssembly(
                   Assembly.Load("Persistencia")//LoadWithPartialName("Persistencia")//GetExecutingAssembly()                

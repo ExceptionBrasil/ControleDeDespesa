@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Aprovacao\AprovadorFactory.cs" />
     <Compile Include="Despesas\DespesasJsonToDespesas.cs" />
+    <Compile Include="Helpers\ConfigureHelper.cs" />
     <Compile Include="Helpers\NhibernateHelper.cs" />
     <Compile Include="Ninject\Injections.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
