@@ -15,6 +15,7 @@
                         <th>Id</th>
                         <th>Centro De Custo</th>
                         <th>Descrição</th>
+                        <th>Aprovador</th>
                         <th colspan="2">Opções</th>
                     </tr>                    
                 </thead>
@@ -25,6 +26,15 @@
                             <td>@c.Id</td>
                             <td>@c.Codigo</td>
                             <td>@c.Descricao</td>                            
+                            @if (c.Aprovador != null)
+                            {
+                                <td>@c.Aprovador.Nome</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
                             <td><a href="@Url.Action("Alterar","CentroDeCusto",new {id=c.Id })" ><span class="glyphicon glyphicon-edit"></span></a></td>
                             <td><a href="@Url.Action("Excluir","CentroDeCusto",new {id=c.Id })"  ><span class="glyphicon glyphicon-erase"></span></a></td>
                         </tr>
