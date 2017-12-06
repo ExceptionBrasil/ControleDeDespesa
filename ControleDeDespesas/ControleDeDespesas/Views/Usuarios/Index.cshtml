@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-
-@Html.Partial("/Views/Shared/SubMenus/_MenuUsuarios.cshtml")
+<div id="LoadMenu"></div>
+@*@Html.Partial("/Views/Shared/SubMenus/_MenuUsuarios.cshtml")*@
 
 <div class="container container-fluid">
     <div class="row">
@@ -52,4 +52,10 @@
 
 
 @section Scripts
-{  }
+{ <script>
+        //Para utilizar o MenuBuilder deve ser declarado a variável abaixo,
+        //Indicando o serviço que responde pelo menu
+        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";     
+</script>
+    <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
+    }

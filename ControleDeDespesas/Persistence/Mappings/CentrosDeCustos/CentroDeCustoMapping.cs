@@ -15,7 +15,9 @@ namespace Persistencia.Mappings
             Id(c => c.Id).GeneratedBy.Identity();
             Map(c => c.Codigo).Unique();
             Map(c => c.Descricao);
+            Map(c => c.DescricaoExtendida);
             References(c => c.Aprovador);
+            
             
         }
 

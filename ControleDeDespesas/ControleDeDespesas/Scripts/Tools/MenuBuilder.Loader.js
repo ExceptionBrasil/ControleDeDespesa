@@ -121,13 +121,9 @@ var WriteHtml = function (menu) {
 	htmlScript += '                        Opções<span class="caret"></span>';
 	htmlScript += '                     </a>';
 	htmlScript += '    <ul class="dropdown-menu">';
-
-
-
 	for (var i = 0; i < menu.length; i++) {
 		htmlScript += ' <li><a href="'+'/' + menu[i].Controller + '/' + menu[i].Action + '">' + menu[i].Descricao + '</a></li>';
 	}
-
 	htmlScript += '                    </ul>';
 	htmlScript += '            </li>';
 	htmlScript += '        </ul>';

@@ -30,6 +30,17 @@ namespace ControleDeDespesas.Controllers
             {
                 WebSecurity.InitializeDatabaseConnection("local", "CadastroDeUsuario", "Id", "Login", true);
             }
+
+            BuildMenus();
+        }
+
+        /// <summary>
+        /// Construção dos Menus
+        /// </summary>
+        private void BuildMenus()
+        {
+            MakeMenu.Add("Usuarios", "Adicionar", "Usuarios", "Novo Cadastro", Role.User);
+            MakeMenu.Add("Despesas", "Index", "Usuarios", "Home", Role.User);
         }
 
 
@@ -48,11 +59,11 @@ namespace ControleDeDespesas.Controllers
         /// <returns></returns>
         public ActionResult Adicionar()
         {
-            ViewBag.ListCentroDeCusto = new SelectList(
-                ccDAO.ListAll(),
-                "Id",
-                "Descricao"
-                );
+            ViewBag.CentroDeCusto = new SelectList(
+              ccDAO.ListAll(),
+              "Codigo",
+              "DescricaoExtendida"
+              );
             ViewBag.Role = new SelectList(
                        new RoleDAO().ListRole,
                        "Role",

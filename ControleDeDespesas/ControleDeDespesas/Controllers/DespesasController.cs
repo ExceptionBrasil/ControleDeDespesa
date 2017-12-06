@@ -16,7 +16,7 @@ using System.Net;
 namespace ControleDeDespesas.Controllers
 {
     
-    [AurizacaoFilter]   
+   // [AurizacaoFilter]   
     public class DespesasController : Controller
     {
         private UsuariosDAO usuarioDAO;

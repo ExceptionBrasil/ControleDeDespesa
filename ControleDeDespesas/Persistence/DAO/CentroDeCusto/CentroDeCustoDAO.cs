@@ -55,6 +55,7 @@ namespace Persistencia.DAO
         public IList<CentroDeCusto> ListAll()
         {
             var list = session.QueryOver<CentroDeCusto>()                              
+                              .OrderBy(c=> c.Codigo).Asc
                               .List();
 
             return list;
