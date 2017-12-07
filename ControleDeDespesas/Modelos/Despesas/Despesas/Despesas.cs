@@ -27,7 +27,7 @@ namespace Modelos
         public virtual double Valor { get; set; }
 
         public virtual string Descritivo { get; set; }
-        public virtual string Attachment { get; set; }
+        public virtual UploadedFile Attachment { get; set; }
 
 
         public virtual CadastroDeUsuario UsuarioInclusao { get; set; }
@@ -40,7 +40,8 @@ namespace Modelos
         public virtual DateTime? DataIntegradoERP { get; set; }
         
 
-        public virtual CentroDeCusto CentroDeCusto { get; set; }
+        public virtual CentroDeCusto CentroDeCusto { get; set; }        
+
 
         public override bool Equals(object obj)
         {

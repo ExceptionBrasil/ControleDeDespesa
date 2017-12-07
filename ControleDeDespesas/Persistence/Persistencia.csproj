@@ -77,9 +77,11 @@
     <Compile Include="DAO\CentroDeCusto\CentroDeCustoDAO.cs" />
     <Compile Include="DAO\Despesas\DespesasDAO.cs" />
     <Compile Include="DAO\Despesas\TiposDeDespesasDAO.cs" />
+    <Compile Include="DAO\Upload\UploadDAO.cs" />
     <Compile Include="DAO\Usuarios\UsuariosDAO.cs" />
     <Compile Include="Mappings\Aprovacao\AprovadorPorCCMapping.cs" />
     <Compile Include="Mappings\CentrosDeCustos\CentroDeCustoMapping.cs" />
+    <Compile Include="Mappings\Upload\UploadFileMapping.cs" />
     <Compile Include="Mappings\Usuarios\CadastroDeUsuarioMapping.cs" />
     <Compile Include="Mappings\Despesas\DespesasMapping.cs" />
     <Compile Include="Mappings\Despesas\TiposDeDespesasMapping.cs" />

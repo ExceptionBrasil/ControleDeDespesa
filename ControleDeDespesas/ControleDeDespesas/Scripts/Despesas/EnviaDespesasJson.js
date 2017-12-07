@@ -14,6 +14,24 @@ var EnviaDados = function () {
         return
     }
 
+    //var Attachment = document.querySelector("#Attachment").files;
+    
+    //var formData = new FormData();
+
+
+    //// Loop through each of the selected files.
+    //for (var i = 0; i < files.length; i++) {
+    //    var file = files[i];
+
+    //    // Check the file type.
+    //    if (!file.type.match('image.*')) {
+    //        continue;
+    //    }
+
+    //    // Add the file to the request.
+    //    formData.append('photos[]', file, file.name);
+    //}
+    //http://blog.teamtreehouse.com/uploading-files-ajax
 
     $.ajax({
         url: urlDespesasIncluir,

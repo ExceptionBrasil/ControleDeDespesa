@@ -17,7 +17,7 @@ namespace Persistencia.Mappings
             Map(d => d.Valor);
             Map(d => d.Quantidade);
             Map(d => d.Descritivo);
-            Map(d => d.Attachment);
+            References(d => d.Attachment);
             Map(d => d.DataInclusao);
             Map(d => d.DataAprovacao);
             Map(d => d.DataReprovacao);
@@ -25,7 +25,7 @@ namespace Persistencia.Mappings
             References(d => d.UsuarioInclusao);
             References(d => d.UsuarioAprovacao);
             References(d => d.CentroDeCusto);
-            References(d => d.UsuarioReprovação);
+            References(d => d.UsuarioReprovação);            
 
         }
     }

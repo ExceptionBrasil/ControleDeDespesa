@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 
 
-/**
+/*
  * Adiciona Itens na Tabela
  * @param {any} event
  */

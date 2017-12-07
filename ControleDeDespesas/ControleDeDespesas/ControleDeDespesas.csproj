@@ -235,6 +235,7 @@
     <Compile Include="Controllers\Cadastros\TiposDespesasController.cs" />
     <Compile Include="Controllers\Cadastros\UsuariosController.cs" />
     <Compile Include="Controllers\Menu\MenuController.cs" />
+    <Compile Include="Controllers\UploadedFiles\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,6 +281,8 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Scripts\Tools\MenuBuilder.Loader.js" />
+    <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\Upload\Upload.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -306,6 +309,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\HotUploadedFiles\" />
+    <Folder Include="Content\WeekUploadedFiles\" />
     <Folder Include="Scripts\CentroDeCusto\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
