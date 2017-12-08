@@ -33,17 +33,15 @@ var AdicionarItem = function(event) {
 
     //Valida se há conteúdo mínimo na tela antes de seguir
     let retorno = ValidaNumeros(quantidade);
-
-
     if (!retorno.result) {
         EscreveAvisoDeErro("Quantidade");
-
+        return false;
     }
 
     retorno = ValidaNumeros(valor);
     if (!retorno.result) {
         EscreveAvisoDeErro("Valor");
-
+        return false;
     }
 
 

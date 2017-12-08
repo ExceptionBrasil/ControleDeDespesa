@@ -14,6 +14,7 @@ namespace Persistence.Mappings
         {
             Id(x => x.Id);
             Map(x => x.FileName);
+            Map(x => x.RandomName);
             Map(x => x.Path);
             Map(x => x.Size);
             Map(x => x.Tipo);

@@ -14,24 +14,49 @@ var EnviaDados = function () {
         return
     }
 
-    //var Attachment = document.querySelector("#Attachment").files;
-    
-    //var formData = new FormData();
+
+    //Lista os arquivos
+    var Attachment = document.querySelector("#Attachment").files;    
+
+    //Cria um novo formData
+    var formData = new FormData();
 
 
-    //// Loop through each of the selected files.
-    //for (var i = 0; i < files.length; i++) {
-    //    var file = files[i];
+    // Adiciona os arquivos no FormData
+    for (var i = 0; i < Attachment.length; i++) {
+        var file = Attachment[i];
 
-    //    // Check the file type.
-    //    if (!file.type.match('image.*')) {
-    //        continue;
-    //    }
 
-    //    // Add the file to the request.
-    //    formData.append('photos[]', file, file.name);
-    //}
+        //Apenas imagens 
+        if (!file.type.match('image.*')) {
+            continue;
+        }
+
+        // Add the file to the request.
+        formData.append('imagens[]', file, file.name);
+    }
     //http://blog.teamtreehouse.com/uploading-files-ajax
+
+    //faz o envio do dados do formulário para o servidor 
+    //Adcionar uma lista de arquivos? Ou dos nomes? 
+    //E se eu tiver arquivos com mesmo nome? Nome original, nome randomico....
+
+    // Set up the request.
+    var xhr = new XMLHttpRequest();
+
+    // Open the connection.
+    xhr.open('POST', '/Upload/Upload', true);
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // File(s) uploaded.
+            uploadButton.innerHTML = 'Upload';
+        } else {
+            alert('An error occurred!');
+        }
+    };
+
+    xhr.send(formData);
 
     $.ajax({
         url: urlDespesasIncluir,
