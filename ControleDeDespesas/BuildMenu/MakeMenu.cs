@@ -62,7 +62,7 @@ namespace BuildMenu
         }
 
         /// <summary>
-        /// Recupera todos os Menus de um controller
+        /// Recupera todos os Menus de uma Localização
         /// </summary>
         /// <param name="Controller">The controller.</param>
         /// <returns></returns>
@@ -73,13 +73,13 @@ namespace BuildMenu
         }
 
         /// <summary>
-        /// Recupera todos os Menus de um controller
+        /// Recupera todos os Menus de um controller pela localização e Regra
         /// </summary>
         /// <param name="Controller">The controller.</param>
         /// <returns></returns>
         public static List<Menu> RecoveryByLocation(string Location, int role)
         {
-            List<Menu> Menus = MakeMenu.Menus.FindAll(x => x.Location == Location && x.Role == role);
+            List<Menu> Menus = MakeMenu.Menus.FindAll(x => x.Location == Location && x.Role >= role);
             return Menus;
         }
 

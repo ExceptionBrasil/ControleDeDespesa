@@ -12,7 +12,7 @@ namespace Persistence.Mappings
     {
         public UploadFileMapping()
         {
-            Id(x => x.Id);
+            Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.FileName);
             Map(x => x.RandomName);
             Map(x => x.Path);

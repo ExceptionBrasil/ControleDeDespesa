@@ -17,7 +17,7 @@ namespace Persistencia.Mappings
             Map(d => d.Valor);
             Map(d => d.Quantidade);
             Map(d => d.Descritivo);
-            References(d => d.Attachment);
+            Map(d => d.Attachment);
             Map(d => d.DataInclusao);
             Map(d => d.DataAprovacao);
             Map(d => d.DataReprovacao);

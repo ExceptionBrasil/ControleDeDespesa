@@ -7,17 +7,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Interfaces;
+using BuildMenu;
 
 namespace ControleDeDespesas.Controllers
 {
     [AurizacaoFilter]
-    public class TiposDespesasController : Controller
+    public class TiposDespesasController : Controller, ISetMenu
     {
         private TiposDeDespesasDAO tiposDAO;
 
         public TiposDespesasController(TiposDeDespesasDAO tipo)
         {
             this.tiposDAO = tipo;
+            BuildMenu();
         }
 
         // GET: TiposDespesas
@@ -33,6 +36,13 @@ namespace ControleDeDespesas.Controllers
         }
 
         
+        public void BuildMenu()
+        {
+            MakeMenu.Add("Despesas", "Index", "Despesas", "Home", Role.SuperUser);
+            MakeMenu.Add("TiposDespesas", "Incluir", "TiposDespesas", "Novo Registro", Role.SuperUser);
+            
+        }
+
 
         /// <summary>
         /// Iclusão de Tipos de Despesas

@@ -31,13 +31,17 @@
                         <th colspan="2">Opções</th>
                     </tr>
                 </thead>
-                <tbody id="itensDespesas">                 
-                </tbody>
+                <tbody id="itensDespesas"></tbody>
             </table>
             <hr />
             <div id="tbTotal" class="text-right">
                 <h4>Total: </h4>
             </div>
+            <div class="form-group">
+                @Html.LabelFor(d => d.Attachment, "Anexo")
+                @Html.TextBoxFor(d => d.Attachment, new { @class = "btn btn-default", type = "file", @multiple = "multiple" })
+            </div>
+
             <button class="btn btn-success" id="enviaDespesas">Enviar</button>
             <div id="erroDeEnvio"></div>
         </div>

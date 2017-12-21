@@ -55,7 +55,7 @@ var EnviaDados = function () {
             alert('An error occurred!');
         }
     };
-
+    //Faz o envio das imagens para o server
     xhr.send(formData);
 
     $.ajax({

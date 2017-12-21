@@ -1,4 +1,5 @@
-﻿using Modelos;
+﻿using Interfaces;
+using Modelos;
 using NHibernate;
 using NHibernate.Criterion;
 using System;
@@ -11,7 +12,7 @@ namespace Persistencia.DAO
     /// <summary>
     /// Classe responsável pelo DAO das despesas
     /// </summary>
-    public class DespesasDAO
+    public class DespesasDAO: ICodificavel
     {
        
         ISession session;
@@ -30,7 +31,7 @@ namespace Persistencia.DAO
         /// <param name="despesa">The despesa.</param>
         public void Inclui (IList<Despesas> despesa)
         {
-            int ProximoCodigo = NextCod(); 
+            int ProximoCodigo = NextCode(); 
 
             ITransaction tran = session.BeginTransaction();
 
@@ -284,9 +285,9 @@ namespace Persistencia.DAO
         /// <example>
         /// var Codigo = NextCod();                
         /// </example>
-        private int NextCod()
+        public int NextCode()
         {
-            var nextCod = session.QueryOver<Despesas>()
+            int nextCod = session.QueryOver<Despesas>()
                                  .Select(Projections.Max<Despesas>(x => x.CodigoDespesa))
                                  .SingleOrDefault<int>();
                            
@@ -333,6 +334,6 @@ namespace Persistencia.DAO
             return true;
         }
 
-
+        
     }
 }

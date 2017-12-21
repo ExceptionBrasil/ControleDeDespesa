@@ -88,6 +88,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{08504da5-aaa5-474f-8a10-af20953f0f84}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modelos\Modelos.csproj">
       <Project>{47f4b3a4-8882-4c22-bb6a-b5cd36dbc5f4}</Project>
       <Name>Modelos</Name>

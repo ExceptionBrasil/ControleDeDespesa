@@ -12,12 +12,13 @@ using X.PagedList;
 using Factorys;
 using BuildMenu;
 using System.Net;
+using Interfaces;
 
 namespace ControleDeDespesas.Controllers
 {
     
     [AurizacaoFilter]   
-    public class DespesasController : Controller
+    public class DespesasController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
@@ -33,14 +34,14 @@ namespace ControleDeDespesas.Controllers
             this.ccDAO = ccDAO;
 
             //Carrega os Menus desse controller
-            BuildMenus();
+            BuildMenu();
 
         }
 
         /// <summary>
         /// Menus que vão ser carregados desses controller 
         /// </summary>
-        private void BuildMenus()
+        public void BuildMenu()
         {
 
             MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa",Role.User);
