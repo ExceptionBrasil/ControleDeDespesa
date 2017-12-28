@@ -1,19 +1,14 @@
 ﻿using Persistencia.DAO;
 using Modelos.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using Modelos;
-using System.Reflection;
-using NHibernate.Cfg;
 using Factorys.Helpers;
+using Factorys.Tools;
 
 namespace ControleDeDespesas.Controllers
-{   
-   
+{
+
     public class HomeController : Controller
     {
         private UsuariosDAO usuarioDAO; 
@@ -38,6 +33,13 @@ namespace ControleDeDespesas.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            var usuario = (CadastroDeUsuario)Session["Usuario"];
+            
+            if( usuario!= null)
+            {
+                return RedirectToAction("Index", "Despesas");
+            }
+
             return View();
         }
 
@@ -58,8 +60,11 @@ namespace ControleDeDespesas.Controllers
                 //Cria a Sessão de página
                 CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.GetUserId(autenticacao.Login));
                 Session["Usuario"] = usuario;
-                Session.Timeout = 15; 
-                
+                Session.Timeout = 15;
+
+                //no primeiro acesso cria o diretorio de imagens do usuário
+                DiretorioFactory.Cria(usuario.Id,Server.MapPath("~/Content/Images/Users/"));
+
 
                 //Faz o retorno para o Ajax 
                 return Json(new { success = true, responseText = "" }, JsonRequestBehavior.AllowGet);
@@ -70,10 +75,11 @@ namespace ControleDeDespesas.Controllers
             }
             
         }
-
+        [HttpGet]
         public ActionResult Logout()
         {
             Session["Usuario"] = null;
+            Session.RemoveAll();            
             WebSecurity.Logout();
             return RedirectToAction("Index","Home");
         }

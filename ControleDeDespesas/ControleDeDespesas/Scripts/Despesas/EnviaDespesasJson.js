@@ -5,7 +5,13 @@ $(document).ready(function () {
 });
 
 
+///
+/// sumary
+/// Faz o envio dos dados ao servidor 
+///
 var EnviaDados = function () {
+
+    //Prepara o Json para envido no servidor 
     var Dados = { "despesasJson": PrepareEnv() }
 
 
@@ -14,50 +20,7 @@ var EnviaDados = function () {
         return
     }
 
-
-    //Lista os arquivos
-    var Attachment = document.querySelector("#Attachment").files;    
-
-    //Cria um novo formData
-    var formData = new FormData();
-
-
-    // Adiciona os arquivos no FormData
-    for (var i = 0; i < Attachment.length; i++) {
-        var file = Attachment[i];
-
-
-        //Apenas imagens 
-        if (!file.type.match('image.*')) {
-            continue;
-        }
-
-        // Add the file to the request.
-        formData.append('imagens[]', file, file.name);
-    }
-    //http://blog.teamtreehouse.com/uploading-files-ajax
-
-    //faz o envio do dados do formulário para o servidor 
-    //Adcionar uma lista de arquivos? Ou dos nomes? 
-    //E se eu tiver arquivos com mesmo nome? Nome original, nome randomico....
-
-    // Set up the request.
-    var xhr = new XMLHttpRequest();
-
-    // Open the connection.
-    xhr.open('POST', '/Upload/Upload', true);
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // File(s) uploaded.
-            uploadButton.innerHTML = 'Upload';
-        } else {
-            alert('An error occurred!');
-        }
-    };
-    //Faz o envio das imagens para o server
-    xhr.send(formData);
-
+      
     $.ajax({
         url: urlDespesasIncluir,
         data:Dados,
@@ -75,6 +38,10 @@ var EnviaDados = function () {
             
         }
     });
+
+
+
+
 }
 
 

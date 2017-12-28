@@ -38,5 +38,16 @@ namespace Factorys
             }
             return despesas;
         }
+        public static List<Despesas> GeraLista(IList<DespesasJson> lista,CadastroDeUsuario usuario,DateTime dataInclusao)
+        {
+            List<Despesas> despesas = new List<Despesas>();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                despesas.Add(Gera(lista[i]));
+                despesas[despesas.Count].UsuarioInclusao = usuario;
+                despesas[despesas.Count].DataInclusao = dataInclusao;
+            }
+            return despesas;
+        }
     }
 }

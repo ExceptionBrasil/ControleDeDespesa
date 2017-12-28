@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{08504da5-aaa5-474f-8a10-af20953f0f84}</Project>
+      <Project>{1d303b97-7229-442b-ae4a-e3643bb24bbb}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modelos\Modelos.csproj">

@@ -131,20 +131,32 @@ namespace ControleDeDespesas.Controllers
                 return Json(new { success = false,menssage = "Objeto Json vazio" });
 
             }
-           
 
-            List<Despesas> despesas =  DespesasJsonToDespesas.GeraLista(despesasJson);
+
+
+            DateTime dataEstatica = DateTime.Now;
+            Session["dataEstatica"] = dataEstatica;
+
+            List<Despesas> despesas =  DespesasJsonToDespesas.GeraLista(despesasJson, (CadastroDeUsuario)Session["Usuario"], dataEstatica);
 
             
             //Completa algumas informações antes de gravar
-            foreach (var it in despesas)
-            {
-                it.UsuarioInclusao = (CadastroDeUsuario) Session["Usuario"];  
-                it.CentroDeCusto = it.UsuarioInclusao.CentroDeCusto;
-            }
+            //foreach (var it in despesas)
+            //{
+            //    it.UsuarioInclusao = (CadastroDeUsuario) Session["Usuario"];  
+            //    it.CentroDeCusto = it.UsuarioInclusao.CentroDeCusto;
+            //    it.DataInclusao = dataEstatica;
 
+
+            //}
+            
+            
+            //Faz a inclusão da Despesa
             despesasDAO.Inclui(despesas);
 
+
+
+            //Retorna sucesso após inclusão
             return Json(new { success = true });
         }
 
