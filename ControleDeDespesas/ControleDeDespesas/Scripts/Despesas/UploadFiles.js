@@ -9,10 +9,9 @@
 /// sumary
 /// Obtem todo os arquivos anexados 
 ///
-var GetFiles = function () {
-
+var GetFiles = function (id) {
     //Lista os arquivos
-    var Attachment = document.querySelector("#Attachment").files;
+    return (document.querySelector("#"+id).files);
 }
 
 ///
@@ -34,7 +33,7 @@ var GetSize = function (Attachment) {
 /// sumary
 /// Retorna o FormData para envio ao servidor
 ///
-var PrepareFormData = function () {
+var PrepareFormData = function (Attachment) {
     //Cria um novo formData
     let formData = new FormData();
 
@@ -64,22 +63,28 @@ var PrepareFormData = function () {
 ///
 
 var SendAttchment = function (formData) {
-    // Set up the request.
-    let xhr = new XMLHttpRequest();
 
-    // Open the connection.
-    xhr.open('POST', '/Upload/Upload', true);
+    return new Promise((resolve, reject) => {
+        // Set up the request.
+        let xhr = new XMLHttpRequest();
 
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // File(s) uploaded.
-            uploadButton.innerHTML = 'Upload';
-        } else {
-            alert('An error occurred!');
-        }
-    };
+        // Open the connection.
+        xhr.open('POST', urlUploadFiles, true);
 
-    //Faz o envio das imagens para o server
-    xhr.send(formData);
+        xhr.onload = function () {
 
+            if (xhr.status === 200) {
+                // File(s) uploaded.
+                Attachment.outerHTML = "";
+                resolve(xhr.response);
+            } else {
+                console.log("Erro ao enviar os arquivos par o servidor | UploadFiles.js");
+                resolve(xhr.response);
+            }
+        };
+
+        //Faz o envio das imagens para o server
+        xhr.send(formData);    
+    });    
+    
 }

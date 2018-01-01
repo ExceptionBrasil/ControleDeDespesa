@@ -11,34 +11,57 @@ $(document).ready(function () {
 ///
 var EnviaDados = function () {
 
-    //Prepara o Json para envido no servidor 
-    var Dados = { "despesasJson": PrepareEnv() }
+
+    //Faz o envio dos arquivos e caso de tudo certinho
+    //envia a despesa    
+    var Attachment = GetFiles("Attachment");
 
 
-    if (Dados.despesasJson.length <= 0) {
-        erroDeEnvio("Não Há Dados para Enviar");
-        return
+    //Valida o tamanho do Arquivo
+    //Não envia arquivos maiores que 4mb
+    if (GetSize(Attachment) > 4) {        
+        return false;
     }
 
-      
-    $.ajax({
-        url: urlDespesasIncluir,
-        data:Dados,
-        dataType: "json",
-        method: "POST",
-        error: function (response) {
-            console.log(response);
-        },
-        success: function (response) {
-            if (response.success) {
-                window.location.replace("/Despesas");
-            } else {
-                erroDeEnvio(response.menssage);
-            }
-            
-        }
-    });
+    //Cria o FormData
+    let formData = PrepareFormData(Attachment);
 
+    //Faz o envio do FormData e retorna o status HTTP
+    SendAttchment(formData).then((retorno)=> {
+
+
+        //Faz o envio da Despesa
+        //Prepara o Json para envido no servidor 
+        var Dados = { "despesasJson": PrepareEnv() }
+
+
+        if (Dados.despesasJson.length <= 0) {
+            erroDeEnvio("Não Há Dados para Enviar");
+            return
+        }
+
+        $.ajax({
+            url: urlDespesasIncluir,
+            data: Dados,
+            dataType: "json",
+            method: "POST",
+            error: function (response) {
+                console.log(response);
+            },
+            success: function (response) {
+                if (response.success) {
+                    window.location.replace("/Despesas");
+                } else {
+                    erroDeEnvio(response.menssage);
+                }
+
+            }
+        });
+    }
+    ).catch((data) => console.log(data));
+
+        
+    
 
 
 
@@ -57,12 +80,12 @@ function PrepareEnv() {
     for (var item = 0; item < Trs.length; item++) {
         var Json = new Object();
 
-        Json.IdDespesa          = parseInt(Trs[item].cells[0].innerHTML);
-        Json.DespesaDescricao   = Trs[item].cells[1].innerHTML;
-        Json.Quantidade         = (Trs[item].cells[2].innerHTML);
-        Json.Valor              = (Trs[item].cells[3].innerHTML);
-        Json.Observacao         = Trs[item].cells[5].innerHTML;
-        
+        Json.IdDespesa = parseInt(Trs[item].cells[0].innerHTML);
+        Json.DespesaDescricao = Trs[item].cells[1].innerHTML;
+        Json.Quantidade = (Trs[item].cells[2].innerHTML);
+        Json.Valor = (Trs[item].cells[3].innerHTML);
+        Json.Observacao = Trs[item].cells[5].innerHTML;
+
         Itens.push(Json);
     }
     return Itens;

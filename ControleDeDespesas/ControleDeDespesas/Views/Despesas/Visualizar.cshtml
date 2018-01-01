@@ -5,41 +5,74 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-xs-1 col-sm-12">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Despesa</th>
-                        <th>Descrição</th>
-                        <th>Quantidade</th>
-                        <th>Valor</th>
-                        <th>Tipo</th>
-                        <th>Data de Inclusão</th>
-                        <th>Aprovação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var d in Model)
-                    {
-                        <tr>
-                            <td>@d.CodigoDespesa</td>
-                            <td>@d.Descritivo</td>
-                            <td>@d.Quantidade</td>
-                            <td>@d.Valor</td>
-                            <td>@d.Tipo.Descricao</td>
-                            <td>@d.DataInclusao</td>
-                            <td>@d.DataAprovacao</td>
-                        </tr>
-                    }
-                    <tr></tr>
-                </tbody>
-            </table>
-            <button class="btn btn-default" onclick="myFunction()">Imprimir</button>
-        </div>
+        <span class="border">
+            <div class="row">
+
+
+                <div class="col-md-12 col-xs-1 col-sm-12">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="80px"><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" /></th>
+                                <th><h5>RDV</h5></th>
+                                <th width="30%"><h5>@Model.First().CodigoDespesa</h5></th>
+                                <th><h5 class="text-right">Data de inclusão</h5></th>
+                                <th><h5 class="text-right">@Model.First().DataInclusao</h5></th>
+                            </tr>
+                            <tr>
+                                <th><h5>C.C.</h5></th>
+                                <td colspan="4"><h5>@Model.First().CentroDeCusto.Descricao</h5></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-xs-1 col-sm-12">
+                    <table class="table table-bordered table-hover" id="despesas">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                                <th>Tipo</th>
+                                <th>Data de Inclusão</th>
+                                <th>Aprovação</th>
+                                <th>Reprovação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model)
+                            {
+                                <tr>
+                                    <td>@d.Descritivo</td>
+                                    <td>@d.Quantidade</td>
+                                    <td>@d.Valor</td>
+                                    <td>@d.Tipo.Descricao</td>
+                                    <td>@d.DataInclusao</td>
+                                    <td>@d.DataAprovacao</td>
+                                    <td>@d.DataReprovacao</td>
+                                    
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="5"></td>
+                                <td><h6>Total</h6></td>
+                                <td><h6><div id="total"></div></h6></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <button class="btn btn-default no-print" onclick="myFunction()">Imprimir</button>
+                </div>
+            </div>
+        </span>
     </div>
 </div>
+
 <script>
-function myFunction() {
-    window.print();
-}
+    function myFunction() {
+        window.print();
+    }
 </script>
+<script src="~/Scripts/Visualizar/Visualizar.js"></script>

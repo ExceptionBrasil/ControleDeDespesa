@@ -6,14 +6,15 @@
     <title>Controle de Despesas</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     @RenderBody()
     <footer>
-        <p><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" /></p>
+        <p><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" class="no-print"/></p>
     </footer>
 
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    
     <script src="~/Scripts/bootstrap.min.js"></script>
 
     @RenderSection("Scripts", false)
