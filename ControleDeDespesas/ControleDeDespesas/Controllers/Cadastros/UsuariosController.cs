@@ -12,11 +12,12 @@ using WebMatrix.WebData;
 using Modelos.ViewModels;
 using Factorys;
 using BuildMenu;
+using Interfaces;
 
 namespace ControleDeDespesas.Controllers
 {
     [AurizacaoFilter]
-    public class UsuariosController : Controller
+    public class UsuariosController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
         private CentroDeCustoDAO ccDAO;
@@ -31,13 +32,13 @@ namespace ControleDeDespesas.Controllers
                 WebSecurity.InitializeDatabaseConnection("local", "CadastroDeUsuario", "Id", "Login", true);
             }
 
-            BuildMenus();
+            BuildMenu();
         }
 
         /// <summary>
         /// Construção dos Menus
         /// </summary>
-        private void BuildMenus()
+        public  void BuildMenu()
         {
             MakeMenu.Add("Usuarios", "Adicionar", "Usuarios", "Novo Cadastro", Role.User);
             MakeMenu.Add("Despesas", "Index", "Usuarios", "Home", Role.User);

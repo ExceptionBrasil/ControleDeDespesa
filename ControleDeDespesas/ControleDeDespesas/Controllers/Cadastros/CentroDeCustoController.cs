@@ -7,11 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using Persistencia.DAO;
 using BuildMenu;
+using Interfaces;
 
 namespace ControleDeDespesas.Controllers.Cadastros
 {
     [AurizacaoFilter]
-    public class CentroDeCustoController : Controller
+    public class CentroDeCustoController : Controller, ISetMenu
     {
         private CentroDeCustoDAO ccDAO;
         private UsuariosDAO usuariosDAO;
@@ -25,7 +26,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
         }
 
 
-        private void BuildMenu()
+        public void BuildMenu()
         {
             MakeMenu.Add("Despesas", "Index", "CentroDeCusto", "Home", Role.SuperUser);
             MakeMenu.Add("CentroDeCusto", "Incluir", "CentroDeCusto", "Novo Centro de Custo", Role.SuperUser);

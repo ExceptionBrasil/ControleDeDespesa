@@ -4,17 +4,17 @@
 
 <!--Formulário-->
 <div class="container">
-    <div class="row">        
+    <div class="row">
         <div class="col-md-12">
-            @using (Html.BeginForm("Incluir", "Despesas", FormMethod.Post, new {id= "frm-despesas" }))
+            @using (Html.BeginForm("Incluir", "Despesas", FormMethod.Post, new { id = "frm-despesas" }))
             {
                 @Html.Partial("/Views/Shared/Despesas/_FormDespesas.cshtml")
 
-                
-                <button id="btnAdicionar"><span class="glyphicon glyphicon-plus-sign"></span>Adicionar</button>                
+
+                <button id="btnAdicionar"><span class="glyphicon glyphicon-plus-sign"></span>Adicionar</button>
             }
 
-            <hr />            
+            <hr />
         </div>
 
         <!--Tabela de Dados que serão transimitidos ao Server -->
@@ -31,30 +31,42 @@
                         <th colspan="2">Opções</th>
                     </tr>
                 </thead>
-                <tbody id="itensDespesas">                 
-                </tbody>
+                <tbody id="itensDespesas"></tbody>
             </table>
             <hr />
             <div id="tbTotal" class="text-right">
                 <h4>Total: </h4>
             </div>
-            <button class="btn btn-success" id="enviaDespesas">Enviar</button>
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    @Html.TextBox("Attachment", "", new { @id = "Attachment", @class = "", type = "file", @multiple = "multiple" })
+                    <br />
+                </div>
+                <div class="col-xs-12 col-md-1">
+                    <button class="btn btn-success" id="enviaDespesas">Enviar</button>
+                    
+                </div>
+            </div>
+            
+            
             <div id="erroDeEnvio"></div>
         </div>
-    </div >
+    </div>
 </div>
 <br /><br /><br /><br />
 
 
 @section Scripts{
- 
-    <script>        
+
+    <script>
         var urlDespesasIncluir = "@Url.Action("Incluir", "Despesas")";
-    </script>    
+        var urlUploadFiles = "@Url.Action("Upload", "Upload")";
+    </script>
     <script src="~/Scripts/Despesas/DespesasWriteHtml.js"></script>
     <script src="~/Scripts/Despesas/DespesasValidacoes.js"></script>
     <script src="~/Scripts/Despesas/DespesaMain.js"></script>
     <script src="~/Scripts/Despesas/EnviaDespesasJson.js"></script>
     <script src="~/Scripts/Despesas/TiposDespesas.js"></script>
+    <script src="~/Scripts/Despesas/UploadFiles.js"></script>
 
 }

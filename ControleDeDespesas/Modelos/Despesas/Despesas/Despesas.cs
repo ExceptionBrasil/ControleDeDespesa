@@ -26,8 +26,7 @@ namespace Modelos
         [RegularExpression(@"\d{10}[,]\d\d")]
         public virtual double Valor { get; set; }
 
-        public virtual string Descritivo { get; set; }
-        public virtual UploadedFile Attachment { get; set; }
+        public virtual string Descritivo { get; set; }       
 
 
         public virtual CadastroDeUsuario UsuarioInclusao { get; set; }

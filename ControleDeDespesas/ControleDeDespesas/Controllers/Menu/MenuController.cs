@@ -1,4 +1,5 @@
 ﻿using BuildMenu;
+using Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace ControleDeDespesas.Controllers
         [HttpPost]
         public JsonResult GetByLocation(string Location)
         {
-            return Json(new { success = true, menu = MakeMenu.RecoveryByLocation(Location) });
+            CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
+            return Json(new { success = true, menu = MakeMenu.RecoveryByLocation(Location,usuario.Role) });
         }
     }
 }

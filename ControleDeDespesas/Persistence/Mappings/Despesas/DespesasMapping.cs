@@ -17,7 +17,14 @@ namespace Persistencia.Mappings
             Map(d => d.Valor);
             Map(d => d.Quantidade);
             Map(d => d.Descritivo);
-            References(d => d.Attachment);
+            
+            ///
+            /// Sumary
+            /// A estratégia adotada aqui é de um para muitos 
+            /// A chave de relacionamento com OS ANEXOS será o usuário e a data de upload, no caso
+            /// da data deve ser a mesma que a DATADEINCLUSAO
+            
+
             Map(d => d.DataInclusao);
             Map(d => d.DataAprovacao);
             Map(d => d.DataReprovacao);
