@@ -2,7 +2,11 @@
     .no-print, .no-print * {
         display: none !important;
     }
+   
 }
+
+
+
 
 footer {
     background: #0c84e4;
@@ -20,4 +24,15 @@ footer {
 body {margin-bottom:75px;}
 #imgLogo{ margin-top:5px;
           margin-left:5px;          
+}
+table {    
+    margin-left: 2em;
+    margin-right:2em;
+    width:100%;
+    height:auto;
+}
+
+.tabDiv{
+    border-bottom-color:black;
+    border-bottom:solid;
 }

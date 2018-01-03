@@ -7,25 +7,38 @@
     <div class="row">
         <span class="border">
             <div class="row">
-
-
-                <div class="col-md-12 col-xs-1 col-sm-12">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th width="80px"><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" /></th>
-                                <th><h5>RDV</h5></th>
-                                <th width="30%"><h5>@Model.First().CodigoDespesa</h5></th>
-                                <th><h5 class="text-right">Data de inclusão</h5></th>
-                                <th><h5 class="text-right">@Model.First().DataInclusao</h5></th>
-                            </tr>
-                            <tr>
-                                <th><h5>C.C.</h5></th>
-                                <td colspan="4"><h5>@Model.First().CentroDeCusto.Descricao</h5></td>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="col-xs-2" >                    
+                    <img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" />                    
                 </div>
+                <div class="col-xs-2">
+                    <h5>RDV</h5>
+                </div>
+                <div class="col-xs-2">
+                    <h5>@Model.First().CodigoDespesa</h5>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <h5>Data de inclusão</h5>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <h5>@Model.First().DataInclusao</h5>
+                </div>
+                
+                <table class="table table-bordered table-hover" id="tab1">
+                    <thead>
+                        <tr>
+                            <th width="80px"><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" /></th>
+                            <th><h5>RDV</h5></th>
+                            <th width="30%"><h5>@Model.First().CodigoDespesa</h5></th>
+                            <th><h5 class="text-right">Data de inclusão</h5></th>
+                            <th><h5 class="text-right">@Model.First().DataInclusao</h5></th>
+                        </tr>
+                        <tr>
+                            <th><h5>C.C.</h5></th>
+                            <td colspan="4"><h5>@Model.First().CentroDeCusto.Descricao</h5></td>
+                        </tr>
+                    </thead>
+                </table>
+
             </div>
             <div class="row">
                 <div class="col-md-12 col-xs-1 col-sm-12">
@@ -52,7 +65,7 @@
                                     <td>@d.DataInclusao</td>
                                     <td>@d.DataAprovacao</td>
                                     <td>@d.DataReprovacao</td>
-                                    
+
                                 </tr>
                             }
                             <tr>
@@ -62,7 +75,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+
                     <button class="btn btn-default no-print" onclick="myFunction()">Imprimir</button>
                 </div>
             </div>
@@ -70,9 +83,12 @@
     </div>
 </div>
 
+
+
 <script>
     function myFunction() {
         window.print();
     }
 </script>
 <script src="~/Scripts/Visualizar/Visualizar.js"></script>
+<script src="~/Scripts/Tools/jquery.table_to_div.js"></script>
