@@ -1,0 +1,59 @@
+﻿
+<div id="LoadMenu"></div>
+
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="col col-lg-12 col-md-12 col-xs-12 col-sm-12" ">
+            <div class="panel panel-primary ">
+                <div class="panel-heading">
+                    <h5>Aguardando Aprovação</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive ">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Tipo</th>
+                                    <th>Data de Inclusão</th>
+                                    <th>Centro de Custo</th>
+                                    <th>Descritivo</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th colspan="2" class="text-center">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var aprov in ViewBag.UnApprovedRDV)
+                                {
+                                    <tr>
+                                        <td>@aprov.CodigoDespesa</td>
+                                        <td>@aprov.Tipo.Descricao</td>
+                                        <td>@aprov.DataInclusao</td>
+                                        <td>@aprov.CentroDeCusto.Descricao</td>
+                                        <td>@aprov.Descritivo</td>
+                                        <td>@aprov.Quantidade</td>
+                                        <td>@aprov.Valor</td>
+                                        <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id }) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
+                                        <td><a href=@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id}) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-down"></span></button></a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        // criar a tag  ==>  <div id="LoadMenu"></div> <==  para carregar o menu na página
+        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
+    //    var urlAprova = "@Url.Action("Aprovar", "Despesas")";
+    </script>
+    <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
+}

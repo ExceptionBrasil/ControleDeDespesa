@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="container-fluid">
-        <div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12">
+        <div class="col col-lg-12 col-md-12 col-xs-12 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5>Depesas <span class="label label-default">@ViewBag.DespesasCount</span></h5>
@@ -59,7 +59,7 @@
             </div>
         </div>
        
-            <div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12" ">
+            @*<div class="col col-lg-6 col-md-6 col-xs-12 col-sm-12" ">
             <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <h5>Aguardando Aprovação</h5>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         
     </div>
 </div>
@@ -111,7 +111,7 @@
     <script>    
         // criar a tag  ==>  <div id="LoadMenu"></div> <==  para carregar o menu na página
         var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
-        var urlAprova = "@Url.Action("Aprovar", "Despesas")";
+//        var urlAprova = "@Url.Action("Aprovar", "Despesas")";
     </script>
     <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
 

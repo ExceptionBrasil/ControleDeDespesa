@@ -23,15 +23,15 @@ namespace ControleDeDespesas.Controllers
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
         private DespesasDAO despesasDAO;        
-        private CentroDeCustoDAO ccDAO;
+       // private CentroDeCustoDAO ccDAO;
         
 
-        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO,CentroDeCustoDAO ccDAO)
+        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO/*,CentroDeCustoDAO ccDAO*/)
         {
             this.usuarioDAO = userDAO;
             this.tiposDAO = tpDAO;
             this.despesasDAO = depDAO;            
-            this.ccDAO = ccDAO;
+        //    this.ccDAO = ccDAO;
 
             //Carrega os Menus desse controller
             BuildMenu();
@@ -48,7 +48,7 @@ namespace ControleDeDespesas.Controllers
             MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários", Role.SuperUser);
             MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo", Role.SuperUser);
             MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas", Role.SuperUser);
-            MakeMenu.Add("AprovadorPorCC", "Index", "Despesas", "Aprovador por CC", Role.SuperUser);
+            MakeMenu.Add("Aprovacao", "Index", "Despesas", "Aprovação", Role.Approver);
             
 
         }
@@ -76,10 +76,10 @@ namespace ControleDeDespesas.Controllers
             //Verifica se o se o usuário autenticado é também um aprovador e retorna as despesas para aprovar
 
             //Retorna todos os Centros de Custos de aprovação do usuário                        
-            IList<CentroDeCusto> CCAutorizados = ccDAO.GetByAprovador(usuario);
+          //  IList<CentroDeCusto> CCAutorizados = ccDAO.GetByAprovador(usuario);
             
             //Recupera a Lista das Despesas pendentes pra aprovação 
-            ViewBag.UnApprovedRDV =  despesasDAO.GetDespesasUnApproved(CCAutorizados);
+           // ViewBag.UnApprovedRDV =  despesasDAO.GetDespesasUnApproved(CCAutorizados);
             
             
 
