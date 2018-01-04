@@ -8,9 +8,11 @@
             <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <h5>Aguardando Aprovação</h5>
-                </div>
+                </div>               
                 <div class="panel-body">
-                    <div class="table-responsive ">
+                    <div class="table-responsive ">                        
+                        <div class="collapse" id="collapse">                            
+                        </div>  
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -36,12 +38,17 @@
                                         <td>@aprov.Quantidade</td>
                                         <td>@aprov.Valor</td>
                                         <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id }) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
-                                        <td><a href=@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id}) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-down"></span></button></a></td>
+                                        <td><a href=# target="_self" onclick='GetId("@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id })")'>
+                                                <button class="btn btn-default" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                </button>                                                 
+                                            </a>                                              
+                                        </td>                            
                                     </tr>
                                 }
 
                             </tbody>
-                        </table>
+                        </table>                        
                     </div>
                 </div>
             </div>
@@ -52,8 +59,22 @@
 @section Scripts{
     <script>
         // criar a tag  ==>  <div id="LoadMenu"></div> <==  para carregar o menu na página
-        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
-    //    var urlAprova = "@Url.Action("Aprovar", "Despesas")";
+        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";          
     </script>
     <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
+    <script>
+        function GetId(url) {
+            let = "";
+            let htm = `
+                <div class="well well-sm">
+                    <h5>Motivo da Recusa:
+                    <textarea rows="2" cols="100%">
+                    </textarea>
+                    <a href=`+ url + `
+                        <button class="btn btn-primary">OK</button>
+                    </a>
+                </div>`;
+            $("#collapse").html(htm);
+        }
+    </script>
 }

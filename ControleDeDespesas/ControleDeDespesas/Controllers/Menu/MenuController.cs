@@ -22,7 +22,12 @@ namespace ControleDeDespesas.Controllers
         public JsonResult GetByLocation(string Location)
         {
             CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
-            return Json(new { success = true, menu = MakeMenu.RecoveryByLocation(Location,usuario.Role) });
+            if (usuario!=null)
+            {
+                return Json(new { success = true, menu = MakeMenu.RecoveryByLocation(Location, usuario.Role) });
+            }
+            return Json(new { success = true, menu ="" });
+
         }
     }
 }

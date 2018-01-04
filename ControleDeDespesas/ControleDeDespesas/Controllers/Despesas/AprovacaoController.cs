@@ -65,7 +65,7 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Reprovar(int id)
+        public ActionResult Reprovar(int id, FormCollection form)
         {
             if (!despesasDAO.ReprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
             {
