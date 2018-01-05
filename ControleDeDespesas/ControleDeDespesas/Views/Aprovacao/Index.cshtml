@@ -1,4 +1,4 @@
-﻿
+﻿@model Modelos.ViewModels.AprovacaoModelView
 <div id="LoadMenu"></div>
 
 
@@ -8,73 +8,86 @@
             <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <h5>Aguardando Aprovação</h5>
-                </div>               
+                </div>
                 <div class="panel-body">
-                    <div class="table-responsive ">                        
-                        <div class="collapse" id="collapse">                            
-                        </div>  
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Tipo</th>
-                                    <th>Data de Inclusão</th>
-                                    <th>Centro de Custo</th>
-                                    <th>Descritivo</th>
-                                    <th>Quantidade</th>
-                                    <th>Valor</th>
-                                    <th colspan="2" class="text-center">Opções</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var aprov in ViewBag.UnApprovedRDV)
-                                {
-                                    <tr>
-                                        <td>@aprov.CodigoDespesa</td>
-                                        <td>@aprov.Tipo.Descricao</td>
-                                        <td>@aprov.DataInclusao</td>
-                                        <td>@aprov.CentroDeCusto.Descricao</td>
-                                        <td>@aprov.Descritivo</td>
-                                        <td>@aprov.Quantidade</td>
-                                        <td>@aprov.Valor</td>
-                                        <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id }) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
-                                        <td><a href=# target="_self" onclick='GetId("@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id })")'>
-                                                <button class="btn btn-default" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
-                                                    <span class="glyphicon glyphicon-thumbs-down"></span>
-                                                </button>                                                 
-                                            </a>                                              
-                                        </td>                            
-                                    </tr>
-                                }
+                    <div class="table-responsive ">
+                        <div class="modal fade" tabindex="-1" role="dialog" id="ModalMotivo">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-title">
+                                            <h4>Motivo da Recusa</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            @using (Html.BeginForm("Reprovar", "Aprovacao", FormMethod.Post, new { @class = "form-control", id = "FormMotivo" }))
+                                            {
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(l => l.Motivo, new { @class = "form-control" })
+                                                </div>
+                                                <input type="submit" class="btn btn-primary" />                                             
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
 
-                            </tbody>
-                        </table>                        
+                            </div>
+                        </div>
                     </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Tipo</th>
+                                <th>Data de Inclusão</th>
+                                <th>Centro de Custo</th>
+                                <th>Descritivo</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                                <th colspan="2" class="text-center">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var aprov in ViewBag.UnApprovedRDV)
+                            {
+                                <tr>
+                                    <td>@aprov.CodigoDespesa</td>
+                                    <td>@aprov.Tipo.Descricao</td>
+                                    <td>@aprov.DataInclusao</td>
+                                    <td>@aprov.CentroDeCusto.Descricao</td>
+                                    <td>@aprov.Descritivo</td>
+                                    <td>@aprov.Quantidade</td>
+                                    <td>@aprov.Valor</td>
+                                    <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id }) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
+                                    <td>
+                                        <a href=# target="_self" onclick='GetId("@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id })")'>
+                                            <button class="btn btn-default" data-toggle="modal" data-target="#ModalMotivo">
+                                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    </div>
 
 @section Scripts{
-    <script> 
+    <script>
+
         // criar a tag  ==>  <div id="LoadMenu"></div> <==  para carregar o menu na página
-        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";          
+        var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
     </script>
     <script src="~/Scripts/Tools/MenuBuilder.Loader.js"></script>
     <script>
         function GetId(url) {
-            let = "";
-            let htm = `
-                <div class="well well-sm">
-                    <h5>Motivo da Recusa:
-                    <textarea rows="2" cols="100%">
-                    </textarea>
-                    <a href=`+ url + `
-                        <button class="btn btn-primary">OK</button>
-                    </a>
-                </div>`;
-            $("#collapse").html(htm);
+            let form = document.querySelector("#FormMotivo");
+            form.action = url;
         }
     </script>
 }

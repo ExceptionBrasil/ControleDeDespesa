@@ -16,7 +16,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
     /// <summary>
     /// Controler que representa a amarração dos aprovadores por Centro de Custo
     /// </summary>
-    [AurizacaoFilter]
+    [AutorizacaoFilter]
     public class AprovadorPorCCController : Controller
     {
         private AprovadorPorCCDAO aprovaDAO;

@@ -1,4 +1,5 @@
-﻿using Modelos;
+﻿using ControleDeDespesas.Controllers.Filters;
+using Modelos;
 using Persistence.DAO.Upload;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace ControleDeDespesas.Controllers.UploadedFiles
 {
+    [AutorizacaoFilter]
     public class UploadController : Controller
     {
         private UploadDAO uploadDAO; 

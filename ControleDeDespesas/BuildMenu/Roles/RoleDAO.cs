@@ -17,5 +17,7 @@ namespace BuildMenu
             this.ListRole.Add(new RoleView() { Descricao = "Super Usuário", Role = Role.SuperUser });
             this.ListRole.Add(new RoleView() { Descricao = "Usuário", Role = Role.User });
         }
+
+        
     }
 }

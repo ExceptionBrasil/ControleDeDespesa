@@ -12,7 +12,7 @@ using BuildMenu;
 
 namespace ControleDeDespesas.Controllers
 {
-    [AurizacaoFilter]
+    [AutorizacaoFilter]
     public class TiposDespesasController : Controller, ISetMenu
     {
         private TiposDeDespesasDAO tiposDAO;

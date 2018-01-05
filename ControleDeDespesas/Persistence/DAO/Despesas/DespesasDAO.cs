@@ -320,12 +320,13 @@ namespace Persistencia.DAO
         /// <param name="id"></param>
         /// <param name="usuario"></param>
         /// <returns></returns>
-        public bool ReprovarDespesa(int id, CadastroDeUsuario usuario)
+        public bool ReprovarDespesa(int id, CadastroDeUsuario usuario, string motivo)
         {
             Despesas despesa = this.GetDespesaById(id);
 
             despesa.DataReprovacao = DateTime.Now;
             despesa.UsuarioReprovação = usuario;
+            despesa.MotivoRecusa = motivo;
 
             ITransaction tran = session.BeginTransaction();
             session.Merge(despesa);

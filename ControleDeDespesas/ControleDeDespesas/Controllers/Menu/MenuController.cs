@@ -1,4 +1,5 @@
 ﻿using BuildMenu;
+using ControleDeDespesas.Controllers.Filters;
 using Modelos;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ControleDeDespesas.Controllers
 {
+    [AutorizacaoFilter]
     public class MenuController : Controller
     {
         

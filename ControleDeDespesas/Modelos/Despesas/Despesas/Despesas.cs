@@ -39,7 +39,8 @@ namespace Modelos
         public virtual DateTime? DataIntegradoERP { get; set; }
         
 
-        public virtual CentroDeCusto CentroDeCusto { get; set; }        
+        public virtual CentroDeCusto CentroDeCusto { get; set; }   
+        public virtual string MotivoRecusa { get; set; }
 
 
         public override bool Equals(object obj)

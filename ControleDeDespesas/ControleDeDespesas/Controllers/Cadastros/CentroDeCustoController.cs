@@ -11,7 +11,7 @@ using Interfaces;
 
 namespace ControleDeDespesas.Controllers.Cadastros
 {
-    [AurizacaoFilter]
+    [AutorizacaoFilter]
     public class CentroDeCustoController : Controller, ISetMenu
     {
         private CentroDeCustoDAO ccDAO;

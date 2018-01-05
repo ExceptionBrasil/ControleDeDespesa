@@ -16,7 +16,7 @@ using Interfaces;
 
 namespace ControleDeDespesas.Controllers
 {
-    [AurizacaoFilter]
+    [AutorizacaoFilter]
     public class UsuariosController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelos.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,5 @@ namespace Modelos
         public virtual CadastroDeUsuario Usuario { get; set; }        
         public virtual CentroDeCusto CC { get; set; }
         
-        
-    }
+    }   
 }

@@ -1,4 +1,5 @@
-﻿using BuildMenu;
+﻿using Modelos.ViewModels;
+using BuildMenu;
 using Interfaces;
 using Modelos;
 using Persistencia.DAO;
@@ -8,9 +9,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
+using ControleDeDespesas.Controllers.Filters;
 
 namespace ControleDeDespesas.Controllers
 {
+    [AutorizacaoFilter]
     public class AprovacaoController : Controller, ISetMenu
     {
         private DespesasDAO despesasDAO;
@@ -41,8 +44,7 @@ namespace ControleDeDespesas.Controllers
             IList<CentroDeCusto> CCAutorizados = ccDAO.GetByAprovador(usuario);
 
             //Recupera a Lista das Despesas pendentes pra aprovação 
-            ViewBag.UnApprovedRDV = despesasDAO.GetDespesasUnApproved(CCAutorizados);
-
+            ViewBag.UnApprovedRDV = despesasDAO.GetDespesasUnApproved(CCAutorizados);           
 
             return View();
         }
@@ -52,7 +54,8 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Aprovar(int id)
+        [HttpPost]
+        public ActionResult Aprovar(int id, AprovacaoModelView Motivo)
         {
             if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
             {
@@ -65,9 +68,12 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Reprovar(int id, FormCollection form)
         {
-            if (!despesasDAO.ReprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
+            string motivo = form["Motivo"];
+
+            if (!despesasDAO.ReprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId), motivo))
             {
                 return RedirectToAction("Index");
             }

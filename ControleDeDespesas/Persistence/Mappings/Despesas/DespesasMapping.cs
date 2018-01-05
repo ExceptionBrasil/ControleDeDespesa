@@ -32,7 +32,8 @@ namespace Persistencia.Mappings
             References(d => d.UsuarioInclusao);
             References(d => d.UsuarioAprovacao);
             References(d => d.CentroDeCusto);
-            References(d => d.UsuarioReprovação);            
+            References(d => d.UsuarioReprovação);
+            Map(d => d.MotivoRecusa);
 
         }
     }

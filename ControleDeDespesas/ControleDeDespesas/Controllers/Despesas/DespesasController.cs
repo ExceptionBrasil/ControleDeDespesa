@@ -17,21 +17,20 @@ using Interfaces;
 namespace ControleDeDespesas.Controllers
 {
     
-    [AurizacaoFilter]   
+    [AutorizacaoFilter]   
     public class DespesasController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
         private DespesasDAO despesasDAO;        
-       // private CentroDeCustoDAO ccDAO;
-        
+      
 
-        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO/*,CentroDeCustoDAO ccDAO*/)
+        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO)
         {
             this.usuarioDAO = userDAO;
             this.tiposDAO = tpDAO;
             this.despesasDAO = depDAO;            
-        //    this.ccDAO = ccDAO;
+       
 
             //Carrega os Menus desse controller
             BuildMenu();
@@ -70,18 +69,6 @@ namespace ControleDeDespesas.Controllers
 
             //Recupera a session para o cadasrtro de usuário
             CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
-
-
-
-            //Verifica se o se o usuário autenticado é também um aprovador e retorna as despesas para aprovar
-
-            //Retorna todos os Centros de Custos de aprovação do usuário                        
-          //  IList<CentroDeCusto> CCAutorizados = ccDAO.GetByAprovador(usuario);
-            
-            //Recupera a Lista das Despesas pendentes pra aprovação 
-           // ViewBag.UnApprovedRDV =  despesasDAO.GetDespesasUnApproved(CCAutorizados);
-            
-            
 
             int paginaAtual = (pagina ?? 1) - 1;
             int tamanhoDaPagina = 10; //Registros por página
@@ -152,33 +139,7 @@ namespace ControleDeDespesas.Controllers
             return PartialView(modelo);
         }
 
-        /// <summary>
-        /// Realiza a aprovação de uma despesa 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Aprovar(int id)
-        {
-            if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
-            {         
-                return RedirectToAction("Index");
-            }         
-            return RedirectToAction("Index");
-        }
-        /// <summary>
-        /// Realiza a Reprovação de uma despesa 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Reprovar(int id)
-        {
-            if (!despesasDAO.ReprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
-            {
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("Index");
-        }
-
+      
        
     }
 }

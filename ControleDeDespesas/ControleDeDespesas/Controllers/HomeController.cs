@@ -55,8 +55,6 @@ namespace ControleDeDespesas.Controllers
         {
             if (WebSecurity.Login(autenticacao.Login, autenticacao.Senha))
             {
-                
-
                 //Cria a Sessão de página
                 CadastroDeUsuario usuario = usuarioDAO.GetById(WebSecurity.GetUserId(autenticacao.Login));
                 Session["Usuario"] = usuario;
