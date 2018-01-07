@@ -1,5 +1,7 @@
 ﻿using BuildMenu;
+using Factorys.Helpers;
 using Factorys.Ninject;
+using NHibernate;
 using Persistencia.DAO;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,7 @@ namespace ControleDeDespesas.Controllers.Filters
         private UsuariosDAO userDAO;
 
         public AutorizacaoFilterAttribute()
-        {
+        {            
             this.userDAO = Injections.UsuarioInject();
         }
 

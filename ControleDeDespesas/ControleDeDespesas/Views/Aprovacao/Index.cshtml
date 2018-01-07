@@ -24,8 +24,14 @@
                                                 <div class="form-group">
                                                     @Html.TextBoxFor(l => l.Motivo, new { @class = "form-control" })
                                                 </div>
-                                                <input type="submit" class="btn btn-primary" />                                             
+                                                <div class="text-right">
+                                                    <input type="submit" class="btn btn-primary" />
+                                                </div>
+                                                
                                             }
+                                        </div>
+                                        <div class="modal-footer">
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +63,7 @@
                                     <td>@aprov.Descritivo</td>
                                     <td>@aprov.Quantidade</td>
                                     <td>@aprov.Valor</td>
-                                    <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id }) target="_self"><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
+                                    <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id })><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
                                     <td>
                                         <a href=# target="_self" onclick='GetId("@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id })")'>
                                             <button class="btn btn-default" data-toggle="modal" data-target="#ModalMotivo">

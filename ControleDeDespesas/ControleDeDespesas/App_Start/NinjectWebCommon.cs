@@ -9,7 +9,8 @@ namespace ControleDeDespesas.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
-    using Ninject.Web.Common;
+    using Ninject.Web.Common;        
+    using Ninject.Web.Common.WebHost;
     using NHibernate;
     using Factorys.Helpers;
 

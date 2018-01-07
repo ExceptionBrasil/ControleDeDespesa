@@ -54,7 +54,7 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         public ActionResult Aprovar(int id, AprovacaoModelView Motivo)
         {
             if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
