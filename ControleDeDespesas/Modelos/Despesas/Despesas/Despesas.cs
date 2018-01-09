@@ -45,9 +45,9 @@ namespace Modelos
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj == null || GetType() != obj.GetType())
             {
-                throw new ArgumentNullException();
+                return false;
             }
 
             if(obj is Despesas)
@@ -55,6 +55,29 @@ namespace Modelos
                 return true;
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 13;
+            hash += this.CentroDeCusto.GetHashCode();
+            hash += this.CodigoDespesa.GetHashCode();
+            hash += this.DataAprovacao.GetHashCode();
+            hash += this.DataInclusao.GetHashCode();
+            hash += this.DataIntegradoERP.GetHashCode();
+            hash += this.DataReprovacao.GetHashCode();
+            hash += this.Descritivo.GetHashCode();
+            hash += this.Id.GetHashCode();
+            hash += this.MotivoRecusa.GetHashCode();
+            hash += this.Quantidade.GetHashCode();
+            hash += this.Tipo.GetHashCode();
+            hash += this.UsuarioAprovacao.GetHashCode();
+            hash += this.UsuarioInclusao.GetHashCode();
+            hash += this.UsuarioReprovação.GetHashCode();
+            hash += this.Valor.GetHashCode();
+
+
+            return hash * 7;
         }
     }    
 }
