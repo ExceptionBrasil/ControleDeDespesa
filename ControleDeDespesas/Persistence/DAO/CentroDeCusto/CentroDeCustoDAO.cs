@@ -81,11 +81,23 @@ namespace Persistencia.DAO
             tran.Commit();
         }
 
-        public void Excluir(CentroDeCusto cc)
+        public bool Excluir(CentroDeCusto cc)
         {
-            ITransaction tran = session.BeginTransaction();
-            session.Delete(cc);
-            tran.Commit();
+
+            ITransaction tran= session.BeginTransaction();
+            try
+            {  
+                session.Delete(cc);
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {   
+                tran.Rollback();
+                return false;
+            }
+
+            return true;
+            
         }
 
         public void Alterar(CentroDeCusto cc)

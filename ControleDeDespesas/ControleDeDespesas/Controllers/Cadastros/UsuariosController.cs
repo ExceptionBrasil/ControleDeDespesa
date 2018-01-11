@@ -16,7 +16,7 @@ using Interfaces;
 
 namespace ControleDeDespesas.Controllers
 {
-    [AutorizacaoFilter]
+  //  [AutorizacaoFilter]
     public class UsuariosController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
@@ -81,7 +81,7 @@ namespace ControleDeDespesas.Controllers
         /// <param name="modelUser">The model user.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Adicionar(FormCollection form, UsuarioModelView modelUser)
+        public ActionResult Adicionar( UsuarioModelView modelUser)
         {
             //Valida se há dados paracontinuar
             if (modelUser == null)
@@ -103,13 +103,19 @@ namespace ControleDeDespesas.Controllers
             {
                 try
                 {
+                    int? cc = null;
+                    if (usuario.CentroDeCusto != null)
+                    {
+                        cc = usuario.CentroDeCusto.Id;
+                    }
+                    //Cria o usuário 
                     WebSecurity.CreateUserAndAccount(usuario.Login, usuario.Senha, new
                     {
-                        Nome = usuario.Nome   ,
-                        Email = usuario.Email ,
+                        Nome = usuario.Nome,
+                        Email = usuario.Email,
                         IsAdmin = usuario.IsAdmin,
-                        Cpf = usuario.Cpf,                     
-                        CentroDeCusto_id = usuario.CentroDeCusto.Id
+                        Cpf = usuario.Cpf,
+                        CentroDeCusto_id = cc
                     }
                                                         , false);
 
@@ -125,7 +131,7 @@ namespace ControleDeDespesas.Controllers
             }
             else
             {
-                return View(usuario);
+                return View(modelUser);
             }
         }
 

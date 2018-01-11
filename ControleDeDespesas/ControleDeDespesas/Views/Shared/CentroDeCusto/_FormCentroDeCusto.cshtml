@@ -1,17 +1,19 @@
-﻿@model Modelos.CentroDeCusto
+﻿@model Modelos.ViewModels.CentroDeCustoModelView
 
 @Html.HiddenFor(c=>c.Id)
 
 <div class="form-group">
     @Html.LabelFor(c=> c.Codigo,"Código")
     @Html.TextBoxFor(c=>c.Codigo,new {@class="form-control" })
+    @Html.ValidationMessageFor(c=> c.Codigo,null, new { @class = "text-danger" })
 </div>
 <div class="form-group">
     @Html.LabelFor(c=> c.Descricao,"Descrição")
     @Html.TextBoxFor(c=> c.Descricao, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c=> c.Descricao, null, new { @class = "text-danger" })
 </div>
 <div class="form-group">
     @Html.LabelFor(c => c.Aprovador, "Aprovador")
     @Html.DropDownList("Aprovador", null,String.Empty, new { @class = "form-control", id = "Aprovador" })
-    
+    @Html.ValidationMessageFor(c=> c.Aprovador, null, new { @class = "text-danger" })
 </div>

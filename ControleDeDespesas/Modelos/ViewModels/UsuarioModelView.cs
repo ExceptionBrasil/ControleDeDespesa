@@ -25,11 +25,9 @@ namespace Modelos.ViewModels
         public  string Email { get; set; }
 
         public  bool IsAdmin { get; set; }
-
-        [Required]
+                
         public  string Cpf { get; set; }
-
-        [Required]
+                
         public string CentroDeCusto { get; set; }
 
         [Required]

@@ -36,7 +36,10 @@
                         <td>@u.Email</td>
                         <td>@u.Nome</td>
                         <td>@u.IsAdmin</td>                        
-                        <td>@u.CentroDeCusto.Descricao</td>
+                        @if (u.CentroDeCusto != null)
+                        {
+                            <td>@u.CentroDeCusto.Descricao</td>
+                        }                        
                         <td>@u.Cpf</td>
                         <td>@u.Role</td>
                         <td><a href=@Url.Action("Alterar", "Usuarios", new { id = u.Id })><span class="glyphicon glyphicon-edit"></span></a></td>

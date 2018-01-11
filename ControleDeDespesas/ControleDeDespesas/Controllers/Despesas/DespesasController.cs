@@ -45,8 +45,8 @@ namespace ControleDeDespesas.Controllers
 
             MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa",Role.User);
             MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários", Role.SuperUser);
-            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Cadastro de Centro De Custo", Role.SuperUser);
-            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Cadastro de Tipos Despesas", Role.SuperUser);
+            MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Centro De Custo", Role.SuperUser);
+            MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Tipos Despesas", Role.SuperUser);
             MakeMenu.Add("Aprovacao", "Index", "Despesas", "Aprovação", Role.Approver);
             
 

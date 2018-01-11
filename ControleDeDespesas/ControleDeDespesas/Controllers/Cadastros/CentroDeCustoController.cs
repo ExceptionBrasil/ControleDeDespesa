@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Persistencia.DAO;
 using BuildMenu;
 using Interfaces;
+using Modelos.ViewModels;
+using Factorys;
 
 namespace ControleDeDespesas.Controllers.Cadastros
 {
@@ -25,14 +27,20 @@ namespace ControleDeDespesas.Controllers.Cadastros
             BuildMenu();
         }
 
-
+        /// <summary>
+        /// Faz a construção dos Menus
+        /// </summary>
         public void BuildMenu()
         {
             MakeMenu.Add("Despesas", "Index", "CentroDeCusto", "Home", Role.SuperUser);
             MakeMenu.Add("CentroDeCusto", "Incluir", "CentroDeCusto", "Novo Centro de Custo", Role.SuperUser);
         }
 
-        [Menu("CentroDeCusto","Index", "CentroDeCusto","Cadastro de Centro de Custo")]
+        
+        /// <summary>
+        /// Página principal
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
           
@@ -41,7 +49,11 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return View(modelo);
         }
 
-        
+        /// <summary>
+        /// Form de alteração 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Alterar(int id)
         {
 
@@ -51,9 +63,15 @@ namespace ControleDeDespesas.Controllers.Cadastros
                     "Id",
                     "Nome"
                 );
-            return View(ccDAO.GetById(id));
+            return View( CentroDeCustoFactory.GetModelView( ccDAO.GetById(id)));
         }
 
+        /// <summary>
+        /// Alterção do registro
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="custo"></param>
+        /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Alterar(FormCollection form,CentroDeCusto custo)
@@ -64,6 +82,11 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return RedirectToAction("Index");
         }
 
+
+        /// <summary>
+        /// Form de inclusão 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Incluir()
         {
             ViewBag.Aprovador =  new SelectList
@@ -72,26 +95,44 @@ namespace ControleDeDespesas.Controllers.Cadastros
                     "Id",
                     "Nome"
                 );
+           
             return View();
         }
 
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Incluir(FormCollection form,CentroDeCusto custo)
+        public ActionResult Incluir(CentroDeCustoModelView ccModel)
         {
-            custo.Aprovador = usuariosDAO.GetById(Convert.ToInt32(form["Id"]));
-            ccDAO.Incluir(custo);
-            return RedirectToAction("Index");
+               
+            if (ccModel!=null)
+            {
+                ccDAO.Incluir(CentroDeCustoFactory.GetModel(ccModel));
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Aprovador = new SelectList
+               (
+                   usuariosDAO.ListAll(),
+                   "Id",
+                   "Nome"
+               );
+            return View("Incluir",ccModel);
         }
 
         public ActionResult Excluir(int id)
         {
 
-            ccDAO.Excluir(ccDAO.GetById(id));
+            if (!ccDAO.Excluir(ccDAO.GetById(id)))
+            {
+                return RedirectToAction("ExcluirErrorPage");
+            }
             return RedirectToAction("Index");
         }
 
-        
+        public ActionResult ExcluirErrorPage()
+        {
+            return View();
+        }
     }
 }
