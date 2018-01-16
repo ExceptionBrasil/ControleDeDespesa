@@ -84,7 +84,7 @@ namespace ControleDeDespesas.Controllers.Cadastros
 
 
         /// <summary>
-        /// Form de inclusão 
+        /// Form de inclusão de Centro de Custo
         /// </summary>
         /// <returns></returns>
         public ActionResult Incluir()
@@ -99,25 +99,32 @@ namespace ControleDeDespesas.Controllers.Cadastros
             return View();
         }
 
-
+        /// <summary>
+        /// Persiste o Centro de Custo no banco de dados
+        /// </summary>
+        /// <param name="ccModel">The cc model.</param>
+        /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Incluir(CentroDeCustoModelView ccModel)
         {
-               
-            if (ccModel!=null)
+            
+            if(!ModelState.IsValid)
             {
-                ccDAO.Incluir(CentroDeCustoFactory.GetModel(ccModel));
-                return RedirectToAction("Index");
+                ViewBag.Aprovador = new SelectList
+                  (
+                      usuariosDAO.ListAll(),
+                      "Id",
+                      "Nome"
+                  );
+                return View(ccModel);
             }
 
-            ViewBag.Aprovador = new SelectList
-               (
-                   usuariosDAO.ListAll(),
-                   "Id",
-                   "Nome"
-               );
-            return View("Incluir",ccModel);
+            ccDAO.Incluir(CentroDeCustoFactory.GetModel(ccModel));
+            return RedirectToAction("Index");
+
+
+            //return View("Incluir",ccModel);
         }
 
         public ActionResult Excluir(int id)
