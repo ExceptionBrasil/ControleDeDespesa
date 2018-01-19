@@ -10,17 +10,8 @@ namespace Modelos
     {
         public virtual int Id { get; set; }
         public virtual string Codigo { get; set; }
-        public virtual string Descricao { get; set; }
-
-        //
-        public virtual string DescricaoExtendida {
-            get
-            {
-                return Codigo.PadRight(9) + Descricao;
-            }
-
-            set { } }
-
+        public virtual string Descricao { get; set; }        
+        public virtual string DescricaoExtendida { get; set; }            
         public virtual CadastroDeUsuario Aprovador { get; set; }
     }
 }
