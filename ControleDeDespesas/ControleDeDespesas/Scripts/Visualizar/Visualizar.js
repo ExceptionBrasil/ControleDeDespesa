@@ -4,6 +4,12 @@
 */
 $(document).ready(function () {
 
+    somaTabela()
+    
+});   
+
+
+var somaTabela = function () {
     ///Faz a soma da tabela 
 
     var tabela = document.querySelector("#despesas");
@@ -16,10 +22,10 @@ $(document).ready(function () {
             if (td[5].innerText.length <= 0) {
                 soma += parseFloat(td[1].innerText.replace(",", ".")) * parseFloat(td[2].innerText.replace(",", "."));
             }
-            
+
         }
-        
+
     }
     soma = soma.toFixed(2).toLocaleString();
     $("#total").html(soma);
-});   
+}

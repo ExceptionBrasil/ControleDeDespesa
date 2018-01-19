@@ -61,6 +61,17 @@ namespace Persistence.DAO.Upload
             return (file==null);
         }
 
+        public IList<UploadedFile> GetByDespesa(Despesas dep)
+        {
+            IList<UploadedFile> arquivos = session.QueryOver<UploadedFile>()
+                                            .Where(x => x.DataUpload == dep.DataInclusao)
+                                            .And(x => x.usuario == dep.UsuarioInclusao)
+                                            .List();
+            return arquivos;
+        }
+
+
+
         /// <summary>
         /// Persiste os dados na base de dados 
         /// </summary>

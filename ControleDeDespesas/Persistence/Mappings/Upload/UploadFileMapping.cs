@@ -22,6 +22,8 @@ namespace Persistence.Mappings
             Map(x => x.Path);
             Map(x => x.Size);
             Map(x => x.Tipo);
+            Map(x => x.PathRelativo);
+            Map(x => x.FullPathRelativo);
         }
     }
 }

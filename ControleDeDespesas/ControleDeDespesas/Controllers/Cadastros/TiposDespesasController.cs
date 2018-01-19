@@ -38,7 +38,7 @@ namespace ControleDeDespesas.Controllers
         
         public void BuildMenu()
         {
-            MakeMenu.Add("Despesas", "Index", "Despesas", "Home", Role.SuperUser);
+            MakeMenu.Add("Despesas", "Index", "TiposDespesas", "Home", Role.SuperUser);
             MakeMenu.Add("TiposDespesas", "Incluir", "TiposDespesas", "Novo Registro", Role.SuperUser);
             
         }

@@ -24,7 +24,7 @@
                 </table>
 
             </div>
-            <div class="row">
+            <div class="">
                 <div class="col-md-12 col-xs-1 col-sm-12">
                     <table class="table table-bordered table-hover" id="despesas">
                         <thead>
@@ -60,19 +60,22 @@
                         </tbody>
                     </table>
 
-                    <button class="btn btn-default no-print" onclick="myFunction()">Imprimir</button>
+                    <button class="btn btn-default no-print" onclick="imprimir()">Imprimir</button>
                 </div>
             </div>
         </span>
     </div>
 </div>
 
-
+<img src="~/Content/Images/Users/4/"
+@for (int i = 0; i < @ViewBag.arquivo.length; i++)
+{
+    <img src="@ViewBag.arquivos[i].FullPathRelativo" />
+}
 
 <script>
-    function myFunction() {
+    function imprimir() {
         window.print();
     }
 </script>
 <script src="~/Scripts/Visualizar/Visualizar.js"></script>
-<script src="~/Scripts/Tools/jquery.table_to_div.js"></script>

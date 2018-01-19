@@ -17,5 +17,7 @@ namespace Modelos
         public virtual long Size { get; set; }
         public virtual string Tipo { get; set; }
         public virtual string Path { get; set; }
+        public virtual string PathRelativo { get; set; }
+        public virtual string FullPathRelativo { get; set; }
     }
 }

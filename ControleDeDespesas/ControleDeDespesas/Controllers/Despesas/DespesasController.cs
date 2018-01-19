@@ -13,6 +13,7 @@ using BuildMenu;
 using System.Net;
 using Interfaces;
 using X.PagedList;
+using Persistence.DAO.Upload;
 
 namespace ControleDeDespesas.Controllers
 {
@@ -22,15 +23,16 @@ namespace ControleDeDespesas.Controllers
     {
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
-        private DespesasDAO despesasDAO;        
+        private DespesasDAO despesasDAO;
+        private UploadDAO uploadDAO;
       
 
-        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO)
+        public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO, UploadDAO arq)
         {
             this.usuarioDAO = userDAO;
             this.tiposDAO = tpDAO;
-            this.despesasDAO = depDAO;            
-       
+            this.despesasDAO = depDAO;
+            this.uploadDAO = arq;
 
             //Carrega os Menus desse controller
             BuildMenu();
@@ -134,7 +136,13 @@ namespace ControleDeDespesas.Controllers
 
         public ActionResult Visualizar(int id)
         {
-            var modelo =  despesasDAO.GetDespesaByCodigo(id);
+
+
+            IList<Despesas> modelo =  despesasDAO.GetDespesaByCodigo(id);
+
+            var arquivos = uploadDAO.GetByDespesa(modelo.First());
+            
+            ViewBag.arquivos =arquivos; //Acertar o path
 
             return PartialView(modelo);
         }
