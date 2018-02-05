@@ -135,9 +135,8 @@ namespace ControleDeDespesas.Controllers
         }
 
         public ActionResult Visualizar(int id)
-        {
-
-
+        {            
+          
             IList<Despesas> modelo =  despesasDAO.GetDespesaByCodigo(id);
 
             var arquivos = uploadDAO.GetByDespesa(modelo.First());

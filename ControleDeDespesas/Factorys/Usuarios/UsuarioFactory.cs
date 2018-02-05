@@ -68,8 +68,7 @@ namespace Factorys
         {
             UsuarioModelView modelView = new UsuarioModelView()
             {
-                Id = model.Id,
-                CentroDeCusto = model.CentroDeCusto.Codigo,
+                Id = model.Id,                
                 Cpf = model.Cpf,
                 Email = model.Email,
                 IsAdmin = model.IsAdmin,                
@@ -78,6 +77,11 @@ namespace Factorys
                 Senha = model.Senha,
                 Role =model.Role
             };
+            if (model.CentroDeCusto != null)
+            {
+                modelView.CentroDeCusto = model.CentroDeCusto.Codigo;
+            }
+            
 
             return modelView;
         }
