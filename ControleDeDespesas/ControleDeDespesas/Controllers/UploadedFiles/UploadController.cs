@@ -61,10 +61,11 @@ namespace ControleDeDespesas.Controllers.UploadedFiles
                         uFile.Path = Server.MapPath("~/Content/Images/Users/" + Convert.ToString(usuario.Id));
                         uFile.usuario = usuario;
                         uFile.RandomName = Path.ChangeExtension(Path.GetRandomFileName(),Path.GetExtension(uFile.FileName));
+                        uFile.PathRelativo = "/Content/Images/Users/" + Convert.ToString(usuario.Id);
+                        uFile.FullPathRelativo = "/Content/Images/Users/"+ Convert.ToString(usuario.Id)+"/" + uFile.RandomName;
 
 
 
-                    
                         //Verificar se esse nome já não existe na base de dados 
                         //se ja exitir gerar um novo nome 
                         while (!uploadDAO.ExistsRandomName(uFile.RandomName))

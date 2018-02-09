@@ -2,6 +2,7 @@
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,11 @@ namespace Persistence.DAO.Upload
             return (file==null);
         }
 
+        /// <summary>
+        /// Retorna uma lista de arquivos com base na despesa
+        /// </summary>
+        /// <param name="dep"></param>
+        /// <returns></returns>
         public IList<UploadedFile> GetByDespesa(Despesas dep)
         {
             IList<UploadedFile> arquivos = session.QueryOver<UploadedFile>()
@@ -81,6 +87,19 @@ namespace Persistence.DAO.Upload
             ITransaction Tran = session.BeginTransaction();
             session.Save(file);
             Tran.Commit();
+        }
+
+        /// <summary>
+        /// Faz a exclusão de um arquivo
+        /// </summary>
+        /// <param name="file"></param>
+        public void Excluir (UploadedFile file, string path)
+        {
+            ITransaction Tran = session.BeginTransaction();
+            session.Delete(file);            
+            Tran.Commit();
+
+            File.Delete(path);
         }
 
     }

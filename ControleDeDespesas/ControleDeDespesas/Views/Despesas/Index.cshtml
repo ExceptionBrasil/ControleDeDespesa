@@ -18,6 +18,7 @@
                 </div>
                 <div class="panel-body">
                     <div class=" table-responsive">
+                        
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -49,9 +50,9 @@
                                         <td>@dep.DataReprovacao</td>
                                         <td>@dep.MotivoRecusa</td>
                                         <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                        <td><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                        <td><a href="#"><span class="glyphicon glyphicon-erase"></span></a></td>
-                                    </tr>
+                                        <td><a href="#" id="editDespesa"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                        <td><a href="@Url.Action("Excluir","Despesas",new { id = @dep.CodigoDespesa })" id ="eraseDespesa"><span class="glyphicon glyphicon-erase"></span></a></td>                                        
+                                    </tr>                                        
                                 }
                             </tbody>
                         </table>
