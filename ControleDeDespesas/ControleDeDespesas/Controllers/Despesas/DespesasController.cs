@@ -17,15 +17,15 @@ using Persistence.DAO.Upload;
 
 namespace ControleDeDespesas.Controllers
 {
-    
-    [AutorizacaoFilter]   
+
+    [AutorizacaoFilter]
     public class DespesasController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
         private TiposDeDespesasDAO tiposDAO;
         private DespesasDAO despesasDAO;
         private UploadDAO uploadDAO;
-      
+
 
         public DespesasController(UsuariosDAO userDAO, TiposDeDespesasDAO tpDAO, DespesasDAO depDAO, UploadDAO arq)
         {
@@ -45,12 +45,12 @@ namespace ControleDeDespesas.Controllers
         public void BuildMenu()
         {
 
-            MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa",Role.User);
+            MakeMenu.Add("Despesas", "FrmIncluir", "Despesas", "Nova Despesa", Role.User);
             MakeMenu.Add("Usuarios", "Index", "Despesas", "Cadastro de Usuários", Role.SuperUser);
             MakeMenu.Add("CentroDeCusto", "Index", "Despesas", "Centro De Custo", Role.SuperUser);
             MakeMenu.Add("TiposDespesas", "Index", "Despesas", "Tipos Despesas", Role.SuperUser);
             MakeMenu.Add("Aprovacao", "Index", "Despesas", "Aprovação", Role.Approver);
-            
+
 
         }
 
@@ -58,14 +58,14 @@ namespace ControleDeDespesas.Controllers
         /// Gera a Home Page das Despesas
         /// </summary>
         /// <returns></returns>        
-        [Menu("Despesas", "Index",  "Despesas", "Home")]
+        [Menu("Despesas", "Index", "Despesas", "Home")]
         public ActionResult Index(int? pagina)
         {
             //Tratar aqui uma mensagem bonitinha para o usuário que sua sessão expirou.
             if (!WebSecurity.Initialized)
             {
                 //RedirectToAction("Logout", "Home");
-                
+
                 return new HttpStatusCodeResult(HttpStatusCode.RequestTimeout);
             }
 
@@ -81,7 +81,7 @@ namespace ControleDeDespesas.Controllers
 
             //Monta a paginacao
             var umaPaginaDeDespesas = new StaticPagedList<Despesas>(despesas, paginaAtual + 1, tamanhoDaPagina, totalDeRegistros);
-            
+
 
             ViewBag.DespesasCount = totalDeRegistros;
             ViewBag.UmaPaginaDeDespesas = umaPaginaDeDespesas;
@@ -112,19 +112,19 @@ namespace ControleDeDespesas.Controllers
         /// <param name="despesasJson">The despesas json.</param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult  Incluir (IList<DespesasJson> despesasJson)
+        public JsonResult Incluir(IList<DespesasJson> despesasJson)
         {
 
             if (despesasJson == null)
             {
-                return Json(new { success = false,menssage = "Objeto Json vazio" });
+                return Json(new { success = false, menssage = "Objeto Json vazio" });
 
             }
-            
+
             //Gera a lista de Despesas com base na lista de Json 
-            List<Despesas> despesas =  DespesasJsonToDespesas.GeraLista(despesasJson, (CadastroDeUsuario)Session["Usuario"], (DateTime)Session["dataEstatica"]);
-            
-                       
+            List<Despesas> despesas = DespesasJsonToDespesas.GeraLista(despesasJson, (CadastroDeUsuario)Session["Usuario"], (DateTime)Session["dataEstatica"]);
+
+
             //Faz a inclusão da Despesa
             despesasDAO.Inclui(despesas);
 
@@ -134,19 +134,58 @@ namespace ControleDeDespesas.Controllers
             return Json(new { success = true });
         }
 
+        /// <summary>
+        /// Vizualização de uma Despesa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Visualizar(int id)
-        {            
-          
-            IList<Despesas> modelo =  despesasDAO.GetDespesaByCodigo(id);
+        {
 
+            IList<Despesas> modelo = despesasDAO.GetDespesaByCodigo(id);
             var arquivos = uploadDAO.GetByDespesa(modelo.First());
-            
-            ViewBag.arquivos =arquivos; //Acertar o path
+            ViewBag.arquivos = arquivos; //Acertar o path
+            return PartialView(modelo);
+        }
 
+        /// <summary>
+        /// Exclusão da Despesa com confirmação
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Excluir(int id)
+        {
+            IList<Despesas> modelo = despesasDAO.GetDespesaByCodigo(id);
+            var arquivos = uploadDAO.GetByDespesa(modelo.First());
+            ViewBag.arquivos = arquivos; //Acertar o path
             return PartialView(modelo);
         }
 
       
-       
+        [HttpPost]
+        public JsonResult Exclui(int codigoDespesa)
+        {
+            if(codigoDespesa == null)
+            {
+                return Json(new { success = false,menssage = "Codigo de Despesa Nulo | Exclui,Despesa" });
+            }
+
+            var despesas = despesasDAO.GetDespesaByCodigo(codigoDespesa);
+            despesasDAO.Excluir(despesas);
+
+            //Lista todos os arquivos da Despesa
+            var arquivos = uploadDAO.GetByDespesa(despesas.First());
+
+            //Exclui todos os arquivos 
+            foreach (var arq in arquivos)
+            {
+                
+                uploadDAO.Excluir(arq, Request.MapPath(arq.FullPathRelativo));
+            }
+            
+
+            return Json(new { success = true , menssage =""});
+        }
+
     }
 }

@@ -41,7 +41,11 @@ namespace Factorys
             CentroDeCustoModelView model = new CentroDeCustoModelView();
 
             model.Id = c.Id;
-            model.Aprovador = c.Aprovador.Id;
+
+            if (c.Aprovador != null)
+            {
+                model.Aprovador = c.Aprovador.Id;
+            }
             model.Codigo = c.Codigo;
             model.Descricao = c.Descricao;
 

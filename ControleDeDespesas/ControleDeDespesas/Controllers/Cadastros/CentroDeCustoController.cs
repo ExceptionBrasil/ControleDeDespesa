@@ -63,7 +63,9 @@ namespace ControleDeDespesas.Controllers.Cadastros
                     "Id",
                     "Nome"
                 );
-            return View( CentroDeCustoFactory.GetModelView( ccDAO.GetById(id)));
+            var model = CentroDeCustoFactory.GetModelView(ccDAO.GetById(id));
+
+            return View(model);
         }
 
         /// <summary>
@@ -74,11 +76,10 @@ namespace ControleDeDespesas.Controllers.Cadastros
         /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Alterar(FormCollection form,CentroDeCusto custo)
+        public ActionResult Alterar(/*FormCollection form,*/ CentroDeCustoModelView custo)
         {
-
-            custo.Aprovador = usuariosDAO.GetById(Convert.ToInt32(form["Aprovador"]));           
-            ccDAO.Alterar(custo);
+            
+            ccDAO.Alterar(CentroDeCustoFactory.GetModel(custo));
             return RedirectToAction("Index");
         }
 

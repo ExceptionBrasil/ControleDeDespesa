@@ -6,12 +6,18 @@
 
 <div class="row">
     <div class="container">
+        <div class="text-center">
+            <h2>Confirma a exclusão dessa Despesa?</h2>
+            <br />
+            <button type="button" class="btn btn-primary" id="BtnExcluir">Excluir</button>              
+            
+        </div>
         <table class="table table-bordered table-hover" id="tab1">
             <thead>
                 <tr>
                     <th width="80px"><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" /></th>
                     <th><h5>RDV</h5></th>
-                    <th width="30%"><h5>@Model.First().CodigoDespesa</h5></th>
+                    <th width="30%"><h5 id="codigoDespesa">@Model.First().CodigoDespesa</h5></th>
                     <th><h5 class="text-right">Data de inclusão</h5></th>
                     <th><h5 class="text-right">@Model.First().DataInclusao</h5></th>
                 </tr>
@@ -57,20 +63,20 @@
     </div>
 </div>
 <div class="row">
-    <div class="container">    
-            @for (int i = 0; i < ViewBag.arquivos.Count; i++)
+    <div class="container">
+        @for (int i = 0; i < ViewBag.arquivos.Count; i++)
             {
-                <img src="@ViewBag.arquivos[i].FullPathRelativo" class="img-responsive"/>
-            }
-        <button class="btn btn-default no-print" onclick="imprimir()">Imprimir</button>
+            <img src="@ViewBag.arquivos[i].FullPathRelativo" class="img-responsive" />
+        }
+      
     </div>
-    </div>
-
-
-
-<script>
-    function imprimir() {
-        window.print();
-    }
-</script>
+</div>
+@section Scripts{
+    <script>
+        var urlDest = "@Url.Action("Exclui", "Despesas")";
+        var urlRedirect = "@Url.Action("Index", "Despesas")";
+    </script>
 <script src="~/Scripts/Visualizar/Visualizar.js"></script>
+<script src="~/Scripts/Despesas/Despesas.Exclui.js"></script>
+    }
+
