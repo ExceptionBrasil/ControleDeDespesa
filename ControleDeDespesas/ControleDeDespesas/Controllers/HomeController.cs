@@ -6,6 +6,8 @@ using Modelos;
 using Factorys.Helpers;
 using Factorys.Tools;
 
+using PdfControl;
+
 namespace ControleDeDespesas.Controllers
 {
 
@@ -22,6 +24,10 @@ namespace ControleDeDespesas.Controllers
                 
                 WebSecurity.InitializeDatabaseConnection(ConfigureHelper.Key("connection.connection_string_name")
                                                         , "CadastroDeUsuario", "Id", "Login", true);
+
+                
+
+                
             }
         }
 
@@ -39,6 +45,8 @@ namespace ControleDeDespesas.Controllers
             {
                 return RedirectToAction("Index", "Despesas");
             }
+
+            PdfCreate pdf = new PdfCreate("Título 123", Server.MapPath("~/Content/"));
 
             return View();
         }

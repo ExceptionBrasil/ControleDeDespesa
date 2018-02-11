@@ -9,21 +9,45 @@ using System.Threading.Tasks;
 
 namespace PdfControl
 {
-    class PdfCreate
+    public class PdfCreate
     {
         public Document Documento { get; private set; }
 
-        public PdfCreate(string titulo)
+        public PdfCreate(string titulo, string path)
         {
             //Cria um preset do PDF
             this.Documento = new Document(PageSize.A4);
             Documento.SetMargins(30, 30, 30, 30);
             Documento.AddCreationDate();
-            Documento.AddTitle(titulo);          
-            
-            //Grava o Pdf em disco
-            //string path = @"C:\temp\";
-            //PdfWriter pdf = PdfWriter.GetInstance(documento, new System.IO.FileStream(path, FileMode.Create));
+            Documento.AddTitle(titulo);
+
+
+
+            //Destino do arquivo 
+           
+            //Cria  writer
+             PdfWriter writer = PdfWriter.GetInstance(Documento, new FileStream(path, FileMode.Create));
+
+            //Abre o documento
+            Documento.Open();
+
+            //Cria o parágrafo
+            Paragraph paragrafo = new Paragraph("Hello Word", new Font(Font.NORMAL, 14));
+
+            //Alinhamento
+            paragrafo.Alignment = Element.ALIGN_LEFT;
+
+            //Adiciona um textinho
+            paragrafo.Add("123 zzz");
+
+            //adiciona o paragrafo no documento
+
+
+            Documento.Add(paragrafo);
+
+            Documento.Close();
+
+
 
         }
 
@@ -32,6 +56,7 @@ namespace PdfControl
             PdfPTable tabela = new PdfPTable(colunas);
         }
 
-        
+
+            
     }
 }

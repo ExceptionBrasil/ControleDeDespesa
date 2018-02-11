@@ -292,6 +292,10 @@
       <Project>{47f4b3a4-8882-4c22-bb6a-b5cd36dbc5f4}</Project>
       <Name>Modelos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PdfControl\PdfControl.csproj">
+      <Project>{2aa1c65f-525e-4559-85c4-59db5f71ca2d}</Project>
+      <Name>PdfControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistencia.csproj">
       <Project>{028b30c8-6b19-49fb-808e-5cd1a42064dc}</Project>
       <Name>Persistencia</Name>
