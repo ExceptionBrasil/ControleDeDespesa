@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICodificavel.cs" />
+    <Compile Include="IDespesa.cs" />
     <Compile Include="ISetMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

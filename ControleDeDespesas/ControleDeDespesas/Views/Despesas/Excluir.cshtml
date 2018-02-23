@@ -4,30 +4,32 @@
 }
 
 
-<div class="row">
-    <div class="container">
-        <div class="text-center">
-            <h2>Confirma a exclusão dessa Despesa?</h2>
-            <br />
-            <button type="button" class="btn btn-primary" id="BtnExcluir">Excluir</button>              
-            
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h4>
+                    Confirma a exclusão dessa Despesa?
+                    <button type="button" class="btn btn-primary" id="BtnExcluir">Excluir</button>
+                </h4>
+            </div>
         </div>
-        <table class="table table-bordered table-hover" id="tab1">
+        <table class="table table-bordered" id="tab1">
             <thead>
                 <tr>
                     <th width="80px"><img src="~/Content/Images/Fini-Abriu_XS.png" width="75px" /></th>
                     <th><h5>RDV</h5></th>
-                    <th width="30%"><h5 id="codigoDespesa">@Model.First().CodigoDespesa</h5></th>
+                    <th><h5 id="codigoDespesa">@Model.First().CodigoDespesa</h5></th>
                     <th><h5 class="text-right">Data de inclusão</h5></th>
                     <th><h5 class="text-right">@Model.First().DataInclusao</h5></th>
                 </tr>
                 <tr>
                     <th><h5>C.C.</h5></th>
-                    <td colspan="4"><h5>@Model.First().CentroDeCusto.Descricao</h5></td>
+                    <th colspan="4"><h5>@Model.First().CentroDeCusto.Descricao</h5></th>
                 </tr>
             </thead>
         </table>
-        <table class="table table-bordered table-hover" id="despesas">
+        <table class="table table-bordered" id="despesas">
             <thead>
                 <tr>
                     <th>Descrição</th>
@@ -60,23 +62,27 @@
                 </tr>
             </tbody>
         </table>
+
     </div>
-</div>
-<div class="row">
     <div class="container">
-        @for (int i = 0; i < ViewBag.arquivos.Count; i++)
+        <div class="row">
+            @for (int i = 0; i < ViewBag.arquivos.Count; i++)
             {
-            <img src="@ViewBag.arquivos[i].FullPathRelativo" class="img-responsive" />
-        }
-      
+                <img src="@ViewBag.arquivos[i].FullPathRelativo" class="img-responsive" />
+            }
+
+        </div>
     </div>
 </div>
+</div>
+
+
 @section Scripts{
     <script>
         var urlDest = "@Url.Action("Exclui", "Despesas")";
         var urlRedirect = "@Url.Action("Index", "Despesas")";
     </script>
-<script src="~/Scripts/Visualizar/Visualizar.js"></script>
-<script src="~/Scripts/Despesas/Despesas.Exclui.js"></script>
-    }
+    <script src="~/Scripts/Visualizar/Visualizar.js"></script>
+    <script src="~/Scripts/Despesas/Despesas.Exclui.js"></script>
+}
 

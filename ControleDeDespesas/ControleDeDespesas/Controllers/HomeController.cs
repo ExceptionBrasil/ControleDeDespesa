@@ -46,7 +46,7 @@ namespace ControleDeDespesas.Controllers
                 return RedirectToAction("Index", "Despesas");
             }
 
-            PdfCreate pdf = new PdfCreate("Título 123", Server.MapPath("~/Content/"));
+         
 
             return View();
         }

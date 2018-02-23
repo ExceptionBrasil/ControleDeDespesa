@@ -14,6 +14,7 @@ using System.Net;
 using Interfaces;
 using X.PagedList;
 using Persistence.DAO.Upload;
+using PdfControl;
 
 namespace ControleDeDespesas.Controllers
 {
@@ -145,6 +146,11 @@ namespace ControleDeDespesas.Controllers
             IList<Despesas> modelo = despesasDAO.GetDespesaByCodigo(id);
             var arquivos = uploadDAO.GetByDespesa(modelo.First());
             ViewBag.arquivos = arquivos; //Acertar o path
+
+            // ViewDespesaPdf pdf = new ViewDespesaPdf("Despesas", Server.MapPath("~/Content/Pdfs/"), "Despesa" + Convert.ToString(modelo.First().CodigoDespesa) + ".pdf", "DPSYS");
+            //pdf.Create(new float[] { 25, 25, 25, 25 }, true, true);
+            // pdf.Build(modelo);
+
             return PartialView(modelo);
         }
 
@@ -156,12 +162,29 @@ namespace ControleDeDespesas.Controllers
         public ActionResult Excluir(int id)
         {
             IList<Despesas> modelo = despesasDAO.GetDespesaByCodigo(id);
+            Despesa Dep = new Despesa(modelo);
+
+            if (Dep.ChangeAnyThing())
+            {
+                return RedirectToAction("NonAlterExclui");
+            }
+
+
+
             var arquivos = uploadDAO.GetByDespesa(modelo.First());
             ViewBag.arquivos = arquivos; //Acertar o path
             return PartialView(modelo);
         }
 
-      
+        /// <summary>
+        /// Aviso de que 
+        /// Despesa não pode ser excluída e nem alterada
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NonAlterExclui() => View();
+
+
+
         [HttpPost]
         public JsonResult Exclui(int codigoDespesa)
         {

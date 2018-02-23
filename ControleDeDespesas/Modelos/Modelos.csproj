@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Aprovacao\AprovadorPorCC.cs" />
     <Compile Include="CentrosDeCustos\CentroDeCusto.cs" />
+    <Compile Include="Despesas\Despesas\Despesa.cs" />
     <Compile Include="Despesas\Despesas\Despesas.cs" />
     <Compile Include="Despesas\Tipos\TiposDeDespesas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +64,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{1d303b97-7229-442b-ae4a-e3643bb24bbb}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

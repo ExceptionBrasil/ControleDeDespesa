@@ -3,11 +3,7 @@
 @using X.PagedList.Mvc
 
 
-
-
-
 <div id="LoadMenu"></div>
-
 
 <div class="row">
     <div class="container-fluid">
@@ -17,21 +13,16 @@
                     <h5>Depesas <span class="label label-default">@ViewBag.DespesasCount</span></h5>
                 </div>
                 <div class="panel-body">
-                    <div class=" table-responsive">
+                    <div class="table-responsive">
                         
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Código</th>
                                     <th>Tipo</th>
-                                    <th>Data de Inclusão</th>
-                                    <th>Centro de Custo</th>
-                                    <th>Descritivo</th>
-                                    <th>Quantidade</th>
-                                    <th>Valor</th>
-                                    <th>Aprovado Em</th>
-                                    <th>Reprovado</th>
-                                    <th>Motivo</th>
+                                    <th>Data de Inclusão</th>                                   
+                                    <th>Descritivo</th>                                    
+                                    <th>Aprovação</th>                                  
                                     <th colspan="3" class="text-center">Opções</th>
                                 </tr>
                             </thead>
@@ -41,15 +32,25 @@
                                     <tr>
                                         <td>@dep.CodigoDespesa</td>
                                         <td>@dep.Tipo.Descricao</td>
-                                        <td>@dep.DataInclusao</td>
-                                        <td>@dep.CentroDeCusto.Descricao</td>
-                                        <td>@dep.Descritivo</td>
-                                        <td>@dep.Quantidade</td>
-                                        <td>@dep.Valor</td>
-                                        <td>@dep.DataAprovacao</td>
-                                        <td>@dep.DataReprovacao</td>
-                                        <td>@dep.MotivoRecusa</td>
-                                        <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                        <td>@dep.DataInclusao</td>                                       
+                                        <td>@dep.Descritivo</td>                                       
+                                        @if (dep.DataAprovacao != null)
+                                        {
+                                            <td><img src="~/Content/Icons Pack/approval-40.png" width="20px"/></td>
+                                        }
+                                        @if(dep.DataReprovacao !=null)
+                                        {
+                                                <td><img src="~/Content/Icons Pack/no-approval-40.png" width="20px"/></td>
+
+                                        }
+
+                                           @if(dep.DataReprovacao ==null && dep.DataAprovacao == null)
+                                        {
+                                                <td><img src="~/Content/Icons Pack/services-40.png" width="20px"/></td>
+
+                                        }
+
+                                            <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
                                         <td><a href="#" id="editDespesa"><span class="glyphicon glyphicon-edit"></span></a></td>
                                         <td><a href="@Url.Action("Excluir","Despesas",new { id = @dep.CodigoDespesa })" id ="eraseDespesa"><span class="glyphicon glyphicon-erase"></span></a></td>                                        
                                     </tr>                                        

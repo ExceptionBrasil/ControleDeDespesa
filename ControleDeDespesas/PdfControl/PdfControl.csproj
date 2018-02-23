@@ -59,11 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PdfCreate.cs" />
+    <Compile Include="IPdf.cs" />
+    <Compile Include="ViewDespesaPdf.cs" />
+    <Compile Include="PdfModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modelos\Modelos.csproj">
+      <Project>{47f4b3a4-8882-4c22-bb6a-b5cd36dbc5f4}</Project>
+      <Name>Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
