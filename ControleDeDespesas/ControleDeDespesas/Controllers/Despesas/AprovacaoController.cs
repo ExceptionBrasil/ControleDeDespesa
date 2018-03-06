@@ -37,16 +37,20 @@ namespace ControleDeDespesas.Controllers
         public ActionResult Index()
         {
 
+            var model = new AprovacaoModelView();
+
             //Recupera a session para o cadasrtro de usuário
             CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
 
             //Retorna todos os Centros de Custos de aprovação do usuário                        
             IList<CentroDeCusto> CCAutorizados = ccDAO.GetByAprovador(usuario);
 
+            
+
             //Recupera a Lista das Despesas pendentes pra aprovação 
             ViewBag.UnApprovedRDV = despesasDAO.GetDespesasUnApproved(CCAutorizados);           
 
-            return View();
+            return View(model);
         }
 
         /// <summary>
@@ -55,7 +59,7 @@ namespace ControleDeDespesas.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Aprovar(int id, AprovacaoModelView Motivo)
+        public ActionResult Aprovar(int id) //<-- Aqui nós poderiamos solicitar o motivo pelo AprovacaoModelView Motivo
         {
             if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
             {
@@ -77,6 +81,18 @@ namespace ControleDeDespesas.Controllers
             {
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ReprovarAll(int id ,AprovacaoModelView Motivo)
+        {
+
+            //Pega todas as Depesas 
+            var despesas = despesasDAO.GetDespesas(id);
+
+            //Aprova as Despesas em massa
+
             return RedirectToAction("Index");
         }
     }

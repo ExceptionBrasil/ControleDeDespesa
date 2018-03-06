@@ -80,7 +80,7 @@ namespace Persistencia.DAO
         /// Pega todas as despesas disponíveis no mundo !
         /// </summary>
         /// <returns></returns>
-        public IList<Despesas> GetDespesa()
+        public IList<Despesas> GetDespesas()
         {
             var despesas = session.QueryOver<Despesas>()
                                   .List();
@@ -88,7 +88,7 @@ namespace Persistencia.DAO
         }
 
         /// <summary>
-        /// Retorna todas as despesasv do usuário atual
+        /// Retorna todas as despesas do usuário atual
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -127,6 +127,18 @@ namespace Persistencia.DAO
                                   .RowCount();
 
             return  despesas;
+        }
+
+        /// <summary>
+        /// Retorna a lista de todos os itens da Despesa pelo Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IList<Despesas> GetDespesas(int id) {
+
+            var despesas = GetDespesaByCodigo(GetDespesaById(id).CodigoDespesa);
+            return despesas;
+
         }
 
         /// <summary>
