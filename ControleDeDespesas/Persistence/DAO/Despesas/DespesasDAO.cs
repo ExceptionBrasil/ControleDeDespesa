@@ -326,6 +326,29 @@ namespace Persistencia.DAO
 
             return true;
         }
+
+        /// <summary>
+        /// Aprova uma lista de Despesas
+        /// </summary>
+        /// <param name="despesas">The despesas.</param>
+        /// <param name="usuario">The usuario.</param>
+        public void AprovaDespesa(IList<Despesas> despesas, CadastroDeUsuario usuario)
+        {
+            foreach (var item in despesas)
+            {
+                item.DataAprovacao = DateTime.Now;
+                item.UsuarioAprovacao = usuario;
+
+                ITransaction tran = session.BeginTransaction();
+                session.Merge(item);
+                tran.Commit();
+
+            }
+        }
+
+
+
+
         /// <summary>
         /// Realiza a Reprovação de uma despesa
         /// </summary>
@@ -347,6 +370,28 @@ namespace Persistencia.DAO
             return true;
         }
 
+
+        /// <summary>
+        /// Reprova uma Lista de Despesas
+        /// </summary>
+        /// <param name="despesas">The despesas.</param>
+        /// <param name="usuario">The usuario.</param>
+        /// <param name="motivo">The motivo.</param>
+        public void ReprovarDespesa (IList<Despesas> despesas, CadastroDeUsuario usuario, string motivo)
+        {
+
+            foreach(var item in despesas)
+            {
+                item.DataReprovacao = DateTime.Now;
+                item.UsuarioReprovação = usuario;
+                item.MotivoRecusa = motivo;
+
+                ITransaction tran = session.BeginTransaction();
+                session.Merge(despesas);
+                tran.Commit();
+            }
+
+        }
        
 
     }

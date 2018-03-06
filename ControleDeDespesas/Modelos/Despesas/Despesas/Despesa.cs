@@ -9,7 +9,7 @@ namespace Modelos
 {
     public class Despesa : IDespesa
     {
-        public IList<Despesas> Itens { get; private set; }
+        public IList<Despesas> Itens { get; private set; }        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Despesa"/> class.
@@ -103,8 +103,7 @@ namespace Modelos
         /// <summary>
         /// Soma o total dos itens
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns><c>double</c> soma</returns>        
         public double Sum()
         {
             double soma=0;
@@ -114,5 +113,7 @@ namespace Modelos
             }
             return soma;
         }
+
+       
     }
 }

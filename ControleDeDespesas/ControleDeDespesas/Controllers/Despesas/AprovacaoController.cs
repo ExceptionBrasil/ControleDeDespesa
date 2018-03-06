@@ -67,6 +67,23 @@ namespace ControleDeDespesas.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult AprovarAll(int id)
+        {
+
+            //Recupera a session para o cadasrtro de usuário
+            CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
+
+            //Pega todas as Depesas 
+            var despesas = despesasDAO.GetDespesas(id);
+            despesasDAO.AprovaDespesa(despesas, usuario);
+
+            //Aprova as Despesas em massa
+
+            return RedirectToAction("Index");
+        }
+
         /// <summary>
         /// Realiza a Reprovação de uma despesa 
         /// </summary>
@@ -84,16 +101,6 @@ namespace ControleDeDespesas.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult ReprovarAll(int id ,AprovacaoModelView Motivo)
-        {
-
-            //Pega todas as Depesas 
-            var despesas = despesasDAO.GetDespesas(id);
-
-            //Aprova as Despesas em massa
-
-            return RedirectToAction("Index");
-        }
+        
     }
 }

@@ -8,8 +8,8 @@ namespace Interfaces
 {
    public  interface IDespesa
     {
+       
 
-        
         /// <summary>
         /// Determines whether this instance has approved.
         /// </summary>
@@ -17,6 +17,8 @@ namespace Interfaces
         ///   <c>true</c> if this instance has approved; otherwise, <c>false</c>.
         /// </returns>
         bool HasApproved();
+
+        
 
         /// <summary>
         /// Determines whether [has not approved].
@@ -48,6 +50,8 @@ namespace Interfaces
         /// </summary>
         /// <returns></returns>
         double Sum();
+
+        
 
 
     }
