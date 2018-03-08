@@ -13,10 +13,11 @@ using Modelos.ViewModels;
 using Factorys;
 using BuildMenu;
 using Interfaces;
+using ControleDeDespesas.Security;
 
 namespace ControleDeDespesas.Controllers
 {
-  //  [AutorizacaoFilter]
+    [AutorizacaoFilter]
     public class UsuariosController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
@@ -175,7 +176,9 @@ namespace ControleDeDespesas.Controllers
                     "Role",
                     "Descricao"
                 );
-                
+
+            
+
             UsuarioModelView model = UsuarioFactory.GetModelView(usuarioDAO.GetById(id));
 
             return View(model);
@@ -204,7 +207,9 @@ namespace ControleDeDespesas.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {                   
+                {
+                    SecurityProvider securi = new SecurityProvider(usuarioDAO);
+                    securi.ChangePassword(usuario.Id, "", usuario.Senha);
                     usuarioDAO.Altera(usuario);
                     user.ChangePassword(usuarioDAO.GetById(usuario.Id).Senha, usuario.Senha);
                     
@@ -224,5 +229,6 @@ namespace ControleDeDespesas.Controllers
     
             return RedirectToAction("Index");
         }
+
     }
 }

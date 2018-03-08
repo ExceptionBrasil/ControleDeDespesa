@@ -49,6 +49,15 @@ namespace Persistencia.DAO
             transacao.Commit();
         }
 
+        public void ChangePassword(int userId, string novaSenha)
+        {
+            var usuario = GetById(userId);
+            usuario.Senha = novaSenha;
+
+            Altera(usuario);
+            
+        }
+
         /// <summary>
         /// Gets the by identifier.
         /// </summary>

@@ -61,14 +61,17 @@ namespace ControleDeDespesas.Controllers
         [HttpGet]
         public ActionResult Aprovar(int id) //<-- Aqui nós poderiamos solicitar o motivo pelo AprovacaoModelView Motivo
         {
-            if (!despesasDAO.AprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId)))
-            {
-                return RedirectToAction("Index");
-            }
+            //Recupera a session para o cadasrtro de usuário
+            CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
+
+            //Aprova o item da Despesa
+            despesasDAO.AprovarDespesa(id, usuario);
+            
+            
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult AprovarAll(int id)
         {
 
@@ -77,6 +80,8 @@ namespace ControleDeDespesas.Controllers
 
             //Pega todas as Depesas 
             var despesas = despesasDAO.GetDespesas(id);
+
+            //Aprova em massa as Despesas
             despesasDAO.AprovaDespesa(despesas, usuario);
 
             //Aprova as Despesas em massa
@@ -92,15 +97,37 @@ namespace ControleDeDespesas.Controllers
         [HttpPost]
         public ActionResult Reprovar(int id, FormCollection form)
         {
+            //Motivo da reprovação da Despesa
             string motivo = form["Motivo"];
 
-            if (!despesasDAO.ReprovarDespesa(id, usuarioDAO.GetById(WebSecurity.CurrentUserId), motivo))
-            {
-                return RedirectToAction("Index");
-            }
+            //Recupera a session para o cadasrtro de usuário
+            CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
+
+
+            despesasDAO.ReprovarDespesa(id, usuario, motivo);      
             return RedirectToAction("Index");
         }
 
-        
+        [HttpPost]
+        public ActionResult ReprovarAll(int id, FormCollection form)
+        {
+            //Motivo da reprovação da Despesa
+            string motivo = form["Motivo"];
+
+
+            //Recupera a session para o cadasrtro de usuário
+            CadastroDeUsuario usuario = (CadastroDeUsuario)Session["Usuario"];
+
+            //Paga todas as despesas desse Id
+            IList<Despesas> despesas = despesasDAO.GetDespesas(id);
+
+
+            //despesasDAO.ReprovarDespesa(usuario,motivo, despesas);
+            despesasDAO.ReprovarDespesa(despesas,usuario, motivo);
+            
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

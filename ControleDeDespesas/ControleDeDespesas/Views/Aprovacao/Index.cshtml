@@ -5,7 +5,7 @@
 <div class="row">
     <div class="container-fluid">
         <div class="col col-lg-12 col-md-12 col-xs-12 col-sm-12" ">
-            <div class="panel panel-primary ">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h5>Aguardando Aprovação</h5>
                 </div>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover table-responsive">
                         <thead>
                             <tr>
                                 <th>Código</th>
@@ -49,7 +49,8 @@
                                 <th>Descritivo</th>
                                 <th>Quantidade</th>
                                 <th>Valor</th>
-                                <th colspan="2" class="text-center">Opções</th>
+                                <th colspan="4" class="text-center">Opções                                
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,14 +64,22 @@
                                     <td>@aprov.Descritivo</td>
                                     <td>@aprov.Quantidade</td>
                                     <td>@aprov.Valor</td>
+                                    
                                     <td><a href=@Url.Action("Aprovar", "Aprovacao", new { id = @aprov.Id })><button class="btn btn-default"> <span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
+                                    <td><a href=@Url.Action("AprovarAll", "Aprovacao", new { id = @aprov.Id })><button class="btn btn-primary"> <span class="glyphicon glyphicon-thumbs-up"></span><span class="glyphicon glyphicon-thumbs-up"></span></button></a></td>
                                     <td>
                                         <a href=# target="_self" onclick='GetId("@Url.Action("Reprovar", "Aprovacao", new { id = @aprov.Id })")'>
                                             <button class="btn btn-default" data-toggle="modal" data-target="#ModalMotivo">
                                                 <span class="glyphicon glyphicon-thumbs-down"></span>
                                             </button>
-                                        </a>
+                                        </a>                                        
                                     </td>
+                                    <td>
+                                    <a href=# target="_self" onclick='GetId("@Url.Action("ReprovarAll", "Aprovacao", new { id = @aprov.Id })")'>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#ModalMotivo">
+                                                <span class="glyphicon glyphicon-thumbs-down"></span><span class="glyphicon glyphicon-thumbs-down"></span>
+                                            </button>
+                                        </a></td>
                                 </tr>
                             }
 

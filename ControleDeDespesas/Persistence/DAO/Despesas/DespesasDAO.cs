@@ -372,26 +372,32 @@ namespace Persistencia.DAO
 
 
         /// <summary>
-        /// Reprova uma Lista de Despesas
+        /// Realiza a Reprovação de uma despesa
         /// </summary>
-        /// <param name="despesas">The despesas.</param>
-        /// <param name="usuario">The usuario.</param>
-        /// <param name="motivo">The motivo.</param>
-        public void ReprovarDespesa (IList<Despesas> despesas, CadastroDeUsuario usuario, string motivo)
+        /// <param name="id"></param>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public void ReprovarDespesa(IList<Despesas> despesas,CadastroDeUsuario usuario, string motivo)
         {
 
-            foreach(var item in despesas)
+            foreach (var item in despesas)
             {
                 item.DataReprovacao = DateTime.Now;
                 item.UsuarioReprovação = usuario;
                 item.MotivoRecusa = motivo;
 
+
                 ITransaction tran = session.BeginTransaction();
-                session.Merge(despesas);
+                session.Merge(item);
                 tran.Commit();
             }
+        
 
+
+           
         }
+
+
        
 
     }
