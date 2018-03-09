@@ -23,7 +23,7 @@ namespace ControleDeDespesas.Controllers
         private UsuariosDAO usuarioDAO;
         private CentroDeCustoDAO ccDAO;
 
-        public UsuariosController (UsuariosDAO user, CentroDeCustoDAO cc )
+        public UsuariosController(UsuariosDAO user, CentroDeCustoDAO cc)
         {
             this.usuarioDAO = user;
             this.ccDAO = cc;
@@ -39,7 +39,7 @@ namespace ControleDeDespesas.Controllers
         /// <summary>
         /// Construção dos Menus
         /// </summary>
-        public  void BuildMenu()
+        public void BuildMenu()
         {
             MakeMenu.Add("Usuarios", "Adicionar", "Usuarios", "Novo Cadastro", Role.User);
             MakeMenu.Add("Despesas", "Index", "Usuarios", "Home", Role.User);
@@ -50,7 +50,7 @@ namespace ControleDeDespesas.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index(){ return View(usuarioDAO.ListAll());}
+        public ActionResult Index() { return View(usuarioDAO.ListAll()); }
 
 
 
@@ -82,7 +82,7 @@ namespace ControleDeDespesas.Controllers
         /// <param name="modelUser">The model user.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Adicionar( UsuarioModelView modelUser)
+        public ActionResult Adicionar(UsuarioModelView modelUser)
         {
             //Valida se há dados paracontinuar
             if (modelUser == null)
@@ -90,7 +90,7 @@ namespace ControleDeDespesas.Controllers
                 return new HttpStatusCodeResult(
                         HttpStatusCode.BadRequest);
             }
-            
+
             CadastroDeUsuario usuario = UsuarioFactory.GeraUsuario(modelUser);
 
             if (usuario == null)
@@ -141,18 +141,19 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public ActionResult Excluir (int id)
+        public ActionResult Excluir(int id)
         {
             try
             {
-                Membership.DeleteUser(usuarioDAO.GetById(id).Login,true);
-            }catch (Exception ex)
+                Membership.DeleteUser(usuarioDAO.GetById(id).Login, true);
+            } catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                return View("EntidadeEmUso");
             }
             return RedirectToAction("Index");
         }
 
+        public ActionResult EntidadeEmUso() {return View(); }
 
         /// <summary>
         /// Formulário de Alteração
@@ -208,10 +209,11 @@ namespace ControleDeDespesas.Controllers
             {
                 try
                 {
-                    SecurityProvider securi = new SecurityProvider(usuarioDAO);
-                    securi.ChangePassword(usuario.Id, "", usuario.Senha);
-                    usuarioDAO.Altera(usuario);
+                    //SecurityProvider securi = new SecurityProvider(usuarioDAO);
+                    //securi.ChangePassword(usuario.Id, "", usuario.Senha);                   
                     user.ChangePassword(usuarioDAO.GetById(usuario.Id).Senha, usuario.Senha);
+                    usuarioDAO.Altera(usuario);
+               
                     
                 }
                 catch(Exception ex)
