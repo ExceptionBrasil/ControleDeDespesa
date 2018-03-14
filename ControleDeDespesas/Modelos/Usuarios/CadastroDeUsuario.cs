@@ -34,5 +34,7 @@ namespace Modelos
 
         [Required]
         public virtual int Role { get; set; }
+
+        public virtual DateTime? TermoDeAceite { get; set; } //Indica que o usário já aceitou o termo de aceite
     }
 }

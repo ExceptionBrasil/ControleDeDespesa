@@ -196,6 +196,7 @@
     <Content Include="Scripts\Despesas\DespesasValidacoes.js" />
     <Content Include="Scripts\Despesas\DespesasWriteHtml.js" />
     <Content Include="Scripts\Despesas\EnviaDespesasJson.js" />
+    <Content Include="Scripts\Home\login.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -221,6 +222,7 @@
     <Compile Include="Controllers\Cadastros\TiposDespesasController.cs" />
     <Compile Include="Controllers\Cadastros\UsuariosController.cs" />
     <Compile Include="Controllers\Menu\MenuController.cs" />
+    <Compile Include="Controllers\Termos\TermosController.cs" />
     <Compile Include="Controllers\UploadedFiles\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,6 +277,7 @@
     <Content Include="Views\CentroDeCusto\ExcluirErrorPage.cshtml" />
     <Content Include="Views\Despesas\Excluir.cshtml" />
     <Content Include="Views\Despesas\NonAlterExclui.cshtml" />
+    <Content Include="Views\Termos\TermoDeAceiteRDV.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

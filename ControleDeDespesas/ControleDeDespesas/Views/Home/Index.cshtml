@@ -30,34 +30,10 @@
 
 @section Scripts
 {
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
-
-        $("#UserLogin").focus();
-
-        $(function () {
-
-            $("#UserPassword").on("submit", function (e) {                
-                e.preventDefault();
-                $.ajax({
-                    url: this.action,
-                    type: this.method,
-                    data: $(this).serialize(),
-                    success: function (response) {
-                        if (response != null && response.success) {
-
-                            var url = "@Url.Action("Index", "Despesas")";
-                            window.location.replace(url);
-                        } else {
-                            $("#result").html("Login Inválido!");
-                        }
-
-                    },
-                    error: function (response) {
-                        $("#result").html("Login Inválido!");
-                    }
-                });
-            });
-        });
+        //Variáveis globais do HTML
+        var url = "@Url.Action("Index", "Despesas")";
     </script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/Home/login.js" type="text/javascript"></script>
 }
