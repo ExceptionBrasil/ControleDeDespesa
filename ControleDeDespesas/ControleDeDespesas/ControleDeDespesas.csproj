@@ -48,9 +48,6 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="AspNet.SuppressFormsRedirect, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\aspnet.suppressformsredirect.0.0.1.4\lib\40\AspNet.SuppressFormsRedirect.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -142,9 +139,6 @@
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
-    <Reference Include="WebApi.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebApi.Membership.0.0.3.0\lib\40\WebApi.Membership.dll</HintPath>
-    </Reference>
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
     </Reference>
@@ -168,10 +162,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Icons Pack\approval-40.png" />
-    <Content Include="Content\Icons Pack\bloqueio-de-estrada-80.png" />
     <Content Include="Content\Icons Pack\delete-40.png" />
-    <Content Include="Content\Icons Pack\desfazer-26.png" />
-    <Content Include="Content\Icons Pack\estrada-encerrada-30.png" />
     <Content Include="Content\Icons Pack\no-approval-40.png" />
     <Content Include="Content\Icons Pack\question.png" />
     <Content Include="Content\Images\Fini-Abriu_SM.png" />
@@ -205,6 +196,7 @@
     <Content Include="Scripts\Despesas\DespesasValidacoes.js" />
     <Content Include="Scripts\Despesas\DespesasWriteHtml.js" />
     <Content Include="Scripts\Despesas\EnviaDespesasJson.js" />
+    <Content Include="Scripts\Home\login.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -230,6 +222,7 @@
     <Compile Include="Controllers\Cadastros\TiposDespesasController.cs" />
     <Compile Include="Controllers\Cadastros\UsuariosController.cs" />
     <Compile Include="Controllers\Menu\MenuController.cs" />
+    <Compile Include="Controllers\Termos\TermosController.cs" />
     <Compile Include="Controllers\UploadedFiles\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -284,7 +277,7 @@
     <Content Include="Views\CentroDeCusto\ExcluirErrorPage.cshtml" />
     <Content Include="Views\Despesas\Excluir.cshtml" />
     <Content Include="Views\Despesas\NonAlterExclui.cshtml" />
-    <Content Include="Views\Usuarios\EntidadeEmUso.cshtml" />
+    <Content Include="Views\Termos\TermoDeAceiteRDV.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
