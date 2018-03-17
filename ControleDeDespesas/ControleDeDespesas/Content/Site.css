@@ -6,7 +6,18 @@
 }
 
 
+.divTableCell, .divTableHead {
+    border: 1px solid #ffffff;
+    /*display: table-cell;
+    padding: 3px 10px;*/
+    text-align: center;
+}
 
+@media (max-width: 320px) {
+    .divTableCell {
+        width: 100%;
+    }
+}
 
 footer {
     background: #0c84e4;
