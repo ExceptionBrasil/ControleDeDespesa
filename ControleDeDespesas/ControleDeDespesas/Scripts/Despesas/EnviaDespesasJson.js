@@ -19,8 +19,8 @@ var EnviaDados = function () {
 
     //Valida o tamanho do Arquivo
     //Não envia arquivos maiores que 4mb
-    if (GetSize(Attachment) > 4) {        
-        return false;
+    if (GetSize(Attachment) > 4) {
+        return alert("A soma dos tamanhos dos arquivos ultrapassa os 4mb");
     }
 
     //Cria o FormData

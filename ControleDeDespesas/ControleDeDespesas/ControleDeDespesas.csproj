@@ -278,6 +278,7 @@
     <Content Include="Views\Despesas\Excluir.cshtml" />
     <Content Include="Views\Despesas\NonAlterExclui.cshtml" />
     <Content Include="Views\Termos\TermoDeAceiteRDV.cshtml" />
+    <Content Include="Scripts\Termos\Termos.Init.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
