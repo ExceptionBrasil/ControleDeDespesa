@@ -14,10 +14,11 @@ using Factorys;
 using BuildMenu;
 using Interfaces;
 using ControleDeDespesas.Security;
+using Factorys.Mail;
 
 namespace ControleDeDespesas.Controllers
 {
-    [AutorizacaoFilter]
+    
     public class UsuariosController : Controller, ISetMenu
     {
         private UsuariosDAO usuarioDAO;
@@ -50,6 +51,7 @@ namespace ControleDeDespesas.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
+        [AutorizacaoFilter]
         public ActionResult Index() { return View(usuarioDAO.ListAll()); }
 
 
@@ -59,6 +61,7 @@ namespace ControleDeDespesas.Controllers
         /// Formulário de inclusão de usuário
         /// </summary>
         /// <returns></returns>
+        [AutorizacaoFilter]
         public ActionResult Adicionar()
         {
             ViewBag.CentroDeCusto = new SelectList(
@@ -81,6 +84,7 @@ namespace ControleDeDespesas.Controllers
         /// <param name="form">The form.</param>
         /// <param name="modelUser">The model user.</param>
         /// <returns></returns>
+        [AutorizacaoFilter]
         [HttpPost]
         public ActionResult Adicionar(UsuarioModelView modelUser)
         {
@@ -141,6 +145,7 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
+        [AutorizacaoFilter]
         public ActionResult Excluir(int id)
         {
             try
@@ -153,6 +158,7 @@ namespace ControleDeDespesas.Controllers
             return RedirectToAction("Index");
         }
 
+        [AutorizacaoFilter]
         public ActionResult EntidadeEmUso() {return View(); }
 
         /// <summary>
@@ -160,6 +166,7 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
+        [AutorizacaoFilter]
         public ActionResult Alterar(int id)
         {
             if (id == null)
@@ -190,6 +197,7 @@ namespace ControleDeDespesas.Controllers
         /// </summary>
         /// <param name="usuario">The usuario.</param>
         /// <returns></returns>
+        [AutorizacaoFilter]
         [HttpPost]
         public ActionResult Alterar(FormCollection form,UsuarioModelView modelUser)
         {
@@ -230,6 +238,61 @@ namespace ControleDeDespesas.Controllers
 
     
             return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Formulário de recuperação de senha 
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public ActionResult RecoverPassword()
+        {
+            var model = new RecoverPasswordModelView();
+            return View(model);
+        }
+
+
+        /// <summary>
+        /// Recupera a senha, retornando um senha aleatória e redireciona para uma página de senha recuperada
+        /// </summary>
+        /// <param name="recover">The recover.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]        
+        public ActionResult RecoverPasswordResult(RecoverPasswordModelView recover)
+        {
+            if (recover == null)
+            {
+                return View("RecoverPassword", recover);
+            }
+                        
+            CadastroDeUsuario usuario = usuarioDAO.GetByEmail(recover.Email);
+            if(usuario == null)
+            {
+                return View("RecoverPassword", recover);
+            }
+
+            MembershipUser user = Membership.GetUser(usuario.Login);
+            string newToken = Membership.GeneratePassword(12, 1);
+
+            //Tenta realizar a aletração da senha do usuário
+            try
+            {
+                                
+                //user.ChangePassword(usuario.Senha, newPassword);
+
+                //usuario.Senha = newPassword;
+                //usuarioDAO.Altera(usuario);
+
+                Mail email = new Mail(usuario.Email, "workflow@finiguloseimas.com.br", "Recuperação de Login", "Token " + usuario.Senha);
+                email.Send();
+
+            }catch(ArgumentException ex)
+            {
+                return View("EntidadeEmUso");
+            }
+
+            return View();
         }
 
     }

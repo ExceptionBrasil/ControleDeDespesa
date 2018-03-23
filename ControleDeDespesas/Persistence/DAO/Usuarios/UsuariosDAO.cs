@@ -72,6 +72,18 @@ namespace Persistencia.DAO
             return usuario;
         }
 
+        /// <summary>
+        /// Gets the by email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        public CadastroDeUsuario GetByEmail(string email)
+        {
+            CadastroDeUsuario usuario = session.QueryOver<CadastroDeUsuario>()
+                                               .Where(u => u.Email == email)
+                                               .SingleOrDefault();
+            return usuario;
+        }
 
         /// <summary>
         /// Lista todos os usuários

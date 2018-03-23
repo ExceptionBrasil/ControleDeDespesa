@@ -103,6 +103,7 @@
     <Compile Include="Despesas\DespesasJsonToDespesas.cs" />
     <Compile Include="Helpers\ConfigureHelper.cs" />
     <Compile Include="Helpers\NhibernateHelper.cs" />
+    <Compile Include="Mail\Mail.cs" />
     <Compile Include="Ninject\Injections.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\DiretorioFactory.cs" />

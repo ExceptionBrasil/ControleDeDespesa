@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
-                <li><a href="#">Trocar Senha</a></li>                
+                <li><a href="@Url.Action("RecoverPassword","Usuarios")"><span class="glyphicon glyphicon-lock"></span> Recuperar a Senha </a></li>                
             </ul>
         </div>
     </div>

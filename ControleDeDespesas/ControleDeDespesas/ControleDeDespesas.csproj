@@ -278,6 +278,8 @@
     <Content Include="Views\Despesas\Excluir.cshtml" />
     <Content Include="Views\Despesas\NonAlterExclui.cshtml" />
     <Content Include="Views\Termos\TermoDeAceiteRDV.cshtml" />
+    <Content Include="Views\Usuarios\RecoverPassword.cshtml" />
+    <Content Include="Views\Usuarios\RecoverPasswordResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
