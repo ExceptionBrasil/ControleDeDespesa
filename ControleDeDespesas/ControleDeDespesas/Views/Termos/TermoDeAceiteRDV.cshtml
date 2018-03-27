@@ -1,6 +1,6 @@
-﻿
+﻿@model Modelos.ViewModels.TermoModelView
 @{
-
+    ViewBag.Title = "Termo de Aceite";
 }
 
 <!DOCTYPE html>
@@ -67,5 +67,9 @@
 </body>
 </html>
 @section Scripts{
+    <script type="text/javascript">
+        var urlContinue = "@Url.Action("Index","Despesas")";
+        var urlRollback = "@Url.Action("Logout","Home")";
+    </script>
     <script src="~/Scripts/Termos/Termos.Init.js"></script>
     }

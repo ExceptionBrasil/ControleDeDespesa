@@ -18,57 +18,70 @@ var WebService = (
 
 
 		///Inicializa o WebService		
-		var Init = function () {
+		var Init = () => {
 			btnAceitar.addEventListener("click", function (event) {
 				event.preventDefault();
-				event.preventPropagation();
+				event.stopPropagation();
 
 				Termo.Aceito = true;
+				WebService.Send();
 
 			});
 
 			btnNaoAceito.addEventListener("click", function (event) {
 				event.preventDefault();
-				event.preventPropagation();
+				event.stopPropagation();
 
 				Termo.Aceito = false;
+				WebService.Send();
 			});
 		}
 
 		//Monta a promisse
-		var SendData = function () {
-			return (new Promise(function (resolve, reject) {
+		var SendData = (TermoDeAceite) => {
+			return (new Promise((resolve, reject) => {
 
 				$.ajax({
-					url: urlDespesasIncluir,
-					data: Dados,
+					url: "/Termos/TermoDeAceiteRDVPost",
+					data: TermoDeAceite,
 					dataType: "json",
 					method: "POST",
 					error: function (response) {
-						console.log(response);
+						console.log("Termo.Ini.js |Epic Fail !");
+						console.log(resolve);
+						reject(response);
 					},
 					success: function (response) {
 						if (response.success) {
-							window.location.replace("/Despesas");
-						} else {
-							erroDeEnvio(response.menssage);
+							console.log("Termo.Ini.js | Sucess! Redirecting...");
+							resolve(response.success);
 						}
-
+						else {
+							console.log("Termo.Ini.js | Sucess! Redirecting...!");
+							resolve(response.success);
+						}
 					}
 				});
-
-
-
 			})
-			   );
+			);
 		}
 
 
-		//Faz o envio das informações
-		var Send = function () {
-			SendData.then().cath();
+		//Request do Promisse 
+		var Send = () => {
 
+			SendData(Termo).then((response) => {
+				console.log(response);
+				if (response) {
+					window.location.replace(urlContinue);
+				} else {
+					window.location.replace(urlRollback);
+				}
+				
+			}).catch((e) => console.log(e));
+		   
 		}
+
 
 		/// Retono dos mátodos públicos 
 		return ({
@@ -78,3 +91,5 @@ var WebService = (
 
 	}
 )();
+
+WebService.Init();

@@ -13,8 +13,12 @@ namespace ControleDeDespesas.Controllers
 
     public class HomeController : Controller
     {
-        private UsuariosDAO usuarioDAO; 
+        private UsuariosDAO usuarioDAO;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeController"/> class.
+        /// </summary>
+        /// <param name="userDao">The user DAO.</param>
         public HomeController(UsuariosDAO userDao)
         {
             this.usuarioDAO = userDao;
@@ -23,11 +27,7 @@ namespace ControleDeDespesas.Controllers
             {  
                 
                 WebSecurity.InitializeDatabaseConnection(ConfigureHelper.Key("connection.connection_string_name")
-                                                        , "CadastroDeUsuario", "Id", "Login", true);
-
-                
-
-                
+                                                        , "CadastroDeUsuario", "Id", "Login", true);                
             }
         }
 
@@ -45,9 +45,6 @@ namespace ControleDeDespesas.Controllers
             {
                 return RedirectToAction("Index", "Despesas");
             }
-
-         
-
             return View();
         }
 
@@ -81,6 +78,10 @@ namespace ControleDeDespesas.Controllers
             }
             
         }
+        /// <summary>
+        /// Logouts this instance.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Logout()
         {

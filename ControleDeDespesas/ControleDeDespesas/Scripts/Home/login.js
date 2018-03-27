@@ -1,4 +1,8 @@
 ﻿
+    /// <summary>
+    /// Módulo de execução de request do login
+    /// </summary>
+    /// <returns></returns>
 $(document).ready(function () {
 
 
