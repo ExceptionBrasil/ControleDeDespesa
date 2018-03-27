@@ -19,7 +19,8 @@ namespace Persistencia.Mappings
             Map(u => u.Email);
             Map(u => u.Cpf);
             Map(u => u.Role);
-            Map(u => u.TermoDeAceite);            
+            Map(u => u.TermoDeAceite);
+            Map(u => u.LastTokenForRecover);
             References(u => u.CentroDeCusto);            
         }
     }

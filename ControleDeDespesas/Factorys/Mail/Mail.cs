@@ -68,19 +68,20 @@ namespace Factorys.Mail
                 }
             }
 
-            //Monta o Smtp
-            SmtpClient client = new SmtpClient("172.16.0.150", 25);
-            try
+            //Faz o envio do e-mail
+            using(SmtpClient client = new SmtpClient("172.16.0.150", 25))
             {
-                //Faz o envio 
-                client.Send(mail);
+                try
+                {
+                    //Faz o envio 
+                    client.Send(mail);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception caught in CreateBccTestMessage(): {0}",
+                                ex.ToString());
+                }                
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception caught in CreateBccTestMessage(): {0}",
-                            ex.ToString());
-            }
-
 
         }
 

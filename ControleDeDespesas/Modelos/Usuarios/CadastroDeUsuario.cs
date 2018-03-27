@@ -36,5 +36,7 @@ namespace Modelos
         public virtual int Role { get; set; }
 
         public virtual DateTime? TermoDeAceite { get; set; } //Indica que o usário já aceitou o termo de aceite
+
+        public virtual string LastTokenForRecover { get; set; }
     }
 }

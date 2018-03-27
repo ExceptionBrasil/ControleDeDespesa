@@ -21,8 +21,10 @@ namespace ControleDeDespesas.Controllers
     
     public class UsuariosController : Controller, ISetMenu
     {
+        static  private CadastroDeUsuario usuario;
         private UsuariosDAO usuarioDAO;
         private CentroDeCustoDAO ccDAO;
+        
 
         public UsuariosController(UsuariosDAO user, CentroDeCustoDAO cc)
         {
@@ -266,33 +268,55 @@ namespace ControleDeDespesas.Controllers
                 return View("RecoverPassword", recover);
             }
                         
-            CadastroDeUsuario usuario = usuarioDAO.GetByEmail(recover.Email);
+            usuario = usuarioDAO.GetByEmail(recover.Email);
+
             if(usuario == null)
             {
                 return View("RecoverPassword", recover);
             }
 
-            MembershipUser user = Membership.GetUser(usuario.Login);
-            string newToken = Membership.GeneratePassword(12, 1);
+            MembershipUser user = Membership.GetUser(usuario.Login);            
+            usuario.LastTokenForRecover = Membership.GeneratePassword(12, 1);
 
-            //Tenta realizar a aletração da senha do usuário
+            //Envia o Token de recupeação de senha 
             try
-            {
-                                
-                //user.ChangePassword(usuario.Senha, newPassword);
+            {   
 
-                //usuario.Senha = newPassword;
-                //usuarioDAO.Altera(usuario);
-
-                Mail email = new Mail(usuario.Email, "workflow@finiguloseimas.com.br", "Recuperação de Login", "Token " + usuario.Senha);
+                Mail email = new Mail(usuario.Email, "workflow@finiguloseimas.com.br", "Recuperação de Login", "Token " + usuario.LastTokenForRecover);
                 email.Send();
 
             }catch(ArgumentException ex)
             {
-                return View("EntidadeEmUso");
+               
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// Faz a alteração efetiva de senha 
+        /// </summary>
+        /// <param name="token">The token.</param>
+        /// <param name="senha">The senha.</param>
+        /// <returns></returns>
+        public ActionResult AlterPassword(string token, string senha)
+        {
+            
+            MembershipUser user = Membership.GetUser(usuario.Login);
+            
+            try
+            {
+                user.ChangePassword(usuario.Senha, senha);
+                usuario.Senha = senha;
+                usuarioDAO.Altera(usuario);
+            }
+            catch
+            {
+                return View("EntidadeEmUso");
+            }
+
+            return RedirectToAction("Index", "Home");
+
         }
 
     }
