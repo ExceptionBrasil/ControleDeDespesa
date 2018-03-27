@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 using WebMatrix.WebData;
 
 namespace ControleDeDespesas.Security
@@ -20,12 +21,12 @@ namespace ControleDeDespesas.Security
         public  bool ChangePassword(int userId, string oldPassword, string newPassword)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(newPassword);
-            var pass = base.EncryptPassword(bytes);
+            byte[] pass = base.EncryptPassword(bytes);
 
             //troca a senha no cadastro
             usuarioDAO.ChangePassword(userId, newPassword);
-
-
+            
+            
             return true;
            // return base.ChangePassword(username, oldPassword, newPassword);
         }

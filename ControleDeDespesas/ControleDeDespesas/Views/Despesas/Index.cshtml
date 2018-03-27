@@ -7,72 +7,112 @@
 
 <div class="row">
     <div class="container-fluid">
-        <div class="col col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div class="col col-lg-12 col-md-12 col-xs-12 col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5>Depesas <span class="label label-default">@ViewBag.DespesasCount</span></h5>
                 </div>
                 <div class="panel-body">
-                    <div class="table-responsive"> 
-                        
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Tipo</th>
-                                    <th>Data de Inclusão</th>                                   
-                                    <th>Descritivo</th>                                    
-                                    <th>Aprovação</th>                                  
-                                    <th colspan="3" class="text-center">Opções</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var dep in Model)
-                                {
-                                    <tr>
-                                        <td>@dep.CodigoDespesa</td>
-                                        <td>@dep.Tipo.Descricao</td>
-                                        <td>@dep.DataInclusao</td>                                       
-                                        <td>@dep.Descritivo</td>                                       
-                                        @if (dep.DataAprovacao != null)
-                                        {
-                                            <td><img src="~/Content/Icons Pack/approval-40.png" width="20px"/></td>
-                                        }
-                                        @if(dep.DataReprovacao !=null)
-                                        {
-                                                <td><img src="~/Content/Icons Pack/no-approval-40.png" width="20px"/></td>
 
-                                        }
-
-                                           @if(dep.DataReprovacao ==null && dep.DataAprovacao == null)
-                                        {
-                                                <td><img src="~/Content/Icons Pack/services-40.png" width="20px"/></td>
-
-                                        }
-
-                                            <td><a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                        <td><a href="#" id="editDespesa"><span class="glyphicon glyphicon-edit"></span></a></td>
-                                        <td><a href="@Url.Action("Excluir","Despesas",new { id = @dep.CodigoDespesa })" id ="eraseDespesa"><span class="glyphicon glyphicon-erase"></span></a></td>                                        
-                                    </tr>                                        
-                                }
-                            </tbody>
-                        </table>
+                    <!--
+                        Novo Corpo seprado com DIVS
+                        Mobile First!
+                    -->
+                    <div class="row">
+                        <!--Código-->
+                        <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                            <b>Código</b>
+                        </div>
+                        <!--Tipo-->
+                        <div class="col col-lg-3 col-md-2 col-sm-6 col-xs-12 text-center">
+                            <b>Tipo</b>
+                        </div>
+                        <!--Data de Inclusão-->
+                        <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                            <b>Data de Inclusão</b>
+                        </div>
+                        <!--Descritivo-->
+                        <div class="col col-lg-3 col-md-2 col-sm-6 col-xs-12 text-center">
+                            <b>Descritivo</b>
+                        </div>
+                        <!--O ícone de Aprovação -->
+                        <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                            <b>Aprovação</b>
+                        </div>
+                        <!--Opções aglutinas em 3 colunas -->
+                        <div class="col col-lg-3 col-md-1 col-sm-6 col-xs-12 text-center">
+                            <b>Opções</b>
+                        </div>
                     </div>
+                    <hr />
+                    @foreach (var dep in Model)
+                    {
+                        <div class="row">
+                            <!--Código-->
+                            <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                                @dep.CodigoDespesa
+                            </div>
+                            <!--Tipo-->
+                            <div class="col col-lg-3 col-md-2 col-sm-6 col-xs-12 text-center">
+                                @dep.Tipo.Descricao
+                            </div>
+                            <!--Data de Inclusão-->
+                            <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                                @dep.DataInclusao
+                            </div>
+                            <!--Descritivo-->
+                            <div class="col col-lg-3 col-md-2 col-sm-6 col-xs-12 text-center">
+                                @dep.Descritivo
+                            </div>
+                            <!--O ícone de Aprovação -->
+                            <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                                @if (dep.DataAprovacao != null)
+                                {
+                                    <img src="~/Content/Icons Pack/approval-40.png" width="20px" />
+                                }
+                                @if (dep.DataReprovacao != null)
+                                {
+                                    <td><img src="~/Content/Icons Pack/no-approval-40.png" width="20px" /></td>
+
+                                }
+
+                                @if (dep.DataReprovacao == null && dep.DataAprovacao == null)
+                                {
+                                    <td><img src="~/Content/Icons Pack/services-40.png" width="20px" /></td>
+
+                                }
+                            </div>
+                            <!--Opções aglutinas em 3 colunas -->
+                            <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                                <a href=@Url.Action("Visualizar","Despesas",new { id = @dep.CodigoDespesa }) target="_blank"> <span class="glyphicon glyphicon-eye-open"></span></a>
+                            </div>
+                            <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                                <a href="#" id="editDespesa"><span class="glyphicon glyphicon-edit"></span></a>
+                            </div>
+                            <div class="col col-lg-1 col-md-1 col-sm-6 col-xs-12 text-center">
+                                <a href="@Url.Action("Excluir","Despesas",new { id = @dep.CodigoDespesa })" id="eraseDespesa"><span class="glyphicon glyphicon-erase"></span></a>
+                            </div>
+
+                        </div>
+                        <hr />
+                    }
+
                 </div>
                 <div class="panel-footer">
-                    @Html.PagedListPager((IPagedList) ViewBag.UmaPaginaDeDespesas, pagina => Url.Action("Index", new { pagina }))                    
-                    
+                    @Html.PagedListPager((IPagedList)ViewBag.UmaPaginaDeDespesas, pagina => Url.Action("Index", new { pagina }))
+
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 
 </br></br></br>
-        
+
 @section Scripts{
-    <script>    
+    <script>
+
         // criar a tag  ==>  <div id="LoadMenu"></div> <==  para carregar o menu na página
         var urlGetMenu = "@Url.Action("GetByLocation", "Menu")";
     </script>

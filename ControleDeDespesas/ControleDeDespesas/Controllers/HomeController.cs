@@ -7,6 +7,7 @@ using Factorys.Helpers;
 using Factorys.Tools;
 
 using PdfControl;
+using System.Net;
 
 namespace ControleDeDespesas.Controllers
 {
@@ -58,6 +59,12 @@ namespace ControleDeDespesas.Controllers
         [HttpPost]
         public ActionResult Autentica(Autenticacao autenticacao)
         {
+            if (autenticacao == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                    
+            }
+
             if (WebSecurity.Login(autenticacao.Login, autenticacao.Senha))
             {
                 //Cria a Sessão de página

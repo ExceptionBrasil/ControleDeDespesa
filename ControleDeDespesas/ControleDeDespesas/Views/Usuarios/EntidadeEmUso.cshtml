@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "EntidadeEmUso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <img src="~/Content/Icons Pack/bloqueio-de-estrada-80.png" /><h3>Essa entidade está em uso, não pode ser excluída.</h3>
+            <a href="@Url.Action("Index","Usuarios")">Voltar <img src="~/Content/Icons Pack/desfazer-26.png" width="12px"/></a>
+        </div>
+    </div>
+</div>
+

@@ -60,6 +60,7 @@
     <Compile Include="ViewModels\Autenticacao.cs" />
     <Compile Include="ViewModels\CentroDeCustoModelView.cs" />
     <Compile Include="ViewModels\DespesasJson.cs" />
+    <Compile Include="ViewModels\RecoverPasswordModelView.cs" />
     <Compile Include="ViewModels\TermoModelView.cs" />
     <Compile Include="ViewModels\UsuarioModelView.cs" />
   </ItemGroup>
