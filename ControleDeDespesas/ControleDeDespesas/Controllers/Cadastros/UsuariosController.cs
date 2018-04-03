@@ -16,6 +16,7 @@ using Interfaces;
 using ControleDeDespesas.Security;
 using Factorys.Mail;
 
+
 namespace ControleDeDespesas.Controllers
 {
     
@@ -35,7 +36,7 @@ namespace ControleDeDespesas.Controllers
             {
                 WebSecurity.InitializeDatabaseConnection("local", "CadastroDeUsuario", "Id", "Login", true);
             }
-
+            
             BuildMenu();
         }
 
@@ -280,12 +281,15 @@ namespace ControleDeDespesas.Controllers
 
             //Envia o Token de recupeação de senha 
             try
-            {   
+            {
 
-                Mail email = new Mail(usuario.Email, "workflow@finiguloseimas.com.br", "Recuperação de Login", "Token " + usuario.LastTokenForRecover);
-                email.Send();
+                 MailFactory email = new MailFactory(usuario.Email, "workflow@finiguloseimas.com.br", "Recuperação de Login", "Token: " + usuario.LastTokenForRecover);
 
-            }catch(ArgumentException ex)
+                 email.Send();
+                
+
+            }
+            catch(ArgumentException ex)
             {
                
             }

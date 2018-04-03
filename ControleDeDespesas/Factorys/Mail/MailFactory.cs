@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Factorys.Mail
 {
-    public class Mail
+    public class MailFactory
     {
         public string To { get; private set; }
         public string From { get; private set; }
@@ -16,10 +16,20 @@ namespace Factorys.Mail
         public List<string> Attached { get; private set; }
         public string Subject { get; private set; }
         public string Body { get; private set; }
+        private MailMessage mail;
 
 
-
-        public Mail(string to, 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MailFactory"/> class.
+        /// </summary>
+        /// <param name="to">To.</param>
+        /// <param name="from">From.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="body">The body.</param>
+        /// <param name="cc">The cc.</param>
+        /// <param name="cco">The cco.</param>
+        /// <param name="attached">The attached.</param>
+        public MailFactory(string to, 
                     string from, 
                     string subject = "", 
                     string body = "", 
@@ -27,6 +37,8 @@ namespace Factorys.Mail
                     string cco = "", 
                     List<string> attached = null)
         {
+
+            //Init Vars
             this.To = to;
             this.From = from;
             this.Subject = subject;
@@ -34,11 +46,8 @@ namespace Factorys.Mail
             this.Cc = cc;
             this.Cco = cco;
             this.Attached = attached;
-        }
+            this.mail = new MailMessage(this.From, this.To);
 
-        public void Send()
-        {
-            MailMessage mail = new MailMessage(this.From, this.To);
 
             mail.Body = this.Body;
             mail.Subject = this.Subject;
@@ -53,14 +62,9 @@ namespace Factorys.Mail
 
                 Console.Write(ex.Message);
             }
-            
-            
 
-            
-            
-                     
             //Anexos 
-            if(this.Attached != null)
+            if (this.Attached != null)
             {
                 for (int i = 0; i <= this.Attached.Count; i++)
                 {
@@ -68,6 +72,13 @@ namespace Factorys.Mail
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Realiza o envio do e-mail 
+        /// </summary>
+        public void Send()
+        {
             //Faz o envio do e-mail
             using(SmtpClient client = new SmtpClient("172.16.0.150", 25))
             {

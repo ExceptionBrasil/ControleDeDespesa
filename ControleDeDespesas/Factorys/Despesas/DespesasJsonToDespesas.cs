@@ -30,6 +30,7 @@ namespace Factorys
             despesa.Descritivo = depJ.Observacao;
             despesa.DataInclusao = DateTime.Now;            
 
+            
             return despesa;
             
         }
